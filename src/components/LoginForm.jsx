@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
+import styles from "../styles/login.module.scss";
+import logo from "../img/logo.png";
 
 const LoginForm = ({ Login, error }) => {
   const [details, setDetails] = useState({ username: "", password: "" });
@@ -11,10 +13,11 @@ const LoginForm = ({ Login, error }) => {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="form-inner">
-        <h2>Login</h2>
-        {(error !== "") && (<div className='error'>{error}</div>)}
+      <div className={styles.form_container}>
+        <img src={logo} alt="Protectores de salud" />
+        {error !== "" && <div className="error">{error}</div>}
         <TextField
+          className={styles.input}
           id="username"
           label="Username"
           variant="outlined"
@@ -25,6 +28,7 @@ const LoginForm = ({ Login, error }) => {
         />
 
         <TextField
+          className={styles.input}
           id="password"
           label="Contraseña"
           variant="outlined"
@@ -33,7 +37,12 @@ const LoginForm = ({ Login, error }) => {
           onChange={(e) => setDetails({ ...details, password: e.target.value })}
           value={details.password}
         />
-        <input type="submit" value="Login" />
+        <div className={styles.recuperar}>
+          <a href="/recuperar-contraseña">
+            Recuperar contraseña
+          </a>
+        </div>
+        <input className={styles.blue_button} type="submit" value="Login" />
       </div>
     </form>
   );

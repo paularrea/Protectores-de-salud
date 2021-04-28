@@ -1,0 +1,14 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    div{
+        p{
+            margin: 1rem 0;
+            line-height: 25px;
+        }
+    }
+}

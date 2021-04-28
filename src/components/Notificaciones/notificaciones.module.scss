@@ -1,0 +1,22 @@
+.notificaciones_container{
+    padding: 1rem;
+    margin: .5rem 0;
+    position: relative;
+    margin: .5rem 2rem;
+    p,a{
+        font-size: 14px;
+        line-height: 22px;
+        width: 80%;
+    }
+    .icon{
+        position: absolute;
+        top: -.8rem;
+        right: -.8rem;
+        width: auto;
+        height: auto;
+        img{
+        width: 32px;
+        height: auto;
+}
+    }
+}

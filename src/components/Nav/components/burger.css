@@ -1,0 +1,76 @@
+.bm-burger-button {
+  position: relative;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+.burger-icon{
+  background-color: yellow;
+  width: 30px !important;
+  height: 30px !important;
+  color: red;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-menu{
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  outline: none;
+}
+  .bm-burger-bars {
+    background: #ffffff;
+    border-radius: 2px;
+    height: 2px !important;
+  }
+  .bm-burger-bars-hover {
+    background: var(--btn-hover);
+  }
+  .bm-cross-button {
+    position: absolute;
+    top: 2.7rem !important;
+    right: 2.7rem !important;
+  }
+  .bm-cross {
+    background: rgb(0, 0, 0);
+    border-radius: 2px;
+    width: 20px !important;
+    height: 2px !important;
+  }
+
+  .bm-menu-wrap {
+    position: fixed;
+    overflow-x: hidden;
+    width: 100vw !important;
+    height: 100vh !important;
+    top: 0 !important;
+    background:  #ffffff;
+  }
+  /* General sidebar styles */
+  .bm-menu {
+    display: flex;
+    margin: 0 2.5rem;
+    margin-top: 15vh;
+    width: auto;
+    height: fit-content !important;
+  }
+  /* Wrapper for item list */
+  .bm-item-list{
+    width: 100%;
+    height: auto;
+  }
+  .bm-item-list button{
+    outline: none !important;
+    outline-color: transparent;
+    text-decoration: none;
+    font-weight: 400;
+    width: fit-content;
+    color: #000000;
+    font-size: 24px;
+  }
+
+  .bm-overlay{
+    display: none;
+   }

@@ -1,0 +1,19 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    // padding: 2rem;
+    .intro{
+        margin: 3rem 0 0 0;
+        padding: 0rem 2rem;
+        p{
+            margin: 1rem 0;
+            color: gray;
+            font-size: 18px;
+            font-weight: 300;
+        }
+    }
+}

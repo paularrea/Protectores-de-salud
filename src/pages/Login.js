@@ -3,10 +3,6 @@ import LoginForm from "../components/LoginForm";
 import Dashboard from "./Dashboard";
 
 const Login = () => {
-  const adminUser = {
-    username: "Pau",
-    password: "1234",
-  };
   const [user, setUser] = useState({ username: "", password: "" });
   const [dbUser, setDbUser] = useState({ username: "", password: "" });
   const [error, setError] = useState("");

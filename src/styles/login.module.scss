@@ -1,0 +1,38 @@
+.form_container{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    img{
+        margin: 0 auto;
+        width: 150px;
+        height: 150px;
+        margin-bottom: 1rem;
+    }
+    .input{
+        margin: 0 auto;
+        margin-top: 2rem;
+        width: 80%;
+    }
+    .blue_button{
+        margin: 2rem auto;
+        background-color: #4284F3;
+        border-radius: 50px;
+        width: 45%;
+        height: 50px;
+        color: white;
+        outline: none;
+        border: none;
+        &:hover{
+            background-color: #4283f39b;
+        }
+    }
+    .recuperar{
+        margin: 1rem 0;
+        padding-left: 10%;
+    text-align: justify;
+    }
+}
