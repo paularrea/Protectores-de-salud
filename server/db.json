@@ -1,9 +1,32 @@
 {
     "users": [{
+        "id":1,
         "username": "Pau",
         "password": "1234",
+        "notifications": [{
+            "rojas": [{
+                    "id": 1,
+                    "message": "Tu cita de hoy, jueves 16 de abril, a las 5:00 p.m. ha sido anulada por el paciente."
+                },
+                {
+                    "id": 2,
+                    "message": "Tu cita de hoy, jueves 16 de abril, a las 5:00 p.m. ha sido anulada por el paciente."
+                }
+            ],
+            "azules": [{
+                    "id": 1,
+                    "message": "Ya tienes disponible el resumen de tus intervenciones de la semana pasada."
+                },
+                {
+                    "id": 2,
+                    "message": "Ya tienes disponible el resumen de tus intervenciones de la semana pasada."
+                }
+            ]
+
+        }],
         "citas": [{
             "presenciales": [{
+                    "id": 1,
                     "day": "Fri Apr 23 2021",
                     "hour": "13:00",
                     "firstName": "María",
@@ -20,6 +43,7 @@
                     ]
                 },
                 {
+                    "id": 2,
                     "day": "Fri Apr 23 2021",
                     "hour": "18:00",
                     "firstName": "José",
@@ -37,6 +61,7 @@
                 }
             ],
             "telefonicas": [{
+                    "id": 1,
                     "day": "Fri Apr 23 2021",
                     "hour": "9:00",
                     "firstName": "Juan",
@@ -53,6 +78,7 @@
                     ]
                 },
                 {
+                    "id": 2,
                     "day": "Fri Apr 23 2021",
                     "hour": "13:00",
                     "firstName": "Antonia",

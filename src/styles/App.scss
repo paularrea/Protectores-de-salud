@@ -11,6 +11,29 @@ body, html {
     box-sizing: border-box;
 }
 
+html,body{
+    max-width: 500px;
+    background-color: whitesmoke
+}
+
+
+.container-mobile{
+    background-color: white;
+    width: 420px;
+    height: 740px;
+    border: 1px solid rgb(236, 236, 236);
+    border-radius: 10px;
+    position: absolute;
+    margin: auto;
+    overflow-y: scroll;
+    left: 0; 
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    -webkit-box-shadow: 0px 10px 13px -7px #616161, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 0px 10px 13px -7px #616161, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
 * {
     box-sizing: inherit;
 }
@@ -30,6 +53,14 @@ button{
 }
 
 a{
+    text-decoration: none;
+    color: black;
+    &:visited { text-decoration: none; color:black; }
+    &:hover { text-decoration: none; color:black; }
+    &:focus { text-decoration: none; color:black; }
+    &:hover, a:active { text-decoration: none; color:black }
+}
+.link{
     text-decoration: none;
     color: #4284F3;
     &:visited { text-decoration: none; color:#4284F3; }

@@ -38,7 +38,7 @@ const LoginForm = ({ Login, error }) => {
           value={details.password}
         />
         <div className={styles.recuperar}>
-          <a href="/recuperar-contraseña">
+          <a className='link' href="/recuperar-contraseña">
             Recuperar contraseña
           </a>
         </div>

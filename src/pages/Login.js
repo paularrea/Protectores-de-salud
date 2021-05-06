@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import Dashboard from "./Dashboard";
+import "../styles/App.scss"
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
@@ -45,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className='container-mobile'>
       {user.username !== "" ? (
         <div className="welcome">
           <Dashboard Logout={Logout} user={user} />
