@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "./dropdown.module.scss";
 import locationIcon from "../../../img/loc.png";
 import phoneIcon from "../../../img/phone.png";
+import arrow from "../../../img/arrow.png";
+import less from "../../../img/less.png";
+import more from "../../../img/more.png";
 
 const DropDown = ({ userData }) => {
   const [open, setOpen] = useState(true);
@@ -18,7 +21,15 @@ const DropDown = ({ userData }) => {
         <div>
           <p>Hoy, martes 30 de marzo</p>
         </div>
-        {open ? <div>-</div> : <div>+</div>}
+        {open ? (
+          <div className={styles.more_less_icons}>
+            <img src={less} alt="ver menos" />
+          </div>
+        ) : (
+          <div className={styles.more_less_icons}>
+            <img src={more} alt="ver más" />
+          </div>
+        )}
       </div>
       {open && (
         <>
@@ -34,10 +45,12 @@ const DropDown = ({ userData }) => {
               <div className={styles.direction}>
                 <div className={styles.flex_container_direction}>
                   <div className={styles.name}>
-                    <img src={locationIcon} alt="" />
+                    <img src={locationIcon} alt="location" />
                     <h5>Juan García</h5>
                   </div>
-                  <div>{">"}</div>
+                  <div className={styles.arrow_container}>
+                    <img src={arrow} alt="ver cita" />
+                  </div>
                 </div>
                 <p>Calle Lalaá 23, 08083, Puerto Rico</p>
               </div>
@@ -49,10 +62,12 @@ const DropDown = ({ userData }) => {
             <div className={styles.direction}>
               <div className={styles.flex_container_direction}>
                 <div className={styles.name}>
-                  <img src={phoneIcon} alt="" />
+                  <img src={phoneIcon} alt="phone" />
                   <h5>Juan García</h5>
                 </div>
-                <div>{">"}</div>
+                <div className={styles.arrow_container}>
+                  <img src={arrow} alt="ver cita" />
+                </div>
               </div>
               <p>Calle Lalaá 23, 08083, Puerto Rico</p>
             </div>

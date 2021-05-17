@@ -39,8 +39,8 @@ const NotificationList = ({ user }) => {
           <div
             key={id}
             style={{
-              backgroundColor: "#e942362f",
-              borderLeft: "2px solid #E94236",
+              backgroundColor: "#FFF2F7",
+              borderLeft: "2px solid #FF2E79",
             }}
             className={styles.notificaciones_container}
           >
@@ -61,8 +61,8 @@ const NotificationList = ({ user }) => {
           <div
             key={id}
             style={{
-              backgroundColor: "#4283f332",
-              borderLeft: "2px solid #4284F3",
+              backgroundColor: "#F3F8FF",
+              borderLeft: "2px solid #2E83F8",
             }}
             className={styles.notificaciones_container}
           >

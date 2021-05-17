@@ -1,14 +1,40 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
+import {
+  TextField,
+  InputAdornment,
+  FormControl,
+  OutlinedInput,
+  InputLabel,
+  IconButton,
+} from "@material-ui/core";
+
+import { Visibility, VisibilityOff } from "@material-ui/icons";
+
 import styles from "../styles/login.module.scss";
 import logo from "../img/logo.png";
 
 const LoginForm = ({ Login, error }) => {
   const [details, setDetails] = useState({ username: "", password: "" });
+  const [values, setValues] = useState({
+    password: "",
+    showPassword: false,
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
     Login(details);
+  };
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   return (
@@ -27,18 +53,35 @@ const LoginForm = ({ Login, error }) => {
           value={details.username}
         />
 
-        <TextField
-          className={styles.input}
-          id="password"
-          label="Contraseña"
-          variant="outlined"
-          type="password"
-          name="password"
-          onChange={(e) => setDetails({ ...details, password: e.target.value })}
-          value={details.password}
-        />
+        <FormControl className={styles.input} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            Contraseña
+          </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={values.showPassword ? "text" : "password"}
+            onChange={(e) =>
+              setDetails({ ...details, password: e.target.value })
+            }
+            value={details.password}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          />
+        </FormControl>
+
         <div className={styles.recuperar}>
-          <a className='link' href="/recuperar-contraseña">
+          <a className="link" href="/recuperar-contraseña">
             Recuperar contraseña
           </a>
         </div>

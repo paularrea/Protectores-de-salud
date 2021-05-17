@@ -5,10 +5,10 @@
 }
 
 .burger-icon{
-  background-color: yellow;
+  background-color: #FBE390;
   width: 30px !important;
   height: 30px !important;
-  color: red;
+  color: #DE9B4A;
   border-radius: 15px;
   display: flex;
   justify-content: center;

@@ -11,7 +11,7 @@ const RecuperarContra = () => {
             Las instrucciones para recuperar tu contraseña han sido enviadas al
             correo electrónico j*****@gmail.com
           </p>
-          <a href="/">Volver al login</a>
+          <a className="link" href="/">Volver al login</a>
         </div>
       </div>
     </div>
