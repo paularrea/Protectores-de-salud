@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../UserContext";
 import styles from "./proximasCitas.module.scss";
 import notificationStyles from "../Notificaciones/notificaciones.module.scss";

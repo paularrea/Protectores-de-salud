@@ -1,7 +1,6 @@
 import React from "react";
 import DayOne from "./components/DayOne";
 import DayTwo from "./components/DayTwo";
-import DropDown from "./components/DropDown";
 import style from "./proximasCitas.module.scss"
 
 
