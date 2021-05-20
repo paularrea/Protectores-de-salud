@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import Dashboard from "./Dashboard";
+
 import "../styles/App.scss"
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
-  const [dbUser, setDbUser] = useState({ username: "", password: "" });
+  const [dbUser, setDbUser] = useState({ username: "", password: "" , data:{}});
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const Login = () => {
         setDbUser({
           username: data[0].username,
           password: data[0].password,
+          data: data[0]
         });
       });
   }, []);
