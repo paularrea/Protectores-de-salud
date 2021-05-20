@@ -1,5 +1,4 @@
 import React from "react";
-
 import notificationStyles from "../Notificaciones/notificaciones.module.scss";
 
 const DetalleCita = ({userData}) => {
@@ -16,7 +15,7 @@ const DetalleCita = ({userData}) => {
       >
         <p>Notificacion</p>
 
-        <a href="">Ok, entendido.</a>
+        <a href="/">Ok, entendido.</a>
         <div className={notificationStyles.icon}>
           <img src={alert} alt="" />
         </div>

@@ -9,7 +9,7 @@ const NotificationList = ({ user }) => {
   const [closeBlueNotification, setCloseBlueNotification] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:8000/users")
+    fetch("https://my-json-server.typicode.com/paularrea/json-repo/users")
       .then((res) => {
         return res.json();
       })
@@ -17,6 +17,8 @@ const NotificationList = ({ user }) => {
         setAllNotifications(data.map((item) => item.notifications[0]));
       });
   }, []);
+
+  console.log(allNotifications, 'NOTIFICACIONS')
 
   const closeRedNoti = () => {
     setCloseRedNotification(true);

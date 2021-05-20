@@ -8,7 +8,7 @@ const Dashboard = ({ user, Logout }) => {
   const [userData, setDataUser] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:8000/users")
+    fetch("https://my-json-server.typicode.com/paularrea/json-repo/users")
       .then((res) => {
         return res.json();
       })
@@ -16,8 +16,6 @@ const Dashboard = ({ user, Logout }) => {
         setDataUser(data[0]);
       });
   }, []);
-
-  console.log(user.username, "useeeeer");
 
   return (
     <div className={styles.container}>

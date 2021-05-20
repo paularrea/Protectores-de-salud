@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import DropDown from "./components/DropDown";
 import style from "./proximasCitas.module.scss"
 

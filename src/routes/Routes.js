@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import "../styles/App.scss"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "../pages/Login";
