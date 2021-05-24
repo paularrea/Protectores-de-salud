@@ -1,90 +1,200 @@
 {
     "users": [{
-            "id": 1,
-            "username": "Pau",
-            "password": "1234",
-            "notifications": [{
-                "rojas": [{
-                    "id": 1,
-                    "message": "Tu cita de hoy, jueves 16 de abril, a las 5:00 p.m. ha sido anulada por el paciente."
-                }],
-                "azules": [{
-                    "id": 1,
-                    "message": "Ya tienes disponible el resumen de tus intervenciones de la semana pasada."
-                }]
+        "id": 1,
+        "username": "Pau",
+        "password": "1234",
+        "notifications": [{
+            "rojas": [{
+                "id": 1,
+                "message": "Tu cita de hoy, jueves 16 de abril, a las 5:00 p.m. ha sido anulada por el paciente."
             }],
-            "citas": [{
-                "presenciales": [{
-                        "id": 1,
-                        "day": "Fri Apr 23 2021",
-                        "hour": "13:00",
-                        "firstName": "María",
-                        "middleName": "",
-                        "lastName": "López",
-                        "phone": "(787) 584-9678",
-                        "street": "1403 Luchetti, Apartament 38",
-                        "city": "San Juan",
-                        "country": "Puerto Rico",
-                        "actions": [
-                            "Verificar datos Personales",
-                            "Aceptación Programa PDS",
-                            "Revisar aceptación del paciente"
-                        ]
-                    },
-                    {
-                        "id": 2,
-                        "day": "Fri Apr 23 2021",
-                        "hour": "18:00",
-                        "firstName": "José",
-                        "middleName": "",
-                        "lastName": "Rodríguez",
-                        "phone": "(787) 584-9678",
-                        "street": "1403 Luchetti, Apartament 38",
-                        "city": "San Juan",
-                        "country": "Puerto Rico",
-                        "actions": [
-                            "Verificar datos Personales",
-                            "Aceptación Programa PDS",
-                            "Revisar aceptación del paciente"
-                        ]
-                    }
-                ],
-                "telefonicas": [{
-                        "id": 1,
-                        "day": "Fri Apr 23 2021",
-                        "hour": "9:00",
-                        "firstName": "Juan",
-                        "middleName": "",
-                        "lastName": "Manzano",
-                        "phone": "(787) 584-9678",
-                        "street": "1403 Luchetti, Apartament 38",
-                        "city": "San Juan",
-                        "country": "Puerto Rico",
-                        "actions": [
-                            "Verificar datos Personales",
-                            "Aceptación Programa PDS",
-                            "Revisar aceptación del paciente"
-                        ]
-                    },
-                    {
-                        "id": 2,
-                        "day": "Fri Apr 23 2021",
-                        "hour": "13:00",
-                        "firstName": "Antonia",
-                        "middleName": "",
-                        "lastName": "Gómez",
-                        "phone": "(787) 584-9678",
-                        "street": "1403 Luchetti, Apartament 38",
-                        "city": "San Juan",
-                        "country": "Puerto Rico",
-                        "actions": [
-                            "Verificar datos Personales",
-                            "Aceptación Programa PDS",
-                            "Revisar aceptación del paciente"
-                        ]
-                    }
-                ]
+            "azules": [{
+                "id": 2,
+                "message": "Ya tienes disponible el resumen de tus intervenciones de la semana pasada."
             }]
-        }
-    ]
+        }],
+        "citas": [{
+                "id": 1,
+                "type": "presencial",
+                "day": "Fri Apr 23 2021",
+                "hour": "10:00 a.m.",
+                "firstName": "María",
+                "middleName": "",
+                "lastName": "López",
+                "phone": "(787) 584-9678",
+                "street": "1403 Luchetti, Apartament 38",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+
+            },
+            {
+                "id": 2,
+                "type": "telefonica",
+                "day": "Fri Apr 23 2021",
+                "hour": "6:00 p.m.",
+                "firstName": "José",
+                "middleName": "",
+                "lastName": "Rodríguez",
+                "phone": "(787) 584-9678",
+                "street": "1422 Avenida Cigala, 34 2º 4a",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            },
+            {
+                "id": 3,
+                "type": "telefonica",
+                "day": "Fri Apr 24 2021",
+                "hour": "9:00",
+                "firstName": "Juan",
+                "middleName": "",
+                "lastName": "Manzano",
+                "phone": "(787) 584-9678",
+                "street": "1403 Luchetti, Apartament 38",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            },
+            {
+
+                "id": 4,
+                "type": "presencial",
+                "day": "Fri Apr 24 2021",
+                "hour": "13:00",
+                "firstName": "Bob",
+                "middleName": "",
+                "lastName": "Marley",
+                "phone": "(787) 584-9678",
+                "street": "1801 Trenchtown plaza",
+                "city": "Trenchtown",
+                "country": "Jamaica",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            },
+            {
+                "id": 5,
+                "type": "telefonica",
+                "day": "Fri Apr 25 2021",
+                "hour": "9:00",
+                "firstName": "Miguel",
+                "middleName": "",
+                "lastName": "Augusto",
+                "phone": "(787) 584-9678",
+                "street": "1434 calle Oyambre 54, 4º B",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            },
+            {
+                "id": 6,
+                "type": "presencial",
+                "day": "Fri Apr 25 2021",
+                "hour": "13:00",
+                "firstName": "Carlos",
+                "middleName": "",
+                "lastName": "Martínez",
+                "phone": "(787) 584-9678",
+                "street": "1403 Calle la Mola, 44 1º 7a",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            },
+            {
+                "id": 7,
+                "type":"presencial",
+                "day": "Fri Apr 26 2021",
+                "hour": "9:00 a.m.",
+                "firstName": "Iris",
+                "middleName": "",
+                "lastName": "Arco",
+                "phone": "(787) 584-9678",
+                "street": "1243 Rainbow ave, 220",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            },
+            {
+                "id": 8,
+                "type":"presencial",
+                "day": "Fri Apr 26 2021",
+                "hour": "1:00 p.m.",
+                "firstName": "Aitor",
+                "middleName": "",
+                "lastName": "Menta",
+                "phone": "(787) 584-9678",
+                "street": "1403 calle San Antonio, 23 1º 8a",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            },
+            {
+                "id": 9,
+                "type":"telefonica",
+                "day": "Fri Apr 27 2021",
+                "hour": "13:00",
+                "firstName": "Carlos",
+                "middleName": "",
+                "lastName": "Tangana",
+                "phone": "(787) 584-9678",
+                "street": "1543 calle de la revolución, 221",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            },
+            {
+                "id": 10,
+                "type":"telefonica",
+                "day": "Fri Apr 27 2021",
+                "hour": "13:00",
+                "firstName": "Sofía",
+                "middleName": "",
+                "lastName": "Santos",
+                "phone": "(787) 584-9678",
+                "street": "1403 avenida Monzón, 33 1º D",
+                "city": "San Juan",
+                "country": "Puerto Rico",
+                "actions": [
+                    "Verificar datos Personales",
+                    "Aceptación Programa PDS",
+                    "Revisar aceptación del paciente"
+                ]
+            }
+        ]
+    }]
 }

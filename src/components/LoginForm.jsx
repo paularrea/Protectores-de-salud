@@ -25,10 +25,6 @@ const LoginForm = ({ Login, error }) => {
     Login(details);
   };
 
-  // const handleChange = (prop) => (event) => {
-  //   setValues({ ...values, [prop]: event.target.value });
-  // };
-
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };

@@ -1,31 +1,41 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { UserContext } from "../../UserContext";
+
 import styles from "./proximasCitas.module.scss";
 import notificationStyles from "../Notificaciones/notificaciones.module.scss";
 
 import userIcon from "../../img/User.png";
 import phoneIcon from "../../img/phone.png";
+import alert from "../../img/alert.png"
 import arrow from "../../img/arrow-right.png";
 
 const DetalleCita = () => {
+  const history = useHistory();
   const { contextUser } = useContext(UserContext);
-  console.log(contextUser.citas[0].presenciales[0].firstName, "detalle");
 
-  const firstName = contextUser.citas[0].presenciales[0].firstName;
-  const lastName = contextUser.citas[0].presenciales[0].lastName;
-  const phone = contextUser.citas[0].presenciales[0].phone;
-  const actions = contextUser.citas[0].presenciales[0].actions.map(
+  const {id} = useParams();
+  const allAppointments = contextUser.citas;
+  const currentAppointment = allAppointments.filter(cita => cita.id === parseInt(id));
+  
+  const handleBack = () => {
+    history.goBack();
+  };
+  
+  const currentPatient = currentAppointment[0];
+
+  const actions = currentAppointment[0].actions.map(
     (action, key) => (
       <div key={key} className={styles.flex_actions}>
         <div className={styles.number}>{key + 1}</div>
         <p>{action}</p>
       </div>
     )
-  );
+    );
 
   return (
     <div className="container-mobile">
-      {/* <button onClick={goBack}>X</button> */}
+      <button onClick={handleBack}>X</button>
       <div
         style={{
           backgroundColor: "#4283f332",
@@ -37,7 +47,7 @@ const DetalleCita = () => {
 
         <a href="/">Ok, entendido.</a>
         <div className={notificationStyles.icon}>
-          <img src={alert} alt="" />
+          <img src={alert} alt="alert" />
         </div>
       </div>
 
@@ -47,13 +57,13 @@ const DetalleCita = () => {
             <img src={userIcon} alt="user" />
           </div>
           <h3>
-            {firstName} {lastName}
+            {currentPatient.firstName} {currentPatient.lastName}
           </h3>
         </div>
 
         <div className={styles.phone_flex}>
           <img src={phoneIcon} alt="phone" />
-          <h3>{phone}</h3>
+          <h3>{currentPatient.phone}</h3>
         </div>
 
         <hr style={{ margin: "2rem 0", opacity:0.2 }} />

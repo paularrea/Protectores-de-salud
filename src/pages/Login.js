@@ -34,6 +34,7 @@ const Login = () => {
         username: details.username,
         password: details.password,
       });
+      sessionStorage.setItem('user', JSON.stringify(details))
     } else {
       console.log("not logged in!");
       setError("Details do not match!");
@@ -45,11 +46,12 @@ const Login = () => {
       username: "",
       password: "",
     });
+    sessionStorage.removeItem('user')
   };
 
   return (
     <div className='container-mobile'>
-      {user.username !== "" ? (
+      {sessionStorage.getItem('user') !== null ? (
         <div className="welcome">
           <Dashboard Logout={Logout} user={user} />
         </div>

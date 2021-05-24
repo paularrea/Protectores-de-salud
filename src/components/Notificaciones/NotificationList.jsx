@@ -18,8 +18,6 @@ const NotificationList = ({ user }) => {
       });
   }, []);
 
-  console.log(allNotifications, 'NOTIFICACIONS')
-
   const closeRedNoti = () => {
     setCloseRedNotification(true);
   };

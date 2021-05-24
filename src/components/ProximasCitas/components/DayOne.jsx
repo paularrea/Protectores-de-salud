@@ -18,21 +18,67 @@ const DayOne = () => {
   };
 
   let today = new Date();
-  const firstName1 = contextUser.citas[0].presenciales[0].firstName;
-  const lastName1 = contextUser.citas[0].presenciales[0].lastName;
-  const hour1 = contextUser.citas[0].presenciales[0].hour;
-  const street1 = contextUser.citas[0].presenciales[0].street;
-  const city1 = contextUser.citas[0].presenciales[0].city;
-  const country1 = contextUser.citas[0].presenciales[0].country;
-  const fullDirection1 = (
-    <p>
-      {street1}, {city1}, {country1}
-    </p>
+
+  const pacientesPresenciales = contextUser.citas[0].today[0].presenciales.map(
+    (paciente, id) => {
+      return (
+        <Link
+          to={`/detalle-cita/${id}`}
+        >
+          <section key={paciente.id}>
+            <div className={styles.time}>{paciente.hour}</div>
+            <div className={styles.direction}>
+              <div className={styles.flex_container_direction}>
+                <div className={styles.name}>
+                  <img src={locationIcon} alt="location" />
+                  <h5>
+                    {paciente.firstName} {paciente.lastName}
+                  </h5>
+                </div>
+                <div className={styles.arrow_container}>
+                  <img src={arrow} alt="ver cita" />
+                </div>
+              </div>
+              <div>
+                <p>
+                  {paciente.street}, {paciente.city}, {paciente.country}
+                </p>
+              </div>
+            </div>
+          </section>
+          <hr />
+        </Link>
+      );
+    }
   );
 
-  const firstName2 = contextUser.citas[0].telefonicas[0].firstName;
-  const lastName2 = contextUser.citas[0].telefonicas[0].lastName;
-  const hour2 = contextUser.citas[0].telefonicas[0].hour;
+  const pacientesTelefonicas = contextUser.citas[0].today[0].telefonicas.map(
+    (paciente, id) => {
+      return (
+        <Link to={`/detalle-cita/${id}`}
+        >
+          <section>
+            <div className={styles.time}>{paciente.hour}</div>
+            <div className={styles.direction}>
+              <div className={styles.flex_container_direction}>
+                <div className={styles.name}>
+                  <img src={phoneIcon} alt="phone" />
+                  <h5>
+                    {" "}
+                    {paciente.firstName} {paciente.lastName}
+                  </h5>
+                </div>
+                <div className={styles.arrow_container}>
+                  <img src={arrow} alt="ver cita" />
+                </div>
+              </div>
+            </div>
+          </section>
+          <hr />
+        </Link>
+      );
+    }
+  );
 
   console.log(contextUser, "user dropdown");
   return (
@@ -53,49 +99,8 @@ const DayOne = () => {
       </div>
       {open && (
         <>
-          <Link
-            to={{
-              pathname: "/detalle-cita",
-              state: { fromDashboard: true },
-            }}
-          >
-            <section>
-              <div className={styles.time}>{hour1}</div>
-              <div className={styles.direction}>
-                <div className={styles.flex_container_direction}>
-                  <div className={styles.name}>
-                    <img src={locationIcon} alt="location" />
-                    <h5>
-                      {" "}
-                      {firstName1} {lastName1}
-                    </h5>
-                  </div>
-                  <div className={styles.arrow_container}>
-                    <img src={arrow} alt="ver cita" />
-                  </div>
-                </div>
-                <div>{fullDirection1}</div>
-              </div>
-            </section>
-          </Link>
-          <hr />
-          <section>
-            <div className={styles.time}>{hour2}</div>
-            <div className={styles.direction}>
-              <div className={styles.flex_container_direction}>
-                <div className={styles.name}>
-                  <img src={phoneIcon} alt="phone" />
-                  <h5>
-                    {" "}
-                    {firstName2} {lastName2}
-                  </h5>
-                </div>
-                <div className={styles.arrow_container}>
-                  <img src={arrow} alt="ver cita" />
-                </div>
-              </div>
-            </div>
-          </section>
+          {pacientesPresenciales}
+          {pacientesTelefonicas}
         </>
       )}
     </div>

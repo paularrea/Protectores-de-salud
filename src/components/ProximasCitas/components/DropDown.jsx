@@ -9,23 +9,38 @@ import arrow from "../../../img/arrow.png";
 import less from "../../../img/less.png";
 import more from "../../../img/more.png";
 
-const DropDown = () => {
+const DropDown = (e) => {
+  const { contextUser } = useContext(UserContext);
+  const [isOpen, setIsOpen] = useState(true);
 
-  const {contextUser} = useContext(UserContext)
-  const [open, setOpen] = useState(true);
+  const handleDropdownClick = (e) => {
+    setIsOpen(!isOpen);
+};
 
-  const openClose = () => {
-    setOpen(!open);
-  };
+  function groupBy(key) {
+    return function group(array) {
+      return array.reduce((acc, obj) => {
+        const property = obj[key];
+        acc[property] = acc[property] || [];
+        acc[property].push(obj);
+        return acc;
+      }, []);
+    };
+  }
+  const groupAppointmentsByDay = groupBy("day")(contextUser.citas);
+  const appointmentsByDayIds = Object.keys(groupAppointmentsByDay);
+  const citasPorDia = appointmentsByDayIds.map((activityID) => ({
+    id: activityID,
+    citas: groupAppointmentsByDay[activityID],
+  }));
 
-  console.log(contextUser, "user dropdown");
-  return (
-    <div className={styles.container}>
-      <div className={styles.flex_container} onClick={openClose}>
+  const List = citasPorDia.map((group, index) => (
+    <div key={group.id} className={styles.container}>
+      <div id={index} className={styles.flex_container} onClick={handleDropdownClick}>
         <div>
-          <p>Hoy, martes 30 de marzo</p>
+          <p>{group.id}</p>
         </div>
-        {open ? (
+        {isOpen ? (
           <div className={styles.more_less_icons}>
             <img src={less} alt="ver menos" />
           </div>
@@ -35,50 +50,43 @@ const DropDown = () => {
           </div>
         )}
       </div>
-      {open && (
-        <>
-          <Link
-            to={{
-              pathname: "/detalle-cita",
-              state: { fromDashboard: true },
-            }}
-          >
-            <section>
-              <div className={styles.time}>12:00 a.m.</div>
+      {isOpen &&
+        group.citas.map((cita, id) => (
+          <>
+          <Link to={`detalle-cita/${cita.id}`}>
+            <section key={id}>
+              <div className={styles.time}>{cita.hour}</div>
               <div className={styles.direction}>
                 <div className={styles.flex_container_direction}>
                   <div className={styles.name}>
-                    <img src={locationIcon} alt="location" />
-                    <h5>Juan García</h5>
+                    {cita.type === "presencial" ? (
+                      <img src={locationIcon} alt="location" />
+                    ) : (
+                      <img src={phoneIcon} alt="phone" />
+                    )}
+                    <h5>
+                      {cita.firstName} {cita.lastName}
+                    </h5>
                   </div>
                   <div className={styles.arrow_container}>
                     <img src={arrow} alt="ver cita" />
                   </div>
                 </div>
-                <p>Calle Lalaá 23, 08083, Puerto Rico</p>
+                {cita.type === "presencial" && (
+                  <p>
+                    {cita.street} {cita.city} {cita.country}
+                  </p>
+                )}
               </div>
             </section>
-          </Link>
-          <hr />
-          <section>
-            <div className={styles.time}>12:00 a.m.</div>
-            <div className={styles.direction}>
-              <div className={styles.flex_container_direction}>
-                <div className={styles.name}>
-                  <img src={phoneIcon} alt="phone" />
-                  <h5>Juan García</h5>
-                </div>
-                <div className={styles.arrow_container}>
-                  <img src={arrow} alt="ver cita" />
-                </div>
-              </div>
-              <p>Calle Lalaá 23, 08083, Puerto Rico</p>
-            </div>
-          </section>
-        </>
-      )}
+            <hr />
+            </Link>
+          </>
+        ))}
     </div>
-  );
+  ));
+
+  return [List];
 };
 
 export default DropDown;
