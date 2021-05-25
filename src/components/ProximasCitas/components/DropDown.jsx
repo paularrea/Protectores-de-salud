@@ -27,14 +27,14 @@ const DropDown = (e) => {
       }, []);
     };
   }
-  const groupAppointmentsByDay = groupBy("day")(contextUser.citas);
-  const appointmentsByDayIds = Object.keys(groupAppointmentsByDay);
-  const citasPorDia = appointmentsByDayIds.map((activityID) => ({
+  const groupAppointmentsByDay = contextUser && contextUser && groupBy("day")(contextUser.citas);
+  const appointmentsByDayIds = groupAppointmentsByDay && Object.keys(groupAppointmentsByDay);
+  const citasPorDia = appointmentsByDayIds && appointmentsByDayIds.map((activityID) => ({
     id: activityID,
     citas: groupAppointmentsByDay[activityID],
   }));
 
-  const List = citasPorDia.map((group, index) => (
+  const List = citasPorDia && citasPorDia.map((group, index) => (
     <div key={group.id} className={styles.container}>
       <div id={index} className={styles.flex_container} onClick={handleDropdownClick}>
         <div>
