@@ -3,7 +3,6 @@
     height: 100%;
     overflow: hidden;
     display: flex;
-    position: absolute;
     flex-direction: column;
     justify-content: center;
     align-items: left;
@@ -11,6 +10,7 @@
         margin: 0 auto;
         width: 150px;
         height: 150px;
+        margin-top: 5rem;
         margin-bottom: 1rem;
     }
     .input{

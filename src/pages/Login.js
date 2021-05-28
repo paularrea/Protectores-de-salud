@@ -10,7 +10,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("https://my-json-server.typicode.com/paularrea/json-repo/users")
+    fetch("https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/users")
       .then((res) => {
         return res.json();
       })

@@ -1,117 +1,118 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styles from "./form.module.scss"
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 
-class MasterForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentStep: 1,
-      email: "",
-      username: "",
-      password: "",
-    };
-  }
+import arrow from "../../img/arrow_back.png"
 
-  handleChange = (event) => {
+const Form = () => {
+  const [formData, setFormData] = useState({
+    currentStep: 1,
+    email: "",
+    username: "",
+    password: "",
+  });
+  const [questionaryData, setQuestionaryData] = useState();
+
+  useEffect(() => {
+    fetch(
+      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_PDS_PROGRAM"
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setQuestionaryData(data);
+      });
+  }, []);
+
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    this.setState({
+    setFormData({
       [name]: value,
     });
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { email, username, password } = this.state;
+    const { email, username, password } = formData;
     alert(`Your registration detail: \n 
-             Email: ${email} \n 
-             Username: ${username} \n
-             Password: ${password}`);
+               Email: ${email} \n 
+               Username: ${username} \n
+               Password: ${password}`);
   };
 
-  _next = () => {
-    let currentStep = this.state.currentStep;
+  const _next = () => {
+    let currentStep = formData.currentStep;
     currentStep = currentStep >= 2 ? 3 : currentStep + 1;
-    this.setState({
+    setFormData({
       currentStep: currentStep,
     });
   };
 
-  _prev = () => {
-    let currentStep = this.state.currentStep;
+  const _prev = () => {
+    let currentStep = formData.currentStep;
     currentStep = currentStep <= 1 ? 1 : currentStep - 1;
-    this.setState({
+    setFormData({
       currentStep: currentStep,
     });
   };
 
-  /*
-   * the functions for our button
-   */
-  previousButton() {
-    let currentStep = this.state.currentStep;
+  const previousButton = () => {
+    let currentStep = formData.currentStep;
     if (currentStep !== 1) {
       return (
-        <button
-          className="btn btn-secondary"
-          type="button"
-          onClick={this._prev}
-        >
-          Previous
+        <button className="btn btn-secondary" type="button" onClick={_prev}>
+          <img src={arrow} alt="go back" />
         </button>
       );
     }
     return null;
-  }
+  };
 
-  nextButton() {
-    let currentStep = this.state.currentStep;
+  const nextButton = () => {
+    let currentStep = formData.currentStep;
     if (currentStep < 3) {
       return (
         <button
-          className="btn btn-primary float-right"
+          className={styles.green_button}
           type="button"
-          onClick={this._next}
+          onClick={_next}
         >
-          Next
+          Confirmar y seguir
         </button>
       );
     }
     return null;
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <h1>React Wizard Form 🧙‍♂️</h1>
-        <p>Step {this.state.currentStep} </p>
+  return (
+    <div className="container-mobile">
+      <form  onSubmit={handleSubmit}>
+        {/* 
+        render the form steps and pass required props in
+      */}
+        <Step1
+          currentStep={formData.currentStep}
+          handleChange={handleChange}
+        />
+        <Step2
+          currentStep={formData.currentStep}
+          handleChange={handleChange}
+        />
+        <Step3
+          currentStep={formData.currentStep}
+          handleChange={handleChange}
+          questionaryData={questionaryData}
+        />
+        <div className={styles.fixed_container}>
+          {previousButton()}
+          {nextButton()}
+        </div>
+      </form>
+    </div>
+  );
+};
 
-        <form onSubmit={this.handleSubmit}>
-          {/* 
-          render the form steps and pass required props in
-        */}
-          <Step1
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            email={this.state.email}
-          />
-          <Step2
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            username={this.state.username}
-          />
-          <Step3
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            password={this.state.password}
-          />
-          {this.previousButton()}
-          {this.nextButton()}
-        </form>
-      </div>
-    );
-  }
-}
-
-export default MasterForm;
+export default Form;

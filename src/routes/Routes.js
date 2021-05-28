@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import { UserContext } from "../UserContext";
 import DetalleCita from "../components/ProximasCitas/DetalleCita";
 import RecuperarContra from "../components/RecuperarContra.jsx";
+import Form from "../components/MultiStepForm/Form"
 
 const Routes = () => {
   const [contextUser, setContextUser] = useState();
@@ -26,6 +27,7 @@ const Routes = () => {
           <Route exact path="/" component={Login} />
           <Route path="/recuperar-contraseña" component={RecuperarContra} />
           <Route path="/detalle-cita/:id" render={(props) => <DetalleCita {...props} />} />
+          <Route exact path="/form" component={Form} />
         </UserContext.Provider>
       </Switch>
     </BrowserRouter>
