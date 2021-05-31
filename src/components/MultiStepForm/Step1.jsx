@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import stylesForm from "../../styles/login.module.scss";
 import styles from "./form.module.scss";
 import { TextField } from "@material-ui/core";
@@ -10,11 +10,6 @@ const Step1 = (props) => {
     lastName: "",
     secondLastName: "",
   });
-  
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   if (props.currentStep !== 1) {
     return null;
   }

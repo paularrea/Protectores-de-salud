@@ -5,11 +5,14 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
-import Step6 from "./Step6"
+import Step6 from "./Step6";
 
 import arrow from "../../img/arrow_back.png";
 
 const Form = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [formData, setFormData] = useState({
     currentStep: 1,
     email: "",
@@ -99,6 +102,22 @@ const Form = () => {
     return null;
   };
 
+  const submitButton = () => {
+    let currentStep = formData.currentStep;
+    if (currentStep === 6) {
+      return (
+        <button
+          className={styles.green_button}
+          type="submit"
+          onClick={() => handleSubmit}
+        >
+          Aceptar y enviar
+        </button>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="container-mobile">
       <form onSubmit={handleSubmit}>
@@ -122,6 +141,7 @@ const Form = () => {
 
         <div className={styles.fixed_container}>
           {previousButton()}
+          {submitButton()}
           {nextButton()}
         </div>
       </form>

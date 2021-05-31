@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styles from "./form.module.scss";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -6,7 +6,6 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 
 function Step6(props) {
-  const [value, setValue] = useState();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -26,8 +25,8 @@ function Step6(props) {
               control={
                 <Checkbox
                   color="primary"
-                  value={value}
-                  selected={value}
+                  value={props.value}
+                  selected={props.value}
                   name="Estoy conforme y quiero finalizar el proceso."
                 />
               }

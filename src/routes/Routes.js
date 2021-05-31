@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import { UserContext } from "../UserContext";
 import DetalleCita from "../components/ProximasCitas/DetalleCita";
 import RecuperarContra from "../components/RecuperarContra.jsx";
-import Form from "../components/MultiStepForm/Form"
+import Form from "../components/MultiStepForm/MultiStepForm"
 
 const Routes = () => {
   const [contextUser, setContextUser] = useState();
