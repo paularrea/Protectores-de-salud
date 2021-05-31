@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import stylesForm from "../../styles/login.module.scss";
 import styles from "./form.module.scss";
 import { TextField } from "@material-ui/core";
 
-function Step1(props) {
+const Step1 = (props) => {
   const [details, setDetails] = useState({
     firstName: "",
     middleName: "",
     lastName: "",
     secondLastName: "",
   });
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (props.currentStep !== 1) {
     return null;
   }
@@ -20,6 +25,7 @@ function Step1(props) {
         <p>PASO {props.currentStep}</p>
       <h2>Verificar datos personales</h2> 
       </div>
+      <div style={{marginTop:'13rem'}}>
       <div className={stylesForm.form_container}>
         <TextField
           className={stylesForm.input}
@@ -68,6 +74,7 @@ function Step1(props) {
           value={details.firstName}
         />
       </div>{" "}
+    </div>
     </div>
   );
 }

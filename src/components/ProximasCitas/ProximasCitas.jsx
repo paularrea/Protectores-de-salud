@@ -11,7 +11,7 @@ const ProximasCitas = () => {
   tomorrow.setDate(today.getDate() + 1);
   TwoDaysFromToday.setDate(today.getDate() + 2);
   ThreeDaysFromToday.setDate(today.getDate() + 3);
-
+  console.log(today, 'date')
   return (
     <div className={style.container}>
       <h3>Próximas citas</h3>

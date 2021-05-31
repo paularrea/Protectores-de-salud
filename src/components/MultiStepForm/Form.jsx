@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styles from "./form.module.scss"
+import styles from "./form.module.scss";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+import Step4 from "./Step4";
+import Step5 from "./Step5";
+import Step6 from "./Step6"
 
-import arrow from "../../img/arrow_back.png"
+import arrow from "../../img/arrow_back.png";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +17,7 @@ const Form = () => {
     password: "",
   });
   const [questionaryData, setQuestionaryData] = useState();
+  const [evaluationData, setEvaluationData] = useState();
 
   useEffect(() => {
     fetch(
@@ -24,6 +28,18 @@ const Form = () => {
       })
       .then((data) => {
         setQuestionaryData(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_POST_INTERVENTION"
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setEvaluationData(data);
       });
   }, []);
 
@@ -45,7 +61,7 @@ const Form = () => {
 
   const _next = () => {
     let currentStep = formData.currentStep;
-    currentStep = currentStep >= 2 ? 3 : currentStep + 1;
+    currentStep = currentStep + 1;
     setFormData({
       currentStep: currentStep,
     });
@@ -73,13 +89,9 @@ const Form = () => {
 
   const nextButton = () => {
     let currentStep = formData.currentStep;
-    if (currentStep < 3) {
+    if (currentStep < 6) {
       return (
-        <button
-          className={styles.green_button}
-          type="button"
-          onClick={_next}
-        >
+        <button className={styles.green_button} type="button" onClick={_next}>
           Confirmar y seguir
         </button>
       );
@@ -89,23 +101,25 @@ const Form = () => {
 
   return (
     <div className="container-mobile">
-      <form  onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         {/* 
         render the form steps and pass required props in
       */}
-        <Step1
-          currentStep={formData.currentStep}
-          handleChange={handleChange}
-        />
-        <Step2
-          currentStep={formData.currentStep}
-          handleChange={handleChange}
-        />
+        <Step1 currentStep={formData.currentStep} handleChange={handleChange} />
+        <Step2 currentStep={formData.currentStep} handleChange={handleChange} />
         <Step3
           currentStep={formData.currentStep}
           handleChange={handleChange}
           questionaryData={questionaryData}
         />
+        <Step4 currentStep={formData.currentStep} handleChange={handleChange} />
+        <Step5
+          currentStep={formData.currentStep}
+          handleChange={handleChange}
+          evaluationData={evaluationData}
+        />
+        <Step6 currentStep={formData.currentStep} handleChange={handleChange} />
+
         <div className={styles.fixed_container}>
           {previousButton()}
           {nextButton()}

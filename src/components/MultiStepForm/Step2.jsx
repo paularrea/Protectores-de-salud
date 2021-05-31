@@ -1,7 +1,10 @@
-import React from "react";
-import styles from "./form.module.scss";
+import React, { useEffect } from "react";import styles from "./form.module.scss";
 
 function Step2(props) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (props.currentStep !== 2) {
     return null;
   }
