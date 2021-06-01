@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../form.module.scss"
-import TextField from "@material-ui/core/TextField";
+import TextField from "../components/TextField";
 
-const Question4 = ({questionaryData}) => {
-  return <TextField className={styles.input} id={questionaryData[36].question_uuid} label="Nombre médico primario" variant="outlined" />;
+const Question367 = ({questionaryData}) => {
+  return <TextField className={styles.input} id={questionaryData[36].question_uuid} name={questionaryData[36].question_uuid}  variant="outlined" />;
 };
 
-export default Question4;
+export default Question367;

@@ -1,40 +1,18 @@
-import React, { useState } from "react";
-import Radio from "@material-ui/core/Radio";
+import React from "react";
+import Radio from "../components/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import Checkbox from "../components/Checkbox";
 import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
 
 const Question5 = ({ questionaryData }) => {
-  const [value, setValue] = useState();
-  const [isChecked, setIsChecked] = useState(
-    questionaryData[4].response_content.slice().fill(false)
-  );
-
-  const toggleCheckboxValue = (index) => {
-    setIsChecked(isChecked.map((v, i) => (i === index ? !v : v)));
-  };
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
   return (
     <>
-      <RadioGroup
-        aria-label="seguro-medico"
-        name="seguro-medico"
-        value={value}
-        onChange={handleChange}
-        id={questionaryData[4].question_uuid}
-      >
-        {questionaryData[4].response_content.map((item, key) => {
+      <RadioGroup aria-label="seguro-medico" name="seguro-medico">
+        {questionaryData[4].response_content.map((item) => {
           return (
-            <FormControlLabel
-              key={key}
+            <Radio
+              name={questionaryData[4].question_uuid}
               value={item}
-              control={<Radio color="primary" />}
               label={item}
             />
           );
@@ -45,26 +23,15 @@ const Question5 = ({ questionaryData }) => {
 
       <p>{questionaryData[4].sub_question_content}</p>
       <FormControl component="fieldset">
-        <FormGroup>
-          {questionaryData[4].sub_response_content.map((item, key) => {
-            return (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    value={item}
-                    selected={item}
-                    key={key}
-                    name={item}
-                    checked={isChecked[key]}
-                    onClick={() => toggleCheckboxValue(key)}
-                  />
-                }
-                label={item}
-              />
-            );
-          })}
-        </FormGroup>
+        {questionaryData[4].sub_response_content.map((item, key) => {
+          return (
+            <Checkbox
+              key={key}
+              name={questionaryData[4].question_uuid + item}
+              label={item}
+            />
+          );
+        })}
       </FormControl>
     </>
   );

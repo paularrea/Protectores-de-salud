@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";import styles from "./form.module.scss";
+import React from "react";
+import { Form } from "usetheform";
+import styles from "./form.module.scss";
 
 import Evaluation1 from "./Evaluation/evaluation1"
 import Evaluation2 from "./Evaluation/evaluation2"
 import Evaluation3 from "./Evaluation/evaluation3"
 
 function Step5(props) {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
-  if (props.currentStep !== 5) {
+  if (props.step !== 5) {
     return null;
   }
   const evaluationData = props.evaluationData && props.evaluationData;
@@ -17,9 +16,10 @@ function Step5(props) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <p>PASO {props.currentStep}</p>
+      <p>PASO {props.step}</p>
         <h2>Evaluación de la intervención</h2>
       </div>
+      <Form name="Step5" {...props}>
       <div className={styles.content}>
         <section>
           <p>{evaluationData[0].question_content}</p>
@@ -30,6 +30,7 @@ function Step5(props) {
           <Evaluation3 evaluationData={evaluationData} />
         </section>
       </div>
+      </Form>
     </div>
   );
 }

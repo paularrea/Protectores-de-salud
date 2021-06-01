@@ -1,37 +1,18 @@
-import React, { useState } from "react";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Radio from "@material-ui/core/Radio";
+import React from "react";
+import Radio from "../components/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "../components/Checkbox";
 import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import styles from "../form.module.scss";
 
 const Question20 = ({ questionaryData }) => {
-  const [value, setValue] = useState();
-  const [valueSub, setValueSub] = useState();
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-    setValueSub(event.target.value);
-  };
-
   return (
     <>
-      <RadioGroup
-        aria-label="seguro-medico"
-        name="seguro-medico"
-        value={value}
-        onChange={handleChange}
-        id={questionaryData[19].question_uuid}
-      >
-        {questionaryData[19].response_content.map((item, key) => {
+      <RadioGroup aria-label="seguro-medico" name="seguro-medico">
+        {questionaryData[19].response_content.map((item) => {
           return (
-            <FormControlLabel
-              key={key}
+            <Radio
+              name={questionaryData[19].question_uuid}
               value={item}
-              control={<Radio color="primary" />}
               label={item}
             />
           );
@@ -41,20 +22,20 @@ const Question20 = ({ questionaryData }) => {
       <br />
 
       <p>{questionaryData[19].sub_question_content}</p>
-      <FormControl className={styles.input} variant="outlined">
-        <InputLabel>Seleccione</InputLabel>
-        <Select value={valueSub} onChange={handleChange} label="Seleccione">
-          {questionaryData[19].sub_response_content.map((item, key) => {
-            return (
-              <MenuItem key={key} value={item}>
-                {item}
-              </MenuItem>
-            );
-          })}
-        </Select>
+      <FormControl component="fieldset">
+        {questionaryData[19].sub_response_content.map((item, key) => {
+          return (
+            <Checkbox
+              key={key}
+              name={questionaryData[19].question_uuid + item}
+              label={item}
+            />
+          );
+        })}
       </FormControl>
     </>
   );
 };
 
 export default Question20;
+

@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";import styles from "./form.module.scss";
+import React from "react";
+import { Form } from "usetheform";
+import styles from "./form.module.scss";
 
 function Step4(props) {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
-  if (props.currentStep !== 4) {
+  if (props.step !== 4) {
     return null;
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <p>PASO {props.currentStep}</p>
+        <p>PASO {props.step}</p>
         <h2>Conformidad Paciente</h2>
       </div>
+      <Form name="Step4" {...props}>
       <div className={styles.legal_container}>
         <p className={styles.grey_text}>
           Por favor, lea atentamente este texto legal y firme si está conforme.
@@ -55,6 +55,7 @@ function Step4(props) {
           </p>
         </div>
       </div>
+      </Form>
     </div>
   );
 }

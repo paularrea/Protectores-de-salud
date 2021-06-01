@@ -1,32 +1,13 @@
-import React, { useState } from "react";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import styles from "../form.module.scss";
+import React from "react";
+import ReactSelect from "../components/ReactSelect";
 
 const Question15 = ({ questionaryData }) => {
-  const [value, setValue] = useState();
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+  const options = questionaryData[14].response_content.map((item) => {
+    return { value: item, label: item };
+  });
 
   return (
-    <FormControl className={styles.input} variant="outlined">
-      <InputLabel>Seleccione</InputLabel>
-      <Select
-        labelId={questionaryData[14].question_uuid}
-        id={questionaryData[14].question_uuid}
-        value={value}
-        onChange={handleChange}
-        label="Seleccione"
-      >
-        {questionaryData[14].response_content.map((item, key) => {
-          return <MenuItem key={key} value={item}>{item}</MenuItem>;
-        })}
-      </Select>
-    </FormControl>
+    <ReactSelect options={options} name={questionaryData[14].question_uuid} />
   );
 };
 

@@ -1,37 +1,27 @@
-import React, { useState } from "react";
-import Radio from "@material-ui/core/Radio";
+import React from "react";
+import Radio from "../components/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-const Question11 = ({ questionaryData }) => {
-  const [value, setValue] = useState();
+const Question10 = ({ questionaryData }) => {
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-  
   return (
     <>
       <RadioGroup
-        aria-label="seguro-medico"
-        name="seguro-medico"
-        value={value}
-        onChange={handleChange}
-        id={questionaryData[10].question_uuid}
-      >
-        {questionaryData[10].response_content.map((item, key) => {
-          return (
-            <FormControlLabel
-              key={key}
-              value={item}
-              control={<Radio color="primary" />}
-              label={item}
-            />
-          );
-        })}
-      </RadioGroup>
+      aria-label="seguro-medico"
+      name="seguro-medico"
+    >
+      {questionaryData[9].response_content.map((item) => {
+        return (
+          <Radio
+            name={questionaryData[9].question_uuid}
+            value={item}
+            label={item}
+          />
+        );
+      })}
+    </RadioGroup>
     </>
   );
 };
 
-export default Question11;
+export default Question10;

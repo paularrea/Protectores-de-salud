@@ -1,0 +1,9 @@
+.MuiFormControl-root{
+    margin: 0 auto !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+} 
+
+.MuiInputBase-input, .MuiOutlinedInput-input{
+    z-index: -1 !important;
+}
