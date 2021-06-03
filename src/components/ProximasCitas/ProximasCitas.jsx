@@ -1,5 +1,5 @@
 import React from "react";
-import DropDown from "./components/DropDown";
+// import DropDown from "./components/DropDown";
 import DayOne from "../ProximasCitas/components/DayOne"
 import DayTwo from "../ProximasCitas/components/DayTwo"
 import style from "./proximasCitas.module.scss"
