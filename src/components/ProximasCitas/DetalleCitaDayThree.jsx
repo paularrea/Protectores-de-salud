@@ -11,29 +11,26 @@ import phoneIcon from "../../img/phone.png";
 import alert from "../../img/alert.png";
 import arrow from "../../img/arrow-right.png";
 
-const DetalleCita = () => {
+const DetalleCitaDayThree = () => {
   const history = useHistory();
   const { contextUser } = useContext(UserContext);
-
   const { id } = useParams();
-  console.log(id, 'idddd')
-  // const interventions = contextUser.agenda.day_1.interventions;
-  // const currentAppointment = interventions.filter(
-  //   (cita) => cita.id === parseInt(id)
-  // );
+  const interventions = contextUser && contextUser.agenda.day_3.interventions;
+  const currentAppointment = interventions.filter(
+    (intervention) => intervention.intervention_id === id
+  );
 
   const handleBack = () => {
     history.goBack();
   };
 
-  // const currentPatient = currentAppointment[0];
-
-  // const actions = currentAppointment[0].actions.map((action, key) => (
-  //   <div key={key} className={styles.flex_actions}>
-  //     <div className={styles.number}>{key + 1}</div>
-  //     <p>{action}</p>
-  //   </div>
-  // ));
+  const currentPatient = currentAppointment[0];
+  const actions = currentAppointment[0].actions.map((action, key) => (
+    <div key={key} className={styles.flex_actions}>
+      <div className={styles.number}>{key + 1}</div>
+      <p>{action}</p>
+    </div>
+  ));
 
   return (
     <div className="container-mobile">
@@ -53,14 +50,12 @@ const DetalleCita = () => {
         </div>
       </div>
 
-      {/* <div className={styles.container_detalle}>
+      <div className={styles.container_detalle}>
         <div className={styles.user_flex}>
           <div>
             <img src={userIcon} alt="user" />
           </div>
-          <h3>
-            {currentPatient.firstName} {currentPatient.lastName}
-          </h3>
+          <h3>{currentPatient.patient}</h3>
         </div>
 
         <div className={styles.phone_flex}>
@@ -77,7 +72,7 @@ const DetalleCita = () => {
 
         <div className={styles.form_button_container}>
           <h5>Listo para empezar?</h5>
-          <Link to={'/form'}>
+          <Link to={"/form"}>
             <div className={styles.green_button}>
               <h5>Empezar visita</h5>
               <img src={arrow} alt="arrow" />
@@ -92,9 +87,9 @@ const DetalleCita = () => {
             intervención.
           </p>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
 
-export default DetalleCita;
+export default DetalleCitaDayThree;

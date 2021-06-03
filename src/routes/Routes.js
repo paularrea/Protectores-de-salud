@@ -3,7 +3,9 @@ import "../styles/App.scss";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import { UserContext } from "../UserContext";
-import DetalleCita from "../components/ProximasCitas/DetalleCita";
+import DetalleCitaDayOne from "../components/ProximasCitas/DetalleCitaDayOne";
+import DetalleCitaDayTwo from "../components/ProximasCitas/DetalleCitaDayTwo";
+import DetalleCitaDayThree from "../components/ProximasCitas/DetalleCitaDayThree";
 import RecuperarContra from "../components/RecuperarContra.jsx";
 import MultiStepForm from "../components/MultiStepForm/MultiStepForm";
 
@@ -11,7 +13,9 @@ const Routes = () => {
   const [contextUser, setContextUser] = useState();
 
   useEffect(() => {
-    fetch("https://my-json-server.typicode.com/paularrea/json-repo/users")
+    fetch(
+      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content"
+    )
       .then((res) => {
         return res.json();
       })
@@ -26,7 +30,18 @@ const Routes = () => {
         <UserContext.Provider value={{ contextUser, setContextUser }}>
           <Route exact path="/" component={Login} />
           <Route path="/recuperar-contraseña" component={RecuperarContra} />
-          <Route path="/detalle-cita/:id" render={(props) => <DetalleCita {...props} />} />
+          <Route
+            path="/intervention-details-2/:id"
+            render={(props) => <DetalleCitaDayTwo {...props} />}
+          />
+          <Route
+            path="/intervention-details-1/:id"
+            render={(props) => <DetalleCitaDayOne {...props} />}
+          />
+          <Route
+            path="/intervention-details-3/:id"
+            render={(props) => <DetalleCitaDayThree {...props} />}
+          />
           <Route exact path="/form" component={MultiStepForm} />
         </UserContext.Provider>
       </Switch>

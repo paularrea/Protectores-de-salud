@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import Dashboard from "./Dashboard";
-
 import "../styles/App.scss"
 
 const Login = () => {
@@ -9,15 +8,16 @@ const Login = () => {
   const [dbUser, setDbUser] = useState({ username: "", password: "" , data:{}});
   const [error, setError] = useState("");
 
+
   useEffect(() => {
-    fetch("https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/users")
+    fetch("https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content")
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         setDbUser({
-          username: data[0].username,
-          password: data[0].password,
+          username: data[0].supervisor_name,
+          password: data[0].supervisor_password,
           data: data[0]
         });
       });
@@ -46,7 +46,7 @@ const Login = () => {
       username: "",
       password: "",
     });
-    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('user');
   };
 
   return (

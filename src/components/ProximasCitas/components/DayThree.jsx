@@ -9,19 +9,21 @@ import arrow from "../../../img/arrow.png";
 import less from "../../../img/less.png";
 import more from "../../../img/more.png";
 
-const DayOne = () => {
+const DayThree = () => {
   const { contextUser } = useContext(UserContext);
   const [open, setOpen] = useState(true);
 
   const openClose = () => {
     setOpen(!open);
   };
-  const agendaDayOne =
+
+  const agendaDayThree =
     contextUser &&
-    contextUser.agenda.day_1.interventions.map((intervention, id) => {
+    contextUser.agenda.day_2.interventions.map((intervention, id) => {
       return (
-        <Link key={id} to={`intervention-details-1/${intervention.intervention_id}`}>
-          <section className={styles.intervention}>
+        <Link key={id}  to={`intervention-details-3/${intervention.intervention_id}`}>
+          {" "}
+          <section className={styles.intervention} >
             <div className={styles.time}>{intervention.hour}</div>
             <div className={styles.direction}>
               <div className={styles.flex_container_direction}>
@@ -49,7 +51,7 @@ const DayOne = () => {
       );
     });
 
-  const date = contextUser && contextUser.agenda.day_1.date;
+  const date = contextUser && contextUser.agenda.day_3.date;
 
   return (
     <div className={styles.container}>
@@ -67,9 +69,9 @@ const DayOne = () => {
           </div>
         )}
       </div>
-      {open && <>{agendaDayOne}</>}
+      {open && <>{agendaDayThree}</>}
     </div>
   );
 };
 
-export default DayOne;
+export default DayThree;

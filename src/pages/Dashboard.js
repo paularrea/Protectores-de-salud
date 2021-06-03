@@ -6,15 +6,13 @@ import NotificationList from "../components/Notificaciones/NotificationList.jsx"
 import { UserContext } from "../UserContext.js";
 
 const Dashboard = ({ Logout }) => {
-
-  const {contextUser} = useContext(UserContext)
-
+  const {contextUser} = useContext(UserContext);
   return (
     <div className={styles.container}>
       <Navbar Logout={Logout} />
       <div className={styles.intro}>
         <h2>
-          Hola <span>{contextUser && contextUser.username},</span>
+          Hola <span>{contextUser && contextUser.supervisor_name},</span>
         </h2>
         <p>bienvenido a tu espacio de trabajo.</p>
       </div>
