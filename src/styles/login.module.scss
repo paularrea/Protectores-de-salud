@@ -46,7 +46,24 @@
             height: auto;
         }
         .login_form{
-            margin-top: 10%;
+            margin-top: 0;
+        }
+    }
+}
+
+@media (min-width: 1026px){
+    .form_container{
+        min-width: 320px;
+    }
+    .login_container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &>img{
+            height: 100vh;
+        }
+        .login_form{
+            margin: 0 auto;
         }
     }
 }

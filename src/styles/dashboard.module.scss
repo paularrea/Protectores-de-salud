@@ -43,3 +43,27 @@
         }
     }
 }
+
+@media (min-width: 1025px){
+    .flex_desktop{
+        margin: 0 auto;
+        max-width: 1000px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .container{
+        .intro{
+            h2{
+                font-size: 56px;
+                line-height: 60px;
+            }
+            p{
+                margin: 1rem 0;
+                color: gray;
+                font-size: 20px;
+                line-height: 23px;
+            }
+        }
+    }
+}

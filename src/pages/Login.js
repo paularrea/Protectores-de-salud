@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard";
 import "../styles/App.scss";
 import styles from "../styles/login.module.scss";
 import loginImg from "../img/loginImg.png";
+import loginImgDesktop from "../img/desktopLogin.png";
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
@@ -58,14 +59,17 @@ const Login = () => {
   };
 
   return (
-    <div className="container-mobile">
+    <div>
       {sessionStorage.getItem("user") !== null ? (
         <div className="welcome">
           <Dashboard Logout={Logout} user={user} />
         </div>
       ) : (
         <>
-          <MediaQuery minWidth={767}>
+          <MediaQuery maxWidth={767}>
+            <LoginForm Login={Login} error={error} />
+          </MediaQuery>
+          <MediaQuery minWidth={767} and maxWidth={1025}>
             <div className={styles.login_container}>
               <img className={styles.login_img} src={loginImg} alt="login" />
               <div className={styles.login_form}>
@@ -73,8 +77,13 @@ const Login = () => {
               </div>
             </div>
           </MediaQuery>
-          <MediaQuery maxWidth={767}>
-            <LoginForm Login={Login} error={error} />
+          <MediaQuery minWidth={1026}>
+          <div className={styles.login_container}>
+              <img className={styles.login_img} src={loginImgDesktop} alt="login" />
+              <div className={styles.login_form}>
+                <LoginForm Login={Login} error={error} />
+              </div>
+            </div>
           </MediaQuery>
         </>
       )}
