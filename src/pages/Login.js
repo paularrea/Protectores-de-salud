@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
+import MediaQuery from "react-responsive";
 import Dashboard from "./Dashboard";
-import "../styles/App.scss"
+import "../styles/App.scss";
+import styles from "../styles/login.module.scss";
+import loginImg from "../img/loginImg.png";
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
-  const [dbUser, setDbUser] = useState({ username: "", password: "" , data:{}});
+  const [dbUser, setDbUser] = useState({
+    username: "",
+    password: "",
+    data: {},
+  });
   const [error, setError] = useState("");
 
-
   useEffect(() => {
-    fetch("https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content")
+    fetch(
+      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content"
+    )
       .then((res) => {
         return res.json();
       })
@@ -18,7 +26,7 @@ const Login = () => {
         setDbUser({
           username: data[0].supervisor_name,
           password: data[0].supervisor_password,
-          data: data[0]
+          data: data[0],
         });
       });
   }, []);
@@ -34,7 +42,7 @@ const Login = () => {
         username: details.username,
         password: details.password,
       });
-      sessionStorage.setItem('user', JSON.stringify(details))
+      sessionStorage.setItem("user", JSON.stringify(details));
     } else {
       console.log("not logged in!");
       setError("Details do not match!");
@@ -46,17 +54,29 @@ const Login = () => {
       username: "",
       password: "",
     });
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem("user");
   };
 
   return (
-    <div className='container-mobile'>
-      {sessionStorage.getItem('user') !== null ? (
+    <div className="container-mobile">
+      {sessionStorage.getItem("user") !== null ? (
         <div className="welcome">
           <Dashboard Logout={Logout} user={user} />
         </div>
       ) : (
-        <LoginForm Login={Login} error={error} />
+        <>
+          <MediaQuery minWidth={767}>
+            <div className={styles.login_container}>
+              <img className={styles.login_img} src={loginImg} alt="login" />
+              <div className={styles.login_form}>
+                <LoginForm Login={Login} error={error} />
+              </div>
+            </div>
+          </MediaQuery>
+          <MediaQuery maxWidth={767}>
+            <LoginForm Login={Login} error={error} />
+          </MediaQuery>
+        </>
       )}
     </div>
   );

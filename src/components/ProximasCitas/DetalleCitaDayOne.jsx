@@ -109,21 +109,21 @@ const DetalleCitaDayOne = () => {
           <hr style={{ margin: "2rem 0", opacity: 0.2 }} />
 
           <div className={styles.actions_container}>
-            <h5>Acciones requeridas</h5>
+            <h3>Acciones requeridas</h3>
             {actions}
           </div>
 
           <div className={styles.form_button_container}>
-            <h5>Listo para empezar?</h5>
+            <h3>Listo para empezar?</h3>
             <Link to={"/form"}>
               <div className={styles.green_button}>
-                <h5>Empezar visita</h5>
+                <h3>Empezar visita</h3>
                 <img src={arrow} alt="arrow" />
               </div>
             </Link>
           </div>
           <div className={styles.text}>
-            <h5>¿No has podido realizar la visita?</h5>
+            <h3>¿No has podido realizar la visita?</h3>
             <p>
               Si has intentado llamar a la paciente pero no has podido contactar
               con ella, puedes pasar directamente a la evaluación de la

@@ -9,11 +9,37 @@
     .intro{
         margin: 2rem 0 0 0;
         padding: 0rem 2rem;
+        h2{
+            font-size: 22px;
+            line-height: 25.3px;
+            font-weight: 400;
+
+        }
         p{
             margin: 1rem 0;
             color: gray;
             font-size: 18px;
             font-weight: 300;
+        }
+    }
+}
+
+@media (max-width: 1025px) and (min-width: 768px){
+    .container{
+        .intro{
+            h2{
+                font-size: 40px;
+                line-height: 46px;
+                font-weight: 700;
+
+            }
+            p{
+                margin: 1rem 0;
+                color: gray;
+                font-size: 22px;
+                font-weight: 300;
+                line-height: 25.3px;
+            }
         }
     }
 }

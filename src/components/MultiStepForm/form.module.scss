@@ -20,7 +20,6 @@
     }
     }
 }
-
 .green_button{
     background-color: #00CB45;
     cursor: pointer;
@@ -33,7 +32,6 @@
     font-size: 16px;
     font-weight: 700;
 }
-
 .grey{
     background-color: #000000;
     opacity: 0.3;
@@ -47,11 +45,10 @@
     font-size: 16px;
     font-weight: 700;
 }
-
 .container{
     .header{
         position: fixed;
-        width: 100vw;
+        width: 100%;
         top: 0;
         height:174px;
         border-radius: 0;
@@ -62,7 +59,12 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        text-align: left;
         justify-content: flex-end;
+        div{
+            margin: 0 auto;
+            max-width: 320px;
+        }
         h2,p{
             color: white;
         }
@@ -86,9 +88,11 @@
         }
     }
     .form_content{
+        margin: 0 auto;
         margin-top: 55%;
     }
     .legal_container{
+        margin: 0 auto;
         margin-top: 11rem;
         padding: 2rem;
         .grey_text{
@@ -111,6 +115,7 @@
         }
     }
     .content{
+        margin: 0 auto;
         padding: 2rem;
         padding-top: 0;
         margin-top: 11rem;
@@ -137,7 +142,6 @@
         width: 90% !important;
     }
 }
-
 .success_container{
     width: 100%;
     margin: 0 auto;
@@ -175,7 +179,61 @@
     }
 }
 
-@media (min-width: 870px) {
+@media (max-width: 1025px) and (min-width: 768px){
+    .container{
+        .header{
+            text-align: center;
+            p{
+                font-size: 14px;
+                line-height: 18px;
+            }
+            h2{
+                font-size: 22px;
+                line-height: 25.3px;
+            }
+        }
+        .legal_container{
+            max-width: 60%;
+        }
+        .form_content{
+            margin-top: 30%;
+        }
+        .content{
+            max-width: 60%;
+            padding-bottom: 0;
+        }
+        .noti_content{
+            margin: 0 auto;
+            max-width: 60%;
+        }
+    }
+    .success_container{
+        text-align: left;
+        img{
+            width: 128px;
+        }
+        h3{
+            width: 60%;
+            font-size: 24px;
+            line-height: 33.6px;
+        }
+        p{
+            width: 60%;
+            line-height: 32px;
+            font-size: 20px;
+        }
+    }
+    .close{
+        top: 2rem;
+        right: 2rem;
+        img{
+            width: 20px;
+        }
+    }
+    
+}
+
+@media (min-width: 1025px) {
     .fixed_container{
         position: fixed;
         width: 420px;

@@ -41,9 +41,10 @@
         .time{
             font-weight: bolder;
             font-size: 15px;
+            width: 30%;
         }
         .direction{
-            width: 65%;
+            width: 70%;
             .flex_container_direction{
                 display: flex;
                 justify-content: space-between;
@@ -74,7 +75,21 @@
                 font-size: 14px;
                 line-height: 22px;
                 width: 85%;
+                max-width: 220px;
             }
+        }
+    }
+}
+
+@media (max-width: 1025px) and (min-width: 768px){
+    .container{
+        section{
+          .time{
+            width: 20%;
+          }
+          .direction{
+            width: 80%;
+          }
         }
     }
 }

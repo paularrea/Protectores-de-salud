@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "usetheform";
 import styles from "./form.module.scss";
-import step3 from "../../img/steps/step3.png"
+import step3 from "../../img/steps/step3.png";
 
 import Question1 from "./Cuestionario/question1";
 import Question2 from "./Cuestionario/question2";
@@ -53,9 +53,11 @@ function Step3({ prevPage, ...props }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-      <img src={step3} alt="step3" />
-        <p>PASO {props.step}</p>
-        <h2>Cuestionario</h2>
+        <div>
+          <img src={step3} alt="step3" />
+          <p>PASO {props.step}</p>
+          <h2>Cuestionario</h2>
+        </div>
       </div>
       <Form name="Step3" {...props}>
         <div className={styles.content}>
