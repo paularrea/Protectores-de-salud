@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMultipleForm } from "usetheform";
 import styles from "./form.module.scss";
 import arrow from "../../img/arrow_back.png";
+import { Redirect } from "react-router-dom";
 
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -16,6 +17,7 @@ const MultiStepForm = () => {
   });
   const [questionaryData, setQuestionaryData] = useState();
   const [evaluationData, setEvaluationData] = useState();
+  const [sendForm, setSendForm] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,8 +48,11 @@ const MultiStepForm = () => {
   }, []);
 
   const [getWizardState, wizard] = useMultipleForm();
-  const onSubmitWizard = () => console.log(getWizardState());
- 
+
+  const onSubmitWizard = () => {
+    console.log(getWizardState());
+    setSendForm(true);
+  };
 
   const _next = () => {
     let step = currentPage.step;
@@ -106,7 +111,7 @@ const MultiStepForm = () => {
     let step = currentPage.step;
     if (step === 6) {
       return (
-        <button className={styles.grey} type="button" onClick={_next}>
+        <button className={styles.grey} type="submit" onClick={onSubmitWizard}>
           Aceptar y enviar
         </button>
       );
@@ -117,17 +122,26 @@ const MultiStepForm = () => {
   return (
     <div className="container-mobile">
       <Step1 step={currentPage.step} {...wizard} />
-      <Step2 step={currentPage.step}  {...wizard} />
-      <Step3 questionaryData={questionaryData} step={currentPage.step}  {...wizard} />
-      <Step4 step={currentPage.step}  {...wizard} />
-      <Step5 evaluationData={evaluationData} step={currentPage.step}  {...wizard} />
-      <Step6 step={currentPage.step}  {...wizard} onSubmit={onSubmitWizard} />
+      <Step2 step={currentPage.step} {...wizard} />
+      <Step3
+        questionaryData={questionaryData}
+        step={currentPage.step}
+        {...wizard}
+      />
+      <Step4 step={currentPage.step} {...wizard} />
+      <Step5
+        evaluationData={evaluationData}
+        step={currentPage.step}
+        {...wizard}
+      />
+      <Step6 step={currentPage.step} {...wizard} />
       <div className={styles.fixed_container}>
-          {previousButton()}
-          {nextButton()}
-          {signButton()}
-          {submitButton()}
-        </div>
+        {previousButton()}
+        {nextButton()}
+        {signButton()}
+        {submitButton()}
+      </div>
+      {sendForm && <Redirect to="/success-form" />}
     </div>
   );
 };

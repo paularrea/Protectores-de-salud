@@ -6,8 +6,11 @@ import { UserContext } from "../UserContext";
 import DetalleCitaDayOne from "../components/ProximasCitas/DetalleCitaDayOne";
 import DetalleCitaDayTwo from "../components/ProximasCitas/DetalleCitaDayTwo";
 import DetalleCitaDayThree from "../components/ProximasCitas/DetalleCitaDayThree";
+import DetalleCitaDayFour from "../components/ProximasCitas/DetalleCitaDayFour";
+import DetalleCitaDayFive from "../components/ProximasCitas/DetalleCitaDayFive";
 import RecuperarContra from "../components/RecuperarContra.jsx";
 import MultiStepForm from "../components/MultiStepForm/MultiStepForm";
+import FormSent from "../components/MultiStepForm/formSent";
 
 const Routes = () => {
   const [contextUser, setContextUser] = useState();
@@ -31,18 +34,28 @@ const Routes = () => {
           <Route exact path="/" component={Login} />
           <Route path="/recuperar-contraseña" component={RecuperarContra} />
           <Route
-            path="/intervention-details-2/:id"
-            render={(props) => <DetalleCitaDayTwo {...props} />}
-          />
-          <Route
             path="/intervention-details-1/:id"
             render={(props) => <DetalleCitaDayOne {...props} />}
+          />
+          <Route
+            path="/intervention-details-2/:id"
+            render={(props) => <DetalleCitaDayTwo {...props} />}
           />
           <Route
             path="/intervention-details-3/:id"
             render={(props) => <DetalleCitaDayThree {...props} />}
           />
+          <Route
+            path="/intervention-details-4/:id"
+            render={(props) => <DetalleCitaDayFour {...props} />}
+          />
+          <Route
+            path="/intervention-details-5/:id"
+            render={(props) => <DetalleCitaDayFive {...props} />}
+          />
+
           <Route exact path="/form" component={MultiStepForm} />
+          <Route exact path="/success-form" component={FormSent} />
         </UserContext.Provider>
       </Switch>
     </BrowserRouter>

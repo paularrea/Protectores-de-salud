@@ -9,7 +9,7 @@ import arrow from "../../../img/arrow.png";
 import less from "../../../img/less.png";
 import more from "../../../img/more.png";
 
-const DayThree = () => {
+const DayFour = () => {
   const { contextUser } = useContext(UserContext);
   const [open, setOpen] = useState(false);
 
@@ -17,11 +17,11 @@ const DayThree = () => {
     setOpen(!open);
   };
 
-  const agendaDayThree =
+  const agendaDayFour =
     contextUser &&
-    contextUser.agenda.day_3.interventions.map((intervention, id) => {
+    contextUser.agenda.day_4.interventions.map((intervention, id) => {
       return (
-        <Link key={id}  to={`intervention-details-3/${intervention.intervention_id}`}>
+        <Link key={id}  to={`intervention-details-4/${intervention.intervention_id}`}>
           {" "}
           <section className={styles.intervention} >
             <div className={styles.time}>{intervention.hour}</div>
@@ -51,7 +51,7 @@ const DayThree = () => {
       );
     });
 
-  const date = contextUser && contextUser.agenda.day_3.date;
+  const date = contextUser && contextUser.agenda.day_4.date;
 
   return (
     <div className={styles.container}>
@@ -69,9 +69,9 @@ const DayThree = () => {
           </div>
         )}
       </div>
-      {open && <>{agendaDayThree}</>}
+      {open && <>{agendaDayFour}</>}
     </div>
   );
 };
 
-export default DayThree;
+export default DayFour;

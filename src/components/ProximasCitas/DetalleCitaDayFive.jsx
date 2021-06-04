@@ -12,12 +12,12 @@ import phoneIcon from "../../img/phone.png";
 import locationIcon from "../../img/Place.png";
 import arrow from "../../img/arrow-right.png";
 
-const DetalleCitaDayOne = () => {
+const DetalleCitaDayFive = () => {
   const [closeNoti, setCloseNoti] = useState(false);
   const history = useHistory();
   const { contextUser } = useContext(UserContext);
   const { id } = useParams();
-  const interventions = contextUser && contextUser.agenda.day_1.interventions;
+  const interventions = contextUser && contextUser.agenda.day_5.interventions;
   const currentAppointment = interventions.filter(
     (intervention) => intervention.intervention_id === id
   );
@@ -36,7 +36,7 @@ const DetalleCitaDayOne = () => {
     </div>
   ));
 
-  const date = contextUser.agenda.day_1.date;
+  const date = contextUser.agenda.day_5.date;
   const isVisit = currentPatient.intervention_type === "VISIT";
 
   return (
@@ -136,4 +136,4 @@ const DetalleCitaDayOne = () => {
   );
 };
 
-export default DetalleCitaDayOne;
+export default DetalleCitaDayFive;

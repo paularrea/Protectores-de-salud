@@ -42,6 +42,9 @@ a{
     &:hover, a:active { text-decoration: none; color:black }
 }
 .link{
+    padding: 0;
+    cursor: pointer;
+    padding-top: .5rem;
     text-decoration: none;
     color: #4284F3;
     &:visited { text-decoration: none; color:#4284F3; }

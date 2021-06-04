@@ -1,5 +1,6 @@
 import React from "react";
 import { Form } from "usetheform";
+import step2 from "../../img/steps/step2.png"
 import styles from "./form.module.scss";
 
 function Step2({ prevPage, ...props }) {
@@ -9,6 +10,7 @@ function Step2({ prevPage, ...props }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
+      <img src={step2} alt="step2" />
       <p>PASO {props.step}</p>
         <h2>Aceptación programa PDS</h2>
       </div>

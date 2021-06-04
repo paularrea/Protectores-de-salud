@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "usetheform";
 import styles from "./form.module.scss";
+import step5 from "../../img/steps/step5.png"
 
 import Evaluation1 from "./Evaluation/evaluation1"
 import Evaluation2 from "./Evaluation/evaluation2"
@@ -16,6 +17,7 @@ function Step5(props) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
+      <img src={step5} alt="step5" />
       <p>PASO {props.step}</p>
         <h2>Evaluación de la intervención</h2>
       </div>
