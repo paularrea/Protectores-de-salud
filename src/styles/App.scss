@@ -17,11 +17,13 @@ h2{
     font-size: 25px;
     font-weight: 400;
 }
+input[type=text], input[type=button] {
+    -webkit-appearance: none !important;
+    -webkit-border-radius: 0 !important;
+}
 button{
     border: none;
     background: transparent;
-}
-button{
     -webkit-appearance: none !important;
     -webkit-border-radius: 0 !important;
 }
