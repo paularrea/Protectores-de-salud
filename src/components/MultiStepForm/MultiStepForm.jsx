@@ -3,6 +3,8 @@ import { useMultipleForm } from "usetheform";
 import styles from "./form.module.scss";
 import arrow from "../../img/arrow_back.png";
 import { Redirect } from "react-router-dom";
+import desktopStyle from "../../styles/dashboard.module.scss";
+import IntroNotis from "../IntroNotis/IntroNotis";
 
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -10,6 +12,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
 import Step6 from "./Step6";
+import MediaQuery from "react-responsive";
 
 const MultiStepForm = () => {
   const [currentPage, setPage] = useState({
@@ -63,25 +66,25 @@ const MultiStepForm = () => {
     });
   };
 
-  const _prev = () => {
-    let step = currentPage.step;
-    step = step <= 1 ? 1 : step - 1;
-    setPage({
-      step: step,
-    });
-  };
+  // const _prev = () => {
+  //   let step = currentPage.step;
+  //   step = step <= 1 ? 1 : step - 1;
+  //   setPage({
+  //     step: step,
+  //   });
+  // };
 
-  const previousButton = () => {
-    let step = currentPage.step;
-    if (step !== 1) {
-      return (
-        <button className="btn btn-secondary" type="button" onClick={_prev}>
-          <img src={arrow} alt="go back" />
-        </button>
-      );
-    }
-    return null;
-  };
+  // const previousButton = () => {
+  //   let step = currentPage.step;
+  //   if (step !== 1) {
+  //     return (
+  //       <button className="btn btn-secondary" type="button" onClick={_prev}>
+  //         <img src={arrow} alt="go back" />
+  //       </button>
+  //     );
+  //   }
+  //   return null;
+  // };
 
   const nextButton = () => {
     let step = currentPage.step;
@@ -99,7 +102,7 @@ const MultiStepForm = () => {
     let step = currentPage.step;
     if (step === 2 || step === 4) {
       return (
-        <button className={styles.grey} type="button" onClick={_next}>
+        <button className={styles.green_button} type="button" onClick={_next}>
           Firmar y seguir
         </button>
       );
@@ -111,7 +114,7 @@ const MultiStepForm = () => {
     let step = currentPage.step;
     if (step === 6) {
       return (
-        <button className={styles.grey} type="submit" onClick={onSubmitWizard}>
+        <button className={styles.green_button} type="submit" onClick={onSubmitWizard}>
           Aceptar y enviar
         </button>
       );
@@ -120,28 +123,37 @@ const MultiStepForm = () => {
   };
 
   return (
-    <div className="container-mobile">
-      <Step1 step={currentPage.step} {...wizard} />
-      <Step2 step={currentPage.step} {...wizard} />
-      <Step3
-        questionaryData={questionaryData}
-        step={currentPage.step}
-        {...wizard}
-      />
-      <Step4 step={currentPage.step} {...wizard} />
-      <Step5
-        evaluationData={evaluationData}
-        step={currentPage.step}
-        {...wizard}
-      />
-      <Step6 step={currentPage.step} {...wizard} />
-      <div className={styles.fixed_container}>
-        {previousButton()}
-        {nextButton()}
-        {signButton()}
-        {submitButton()}
+    <div className={desktopStyle.container}>
+      <div className={desktopStyle.flex_desktop}>
+        <MediaQuery minWidth={1026}>
+          <IntroNotis />
+        </MediaQuery>
+        <div className="container-mobile">
+          <Step1 step={currentPage.step} {...wizard} />
+          <Step2 step={currentPage.step} {...wizard} />
+          <Step3
+            questionaryData={questionaryData}
+            step={currentPage.step}
+            {...wizard}
+          />
+          <Step4 step={currentPage.step} {...wizard} />
+          <Step5
+            evaluationData={evaluationData}
+            step={currentPage.step}
+            {...wizard}
+          />
+          <Step6 step={currentPage.step} {...wizard} />
+          <div className={styles.fixed_container}>
+            <div className={styles.fixed}>
+              {/* {previousButton()} */}
+              {nextButton()}
+              {signButton()}
+              {submitButton()}
+            </div>
+          </div>
+          {sendForm && <Redirect to="/success-form" />}
+        </div>
       </div>
-      {sendForm && <Redirect to="/success-form" />}
     </div>
   );
 };

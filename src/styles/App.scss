@@ -52,13 +52,19 @@ a{
         background-color: white
     }
     .container-mobile{
+        position: relative;
         background-color: white;
-        width: 565px;
-        height: auto;
+        overflow-y: scroll;
+        width: 565px !important;
+        height: 700px;
         border-radius: 10px;
         margin: auto;
         overflow-y: scroll;
         -webkit-box-shadow: 0px 4px 40px #E1E5EC; 
         box-shadow: 0px 4px 40px #E1E5EC;
+    }
+    .intro-notis{
+        width: 400px;
+        max-width: 400px;
     }
 }

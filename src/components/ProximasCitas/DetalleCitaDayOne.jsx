@@ -2,7 +2,9 @@ import React, { useState, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import { Link } from "react-router-dom";
+import MediaQuery from "react-responsive";
 
+import "../../styles/App.scss"
 import styles from "./proximasCitas.module.scss";
 import desktopStyle from "../../styles/dashboard.module.scss";
 import notificationStyles from "../Notificaciones/notificaciones.module.scss";
@@ -44,7 +46,9 @@ const DetalleCitaDayOne = () => {
   return (
     <div className={desktopStyle.container}>
     <div className={desktopStyle.flex_desktop}>
-      <IntroNotis />
+    <MediaQuery minWidth={1026}>
+          <IntroNotis />
+        </MediaQuery>
       <div className="container-mobile">
         <div className={styles.container}>
           <div className={styles.close}>

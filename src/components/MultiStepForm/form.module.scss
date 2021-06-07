@@ -1,15 +1,17 @@
 .fixed_container{
     position: fixed;
     bottom: 0;
-    width: 100vw;
-    height: 80px;
-    box-shadow: 0px 0px 50px #DAE1EF;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 0 2rem;
-    z-index: 99999;
+    .fixed{
+        width: 100vw;
+        height: 80px;
+        box-shadow: 0px 0px 50px #DAE1EF;
+        background-color: white;
+        padding: 1rem 2rem;
+        z-index: 99999;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
     button{
         height: fit-content;  
         img{
@@ -27,7 +29,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 100px;
+    border-radius: 100px !important;
     padding: 15px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -40,12 +42,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 100px;
+    border-radius: 100px !important;
     padding: 15px 20px;
     font-size: 16px;
     font-weight: 700;
 }
 .container{
+    position: absolute;
     .header{
         position: fixed;
         width: 100%;
@@ -89,11 +92,10 @@
     }
     .form_content{
         margin: 0 auto;
-        margin-top: 55%;
     }
     .legal_container{
         margin: 0 auto;
-        margin-top: 11rem;
+        margin-top: 180px;
         padding: 2rem;
         .grey_text{
             opacity: 0.5;
@@ -118,7 +120,7 @@
         margin: 0 auto;
         padding: 2rem;
         padding-top: 0;
-        margin-top: 11rem;
+        margin-top: 180px;
         h3{
             color: #0057FF;
             font-weight: 400;
@@ -235,30 +237,37 @@
 
 @media (min-width: 1025px) {
     .fixed_container{
-        position: fixed;
-        width: 420px;
-        height: 80px;
-        left: 50%;
-        bottom: 6rem;
-        border-radius: 0 0 10px 10px;
-        margin-left: -210px; /*half the width*/
-        box-shadow: 0px 0px 50px #DAE1EF;
+        position: absolute;
+        width: 100%;
+        height: 0px;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+        .fixed{
+            box-shadow: 0px 0px 50px #DAE1EF;
+            border-radius: 0 0 10px 10px;
+            position: fixed;
+            background-color: white;
+            width: 565px;
+        }
     }
 
     .container{
+        position: absolute;
         .header{
-            position: fixed;
-            width: 420px;
-            left: 50%;
-            top: 6rem;
+            position: absolute;
+            width: 565px;
+            left: 0%;
+            top: 0;
             border-radius: 10px 10px 0 0;
-            margin-left: -210px; /*half the width*/
             padding: 2rem;
-            padding-top: 6rem;
+            padding-top: 0;
             margin-bottom: 1rem;
-            position: fixed;
             z-index: 999999;
             background-color: #2E83F8;
+        }
+        .content{
+            margin-top: 200px;
         }
     }
     }

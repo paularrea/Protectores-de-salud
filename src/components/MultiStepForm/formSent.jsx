@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import styles from "./form.module.scss";
+import MediaQuery from "react-responsive"
+import desktopStyle from "../../styles/dashboard.module.scss"
 import successIcon from "../../img/success.png";
 import closeIcon from "../../img/close.png";
+import IntroNotis from "../IntroNotis/IntroNotis";
 
 const FormSent = () => {
   const history = useHistory();
@@ -14,6 +17,11 @@ const FormSent = () => {
   };
 
   return (
+    <div className={desktopStyle.container}>
+    <div className={desktopStyle.flex_desktop}>
+      <MediaQuery minWidth={1026}>
+        <IntroNotis/>
+      </MediaQuery>
     <div className="container-mobile">
       <div className={styles.success_container}>
         <div className={styles.close}>
@@ -29,6 +37,8 @@ const FormSent = () => {
           correo electrónico.
         </p>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styles from "../../styles/dashboard.module.scss";
+import "../../styles/App.scss"
 import NotificationList from "../../components/Notificaciones/NotificationList.jsx";
 import { UserContext } from "../../UserContext.js";
 import MediaQuery from "react-responsive";
@@ -7,7 +8,7 @@ import MediaQuery from "react-responsive";
 const IntroNotis = () => {
   const { contextUser } = useContext(UserContext);
   return (
-    <section>
+    <section className='intro-notis'>
       <div className={styles.intro}>
         <h2>
           Hola <span>{contextUser && contextUser.supervisor_name},</span>
