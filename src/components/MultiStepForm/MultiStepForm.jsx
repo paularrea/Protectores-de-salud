@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useMultipleForm } from "usetheform";
 import styles from "./form.module.scss";
-import arrow from "../../img/arrow_back.png";
 import { Redirect } from "react-router-dom";
 import desktopStyle from "../../styles/dashboard.module.scss";
 import IntroNotis from "../IntroNotis/IntroNotis";

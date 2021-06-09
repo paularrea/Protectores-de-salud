@@ -9,25 +9,28 @@ import IntroNotis from "../components/IntroNotis/IntroNotis.jsx";
 
 const Dashboard = ({ Logout }) => {
   const { contextUser } = useContext(UserContext);
-  return (
-    <div className={styles.container}>
-      <Navbar Logout={Logout} />
-      <div className={styles.flex_desktop}>
-        <IntroNotis />
-        <section>
-          <MediaQuery minWidth={1026}>
-            <h3 style={{ marginBottom: "1rem" }}>Próximas citas</h3>
-            <div className="container-mobile">
-              <ProximasCitas user={contextUser} />
-            </div>
-          </MediaQuery>
-        </section>
-      </div>
 
-      <MediaQuery maxWidth={1025}>
-        <ProximasCitas user={contextUser} />
-      </MediaQuery>
-    </div>
+  return (
+    <>
+        <div className={styles.container}>
+          <Navbar Logout={Logout} />
+          <div className={styles.flex_desktop}>
+            <IntroNotis />
+            <section>
+              <MediaQuery minWidth={1026}>
+                <h3 style={{ marginBottom: "1rem" }}>Próximas citas</h3>
+                <div className="container-mobile">
+                  <ProximasCitas user={contextUser} />
+                </div>
+              </MediaQuery>
+            </section>
+          </div>
+
+          <MediaQuery maxWidth={1025}>
+            <ProximasCitas user={contextUser} />
+          </MediaQuery>
+        </div>
+    </>
   );
 };
 

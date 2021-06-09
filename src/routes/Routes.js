@@ -53,7 +53,6 @@ const Routes = () => {
             path="/intervention-details-5/:id"
             render={(props) => <DetalleCitaDayFive {...props} />}
           />
-
           <Route exact path="/form" component={MultiStepForm} />
           <Route exact path="/success-form" component={FormSent} />
         </UserContext.Provider>

@@ -4,10 +4,12 @@ import MediaQuery from "react-responsive";
 import Dashboard from "./Dashboard";
 import "../styles/App.scss";
 import styles from "../styles/login.module.scss";
-import loginImg from "../img/loginImg.png";
-import loginImgDesktop from "../img/desktopLogin.png";
+import loginImg from "../img/login-img.jpg";
+import loginImgDesktop from "../img/desktop-login.jpg";
+import LegalAdvise from "./LegalAdvise";
 
 const Login = () => {
+  const [accept, setAccept] = useState(false);
   const [user, setUser] = useState({ username: "", password: "" });
   const [dbUser, setDbUser] = useState({
     username: "",
@@ -56,14 +58,18 @@ const Login = () => {
       password: "",
     });
     sessionStorage.removeItem("user");
+    sessionStorage.removeItem("Legal advise");
   };
 
   return (
     <div>
       {sessionStorage.getItem("user") !== null ? (
-        <div className="welcome">
+        <>
+          {sessionStorage.getItem("Legal advise") !== 'accepted' && (
+            <LegalAdvise accept={accept} setAccept={setAccept} />
+          )}
           <Dashboard Logout={Logout} user={user} />
-        </div>
+        </>
       ) : (
         <>
           <MediaQuery maxWidth={767}>
@@ -78,8 +84,12 @@ const Login = () => {
             </div>
           </MediaQuery>
           <MediaQuery minWidth={1026}>
-          <div className={styles.login_container}>
-              <img className={styles.login_img} src={loginImgDesktop} alt="login" />
+            <div className={styles.login_container}>
+              <img
+                className={styles.login_img}
+                src={loginImgDesktop}
+                alt="login"
+              />
               <div className={styles.login_form}>
                 <LoginForm Login={Login} error={error} />
               </div>
