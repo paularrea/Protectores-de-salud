@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import { Link } from "react-router-dom";
@@ -19,6 +19,8 @@ import IntroNotis from "../IntroNotis/IntroNotis";
 const DetalleCitaDayTwo = () => {
   const [closeNoti, setCloseNoti] = useState(false);
   const history = useHistory();
+  const [patient, setCurrentPatient] = useState({});
+  const [patientDate, setPatientDate] = useState();
   const { contextUser } = useContext(UserContext);
   const { id } = useParams();
   const interventions = contextUser && contextUser.agenda.day_2.interventions;
@@ -32,6 +34,7 @@ const DetalleCitaDayTwo = () => {
   const closeNotification = () => {
     setCloseNoti(true);
   };
+
   const currentPatient = currentAppointment[0];
   const actions = currentAppointment[0].actions.map((action, key) => (
     <div key={key} className={styles.flex_actions}>
@@ -39,6 +42,16 @@ const DetalleCitaDayTwo = () => {
       <p>{action}</p>
     </div>
   ));
+
+  useEffect(() => {
+    const interventions = contextUser && contextUser.agenda.day_2.interventions;
+    const currentAppointment = interventions.filter(
+      (intervention) => intervention.intervention_id === id
+    );
+    const currentPatient = currentAppointment[0];
+    setCurrentPatient(currentPatient);
+    setPatientDate(contextUser && contextUser.agenda.day_2.date)
+  }, [contextUser, id]);
 
   const date = contextUser.agenda.day_2.date;
   const isVisit = currentPatient.intervention_type === "VISIT";
@@ -65,7 +78,7 @@ const DetalleCitaDayTwo = () => {
                 className={notificationStyles.notificaciones_container}
               >
                 <p>
-                  Tienes una cita {isVisit ? 'presencial' : 'telefónica'} con{" "}
+                  Tienes una cita {isVisit ? "presencial" : "telefónica"} con{" "}
                   {currentPatient.patient.replace(/ .*/, "")} {date}, a las{" "}
                   {currentPatient.hour}
                 </p>
@@ -124,7 +137,15 @@ const DetalleCitaDayTwo = () => {
 
               <div className={styles.form_button_container}>
                 <h3>Listo para empezar?</h3>
-                <Link to={"/form"}>
+                <Link
+                  to={{
+                    pathname: "/form",
+                    state: {
+                      patient: patient,
+                      patientDate: patientDate,
+                    },
+                  }}
+                >
                   <div className={styles.green_button}>
                     <h3>Empezar visita</h3>
                     <img src={arrow} alt="arrow" />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMultipleForm } from "usetheform";
 import styles from "./form.module.scss";
-import { Redirect } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 import desktopStyle from "../../styles/dashboard.module.scss";
 import IntroNotis from "../IntroNotis/IntroNotis";
 
@@ -14,6 +14,7 @@ import Step6 from "./Step6";
 import MediaQuery from "react-responsive";
 
 const MultiStepForm = () => {
+  const location = useLocation()
   const [currentPage, setPage] = useState({
     step: 1,
   });
@@ -24,6 +25,9 @@ const MultiStepForm = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
+  const patient = location.state.patient
+  const patientDate = location.state.patientDate
 
   useEffect(() => {
     fetch(
@@ -128,14 +132,14 @@ const MultiStepForm = () => {
           <IntroNotis />
         </MediaQuery>
         <div className="container-mobile">
-          <Step1 step={currentPage.step} {...wizard} />
+          <Step1 patient={patient} step={currentPage.step} {...wizard} />
           <Step2 step={currentPage.step} {...wizard} />
           <Step3
             questionaryData={questionaryData}
             step={currentPage.step}
             {...wizard}
           />
-          <Step4 questionaryData={questionaryData} step={currentPage.step} {...wizard} />
+          <Step4 patientDate={patientDate} patient={patient} questionaryData={questionaryData} step={currentPage.step} {...wizard} />
           <Step5
             evaluationData={evaluationData}
             step={currentPage.step}
