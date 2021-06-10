@@ -24,41 +24,16 @@ function Step4(props) {
             conforme.
           </p>
           <div>
-            <h5>Sección 1</h5>
+            <h4>
+              CERTIFICACIÓN VALIDANDO INTERVENCIÓN/SERVICIO DE PROTECTOR DE
+              SALUD
+            </h4>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              condimentum nibh vel purus ultricies faucibus. Ut felis lacus,
-              cursus non tristique sed, vestibulum ut purus. In at vestibulum
-              enim, non consectetur nulla. Fusce ullamcorper quam in nibh
-              dignissim interdum. Etiam vel pulvinar dolor. Donec fermentum
-              dignissim enim id suscipit. Proin ipsum eros, volutpat ac lacus
-              eget, laoreet commodo ante. Vivamus placerat eget urna at
-              elementum. Fusce nisi sapien, commodo et suscipit eu, bibendum a
-              mi.
-            </p>
-            <h5>Sección 2</h5>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              condimentum nibh vel purus ultricies faucibus. Ut felis lacus,
-              cursus non tristique sed, vestibulum ut purus. In at vestibulum
-              enim, non consectetur nulla. Fusce ullamcorper quam in nibh
-              dignissim interdum. Etiam vel pulvinar dolor. Donec fermentum
-              dignissim enim id suscipit. Proin ipsum eros, volutpat ac lacus
-              eget, laoreet commodo ante. Vivamus placerat eget urna at
-              elementum. Fusce nisi sapien, commodo et suscipit eu, bibendum a
-              mi.
-            </p>
-            <h5>Sección 3</h5>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              condimentum nibh vel purus ultricies faucibus. Ut felis lacus,
-              cursus non tristique sed, vestibulum ut purus. In at vestibulum
-              enim, non consectetur nulla. Fusce ullamcorper quam in nibh
-              dignissim interdum. Etiam vel pulvinar dolor. Donec fermentum
-              dignissim enim id suscipit. Proin ipsum eros, volutpat ac lacus
-              eget, laoreet commodo ante. Vivamus placerat eget urna at
-              elementum. Fusce nisi sapien, commodo et suscipit eu, bibendum a
-              mi.
+              Certifico que, (NOMBRE), representante de Protectores de Salud,
+              completó intervención durante (FECHA). Certifico que representante
+              presentó su identificación y que la información brindada por mí es
+              veraz y completa de acuerdo a mi mejor conocimiento y sin que haya
+              mediado coacción o intimidación de clase alguna.
             </p>
           </div>
         </div>

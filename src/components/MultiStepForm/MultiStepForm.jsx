@@ -135,7 +135,7 @@ const MultiStepForm = () => {
             step={currentPage.step}
             {...wizard}
           />
-          <Step4 step={currentPage.step} {...wizard} />
+          <Step4 questionaryData={questionaryData} step={currentPage.step} {...wizard} />
           <Step5
             evaluationData={evaluationData}
             step={currentPage.step}
