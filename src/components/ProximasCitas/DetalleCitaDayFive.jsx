@@ -65,7 +65,7 @@ const DetalleCitaDayOne = () => {
                 className={notificationStyles.notificaciones_container}
               >
                 <p>
-                  Tienes una cita telefónica con{" "}
+                  Tienes una cita {isVisit ? 'presencial' : 'telefónica'} con{" "}
                   {currentPatient.patient.replace(/ .*/, "")} {date}, a las{" "}
                   {currentPatient.hour}
                 </p>
