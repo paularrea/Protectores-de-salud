@@ -24,9 +24,14 @@ input[type=text], input[type=button] {
 button{
     border: none;
     background: transparent;
-    -webkit-appearance: none !important;
-    -webkit-border-radius: 0 !important;
 }
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button !important;
+}
+
 a{
     text-decoration: none;
     color: black;

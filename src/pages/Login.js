@@ -48,7 +48,7 @@ const Login = () => {
       sessionStorage.setItem("user", JSON.stringify(details));
     } else {
       console.log("not logged in!");
-      setError("Details do not match!");
+      setError(<p style={{color:'#CE112C', marginBottom:'2rem'}}>El usuario o contraseña son incorrectos</p>);
     }
   };
 

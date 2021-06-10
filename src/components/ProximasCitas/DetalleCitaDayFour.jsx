@@ -100,8 +100,7 @@ const DetalleCitaDayFour = () => {
                       className="link"
                       target="_blank"
                       rel="noreferrer"
-                      href={`https://www.google.es/maps/place/${currentPatient.address},+${currentPatient.city},+00907,+${currentPatient.country}/@18.4559418,-66.0714364,15.77z/data=!4m5!3m4!1s0x8c036f487d22dcf3:0xedbdb6ab86809ec5!8m2!3d18.4534946!4d-66.067315?hl=es`}
-                    >
+                      href={`https://www.google.es/maps/place/${currentPatient.address},+${currentPatient.city},+${currentPatient.country}`}                    >
                       VER MAPA
                     </a>
                   </h3>

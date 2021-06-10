@@ -28,12 +28,12 @@ function Step6(props) {
               label="Estoy conforme y quiero finalizar el proceso."
             />
           </FormControl>
-        </div>
         <div className={styles.noti_content}>
           <div
             style={{
               backgroundColor: "#FFF2F7",
               borderLeft: "2px solid #FF2E79",
+              margin:0
             }}
             className={notiStyles.notificaciones_container}
           >
@@ -45,6 +45,7 @@ function Step6(props) {
               <img src={campana} alt="" />
             </div>
           </div>
+        </div>
         </div>
       </Form>
     </div>
