@@ -1,10 +1,9 @@
 import React from "react";
-import styles from "../styles/recuperar.module.scss";
+import "../styles/App.scss";
 
 const RecuperarContra = () => {
   return (
-    <div className="container-mobile">
-      <div className={styles.container}>
+    <div className="legal-text">
         <div>
           <h2>Recuperar contraseña</h2>
           <p>
@@ -14,7 +13,6 @@ const RecuperarContra = () => {
           <a className="link" href="/">Volver al login</a>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -51,7 +51,7 @@ const LoginForm = ({ Login, error }) => {
 
         <FormControl className={styles.input} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
-            Contraseña
+            Password
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
