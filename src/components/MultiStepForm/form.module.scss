@@ -95,6 +95,7 @@
     .legal_container{
         margin: 0 auto;
         margin-top: 180px;
+        text-align: justify;
         padding: 2rem;
         padding-bottom: 5rem;
         .grey_text{
@@ -104,10 +105,12 @@
             font-weight: 400;
         }
         h4{
+            text-align: left;
             padding: 1rem 0;
             line-height: 25px;
         }
         h5{
+            text-align: left;
             margin-top: 2rem;
             margin-bottom: 1rem;
             font-size: 16px;
@@ -254,7 +257,6 @@
             width: 20px;
         }
     }
-    
 }
 
 @media (min-width: 1025px) {

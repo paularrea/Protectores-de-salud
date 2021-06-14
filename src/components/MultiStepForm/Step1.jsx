@@ -17,13 +17,13 @@ const Step1 = ({ patient, prevPage, ...props }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div>
-          <img src={step1} alt="step1" />
-          <p>PASO {props.step}</p>
-          <h2>Verificar datos personales</h2>
+        <div className={styles.header}>
+          <div>
+            <img src={step1} alt="step1" />
+            <p>PASO {props.step}</p>
+            <h2>Verificar datos personales</h2>
+          </div>
         </div>
-      </div>
       <div className={styles.form_content}>
         <Form name="Step1" {...props}>
           <div className={styles.content}>
@@ -80,7 +80,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
               <OutlinedInput
                 label="País"
                 value={country}
-                name='country'
+                name="country"
                 type="text"
               />
             </FormControl>
@@ -92,7 +92,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
               <OutlinedInput
                 label="Número de teléfono"
                 value={phone}
-                name='phone'
+                name="phone"
                 type="text"
               />
             </FormControl>
@@ -102,7 +102,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
               <OutlinedInput
                 label="Ciudad"
                 value={city}
-                name='city'
+                name="city"
                 type="text"
               />
             </FormControl>
@@ -114,7 +114,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
               <OutlinedInput
                 label="Calle"
                 value={address}
-                name='address'
+                name="address"
                 type="text"
               />
             </FormControl>

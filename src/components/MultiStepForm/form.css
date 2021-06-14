@@ -3,3 +3,7 @@
     width: 100% !important;
     margin-bottom: 2rem !important;
 } 
+
+.MuiInputLabel-outlined{
+    z-index: 0 !important;
+}
