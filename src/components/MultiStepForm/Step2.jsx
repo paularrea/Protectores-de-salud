@@ -4,7 +4,8 @@ import step2 from "../../img/steps/step2.png";
 import DigitalSignature from "../DigitalSignature/digitalSignature";
 import styles from "./form.module.scss";
 
-function Step2({ prevPage, ...props }) {
+const Step2 = ({ prevPage, ...props }) => {
+
   if (props.step !== 2) {
     return null;
   }
@@ -134,4 +135,4 @@ function Step2({ prevPage, ...props }) {
   );
 }
 
-export default Step2;
+export default Step2

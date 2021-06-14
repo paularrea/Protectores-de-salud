@@ -42,7 +42,9 @@ const DetalleCitaDayTwo = () => {
       <p>{action}</p>
     </div>
   ));
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const interventions = contextUser && contextUser.agenda.day_2.interventions;
     const currentAppointment = interventions.filter(

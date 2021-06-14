@@ -21,10 +21,6 @@ const MultiStepForm = () => {
   const [questionaryData, setQuestionaryData] = useState();
   const [evaluationData, setEvaluationData] = useState();
   const [sendForm, setSendForm] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   
   const patient = location.state.patient
   const patientDate = location.state.patientDate
@@ -64,6 +60,7 @@ const MultiStepForm = () => {
     let step = currentPage.step;
     step = step + 1;
     console.log(getWizardState());
+    window.scrollTo(0, 0);
     setPage({
       step: step,
     });
