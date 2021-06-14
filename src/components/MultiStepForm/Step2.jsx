@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "usetheform";
 import step2 from "../../img/steps/step2.png";
+import DigitalSignature from "../DigitalSignature/digitalSignature";
 import styles from "./form.module.scss";
 
 function Step2({ prevPage, ...props }) {
@@ -126,6 +127,7 @@ function Step2({ prevPage, ...props }) {
               de mis derechos legales.
             </p>
           </div>
+          <DigitalSignature/>
         </div>
       </Form>
     </div>
