@@ -33,7 +33,7 @@ const DayThree = () => {
                   ) : (
                     <img src={phoneIcon} alt="phone" />
                   )}
-                  <h5>{intervention.patient}</h5>
+                  <h5>{intervention.patient_name} {intervention.patient_middle_name} {intervention.patient_last_name} {intervention.patient_second_last_name}</h5>
                 </div>
                 <div className={styles.arrow_container}>
                   <img src={arrow} alt="see intervention details" />

@@ -81,7 +81,7 @@ const DetalleCitaDayFour = () => {
               >
                 <p>
                   Tienes una cita {isVisit ? "presencial" : "telefónica"} con{" "}
-                  {currentPatient.patient.replace(/ .*/, "")} {date}, a las{" "}
+                  {currentPatient.patient_name} {currentPatient.patient_middle_name} {date}, a las{" "}
                   {currentPatient.hour}
                 </p>
 
@@ -96,7 +96,12 @@ const DetalleCitaDayFour = () => {
                 <div>
                   <img src={userIcon} alt="user" />
                 </div>
-                <h3>{currentPatient.patient}</h3>
+                <h3>
+                  {currentPatient.patient_name}{" "}
+                  {currentPatient.patient_middle_name}{" "}
+                  {currentPatient.patient_last_name}{" "}
+                  {currentPatient.patient_second_last_name}
+                </h3>
               </div>
               {isVisit && (
                 <>

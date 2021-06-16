@@ -48,6 +48,7 @@
     font-weight: 700;
 }
 .container{
+    padding-bottom: 4rem;
     .header{
         position: fixed;
         width: 100%;
@@ -163,6 +164,16 @@
                 }
             -webkit-transform: rotateX(180deg);
             transform: rotateX(180deg);
+            }
+        }
+        .input_container{
+            position: relative;
+            .edit{
+                cursor: pointer;
+                color: #2E83F8;
+                position: absolute;
+                right: 0;
+                bottom: .8rem;
             }
         }
     }
