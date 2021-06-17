@@ -15,17 +15,44 @@ const Step1 = ({ patient, prevPage, ...props }) => {
   const [editCity, setEditCity] = useState(true);
   const [editAddress, setEditAddress] = useState(true);
 
+  const [address, setAddress] = useState(patient.address);
+  const [name, setName] = useState(patient.patient_name);
+  const [middleName, setMiddleName] = useState(patient.patient_middle_name);
+  const [lastName, setLastName] = useState(patient.patient_last_name);
+  const [secondLastName, setSecondLastName] = useState(patient.patient_second_last_name);
+  const [city, setCity] = useState(patient.city);
+  const [country, setCountry] = useState(patient.country);
+  const [phone, setPhone] = useState(patient.phone);
+
+  const handleChangeName = (event) => {
+    setName(event.target.value);
+  };
+  const handleChangeMiddleName = (event) => {
+    setMiddleName(event.target.value);
+  };
+  const handleChangeLastName = (event) => {
+    setLastName(event.target.value);
+  };
+  const handleChangeSecondLastName = (event) => {
+    setSecondLastName(event.target.value);
+  };
+  const handleChangeCity = (event) => {
+    setCity(event.target.value);
+  };
+  const handleChangeCountry = (event) => {
+    setCountry(event.target.value);
+  };
+  const handleChangePhone = (event) => {
+    setPhone(event.target.value);
+  };
+  const handleChangeAddress = (event) => {
+    setAddress(event.target.value);
+  };
+
+
   if (props.step !== 1) {
     return null;
   }
-  const address = patient.address;
-  const name = patient.patient_name;
-  const middleName = patient.patient_middle_name;
-  const lastName = patient.patient_last_name;
-  const secondLastName = patient.patient_second_last_name;
-  const city = patient.city;
-  const country = patient.country;
-  const phone = patient.phone;
 
   const isVisit = patient.intervention_type === "VISIT";
 
@@ -49,6 +76,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
                   value={name}
                   name="firstName"
                   type="text"
+                  onChange={handleChangeName}
                 />
               </FormControl>
               <button
@@ -67,6 +95,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
                   value={middleName}
                   name="middleName"
                   type="text"
+                  onChange={handleChangeMiddleName}
                 />
               </FormControl>
               <button
@@ -85,6 +114,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
                   value={lastName}
                   name="lastName"
                   type="text"
+                  onChange={handleChangeLastName}
                 />
               </FormControl>
               <button
@@ -103,6 +133,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
                   value={secondLastName}
                   name="secondLastName"
                   type="text"
+                  onChange={handleChangeSecondLastName}
                 />
               </FormControl>
               <button
@@ -121,6 +152,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
                   value={phone}
                   name="phone"
                   type="text"
+                  onChange={handleChangePhone}
                 />
               </FormControl>
               <button
@@ -139,6 +171,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
                   value={country}
                   name="country"
                   type="text"
+                  onChange={handleChangeCountry}
                 />
               </FormControl>
               <button
@@ -157,6 +190,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
                   value={city}
                   name="city"
                   type="text"
+                  onChange={handleChangeCity}
                 />
               </FormControl>
               <button
@@ -175,6 +209,7 @@ const Step1 = ({ patient, prevPage, ...props }) => {
                     value={address}
                     name="address"
                     type="text"
+                    onChange={handleChangeAddress}
                   />
                 </FormControl>
                 <button

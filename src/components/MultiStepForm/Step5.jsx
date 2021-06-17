@@ -6,6 +6,7 @@ import step5 from "../../img/steps/step5.png";
 import Evaluation1 from "./Evaluation/evaluation1";
 import Evaluation2 from "./Evaluation/evaluation2";
 import Evaluation3 from "./Evaluation/evaluation3";
+import Evaluation4 from "./Evaluation/evaluation4";
 
 function Step5(props) {
   if (props.step !== 5) {
@@ -31,6 +32,8 @@ function Step5(props) {
             <Evaluation2 evaluationData={evaluationData} />
             <p>{evaluationData[2].question_content}</p>
             <Evaluation3 evaluationData={evaluationData} />
+            <h4 style={{marginBottom:'1rem'}}>Comentarios</h4>
+            <Evaluation4/>
           </section>
         </div>
       </Form>

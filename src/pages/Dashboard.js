@@ -5,10 +5,24 @@ import MediaQuery from "react-responsive";
 import "../styles/App.scss";
 import Navbar from "../components/Nav/navbar.jsx";
 import { UserContext } from "../UserContext.js";
+// import useCurrentLocation from "../hooks/useCurrentLocation.js";
 import IntroNotis from "../components/IntroNotis/IntroNotis.jsx";
+
+// const geolocationOptions = {
+//   // Using this option you can define when should the location request timeout and
+//   // call the error callback with timeout message.
+//   timeout: 1000 * 60 * 1 // 1 min (1000 ms * 60 sec * 1 minute = 60 000ms)
+// };
 
 const Dashboard = ({ Logout }) => {
   const { contextUser } = useContext(UserContext);
+  // const { location, error } = useCurrentLocation(geolocationOptions);
+
+
+  // const userAgent = navigator.userAgent;
+
+  // console.log(location, error, 'location')
+
 
   return (
     <>
