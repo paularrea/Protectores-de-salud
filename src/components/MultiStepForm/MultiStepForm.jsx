@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useMultipleForm } from "usetheform";
 import styles from "./form.module.scss";
 import { Redirect, useLocation } from "react-router-dom";
 import desktopStyle from "../../styles/dashboard.module.scss";
 import IntroNotis from "../IntroNotis/IntroNotis";
+import arrow from "../../img/arrow_back.png";
 
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -14,16 +15,17 @@ import Step6 from "./Step6";
 import MediaQuery from "react-responsive";
 
 const MultiStepForm = () => {
-  const location = useLocation()
+  const location = useLocation();
+  const topRef = useRef(null);
   const [currentPage, setPage] = useState({
     step: 1,
   });
-  const [questionaryData, setQuestionaryData] = useState();
+  const [questionaryData, setQuestionaryData] = useState(null);
   const [evaluationData, setEvaluationData] = useState();
   const [sendForm, setSendForm] = useState(false);
-  
-  const patient = location.state.patient
-  const patientDate = location.state.patientDate
+
+  const patient = location.state.patient;
+  const patientDate = location.state.patientDate;
 
   useEffect(() => {
     fetch(
@@ -55,7 +57,6 @@ const MultiStepForm = () => {
     console.log(getWizardState());
     setSendForm(true);
   };
-
   const _next = () => {
     let step = currentPage.step;
     step = step + 1;
@@ -66,25 +67,36 @@ const MultiStepForm = () => {
     });
   };
 
-  // const _prev = () => {
-  //   let step = currentPage.step;
-  //   step = step <= 1 ? 1 : step - 1;
-  //   setPage({
-  //     step: step,
-  //   });
-  // };
+  const _prev = () => {
+    let step = currentPage.step;
+    step = step <= 1 ? 1 : step - 1;
+    setPage({
+      step: step,
+    });
+  };
 
-  // const previousButton = () => {
-  //   let step = currentPage.step;
-  //   if (step !== 1) {
-  //     return (
-  //       <button className="btn btn-secondary" type="button" onClick={_prev}>
-  //         <img src={arrow} alt="go back" />
-  //       </button>
-  //     );
-  //   }
-  //   return null;
-  // };
+  const previousButton = () => {
+    let step = currentPage.step;
+    if (step === 1) {
+      return (
+        <button
+          style={{ opacity: 0 }}
+          className="btn btn-secondary"
+          type="text"
+          onClick={_prev}
+        >
+          <img src={arrow} alt="go back" />
+        </button>
+      );
+    } else if (step !== 1) {
+      return (
+        <button className="btn btn-secondary" type="button" onClick={_prev}>
+          <img src={arrow} alt="go back" />
+        </button>
+      );
+    }
+    return null;
+  };
 
   const nextButton = () => {
     let step = currentPage.step;
@@ -114,7 +126,11 @@ const MultiStepForm = () => {
     let step = currentPage.step;
     if (step === 6) {
       return (
-        <button className={styles.green_button} type="submit" onClick={onSubmitWizard}>
+        <button
+          className={styles.green_button}
+          type="submit"
+          onClick={onSubmitWizard}
+        >
           Aceptar y enviar
         </button>
       );
@@ -129,23 +145,37 @@ const MultiStepForm = () => {
           <IntroNotis />
         </MediaQuery>
         <div className="container-mobile">
-          <Step1 patient={patient} step={currentPage.step} {...wizard} />
-          <Step2 step={currentPage.step} {...wizard} />
+          <Step1
+            topRef={topRef}
+            patient={patient}
+            step={currentPage.step}
+            {...wizard}
+          />
+          <Step2 topRef={topRef} step={currentPage.step} {...wizard} />
           <Step3
+            topRef={topRef}
             questionaryData={questionaryData}
             step={currentPage.step}
             {...wizard}
           />
-          <Step4 patientDate={patientDate} patient={patient} questionaryData={questionaryData} step={currentPage.step} {...wizard} />
+          <Step4
+            topRef={topRef}
+            patientDate={patientDate}
+            patient={patient}
+            questionaryData={questionaryData}
+            step={currentPage.step}
+            {...wizard}
+          />
           <Step5
+            topRef={topRef}
             evaluationData={evaluationData}
             step={currentPage.step}
             {...wizard}
           />
-          <Step6 step={currentPage.step} {...wizard} />
+          <Step6 topRef={topRef} step={currentPage.step} {...wizard} />
           <div className={styles.fixed_container}>
             <div className={styles.fixed}>
-              {/* {previousButton()} */}
+              {previousButton()}
               {nextButton()}
               {signButton()}
               {submitButton()}

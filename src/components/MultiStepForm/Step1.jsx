@@ -5,7 +5,7 @@ import styles from "./form.module.scss";
 import step1 from "../../img/steps/step1.png";
 import { FormControl, InputLabel, OutlinedInput } from "@material-ui/core";
 
-const Step1 = ({ patient, prevPage, ...props }) => {
+const Step1 = ({ topRef, patient, prevPage, ...props }) => {
   const [editName, setEditName] = useState(true);
   const [editMiddleName, setEditMiddleName] = useState(true);
   const [editLastName, setEditLastName] = useState(true);
@@ -19,7 +19,9 @@ const Step1 = ({ patient, prevPage, ...props }) => {
   const [name, setName] = useState(patient.patient_name);
   const [middleName, setMiddleName] = useState(patient.patient_middle_name);
   const [lastName, setLastName] = useState(patient.patient_last_name);
-  const [secondLastName, setSecondLastName] = useState(patient.patient_second_last_name);
+  const [secondLastName, setSecondLastName] = useState(
+    patient.patient_second_last_name
+  );
   const [city, setCity] = useState(patient.city);
   const [country, setCountry] = useState(patient.country);
   const [phone, setPhone] = useState(patient.phone);
@@ -48,7 +50,6 @@ const Step1 = ({ patient, prevPage, ...props }) => {
   const handleChangeAddress = (event) => {
     setAddress(event.target.value);
   };
-
 
   if (props.step !== 1) {
     return null;

@@ -3,14 +3,14 @@
     bottom: 0;
     .fixed{
         width: 100vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         height: 80px;
         box-shadow: 0px 0px 50px #DAE1EF;
         background-color: white;
         padding: 1rem 2rem;
         z-index: 99999 !important;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
     }
     button{
         height: fit-content;  
@@ -299,6 +299,7 @@
         .content{
             width: 90%;
             margin-top: 200px;
+            padding: 0;
         }
     }
     }

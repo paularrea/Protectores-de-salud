@@ -48,7 +48,11 @@ const Login = () => {
       sessionStorage.setItem("user", JSON.stringify(details));
     } else {
       console.log("not logged in!");
-      setError(<p style={{color:'#CE112C', marginBottom:'2rem'}}>El usuario o contraseña son incorrectos</p>);
+      setError(
+        <p style={{ color: "#CE112C", marginBottom: "2rem" }}>
+          El usuario o contraseña son incorrectos
+        </p>
+      );
     }
   };
 
@@ -59,22 +63,26 @@ const Login = () => {
     });
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("Legal advise");
+    sessionStorage.removeItem("Red noti");
+    sessionStorage.removeItem("Blue noti");
   };
 
   return (
     <div>
       {sessionStorage.getItem("user") !== null ? (
         <>
-          {sessionStorage.getItem("Legal advise") !== 'accepted' && (
+          {sessionStorage.getItem("Legal advise") !== "accepted" && (
             <LegalAdvise accept={accept} setAccept={setAccept} />
           )}
           <Dashboard Logout={Logout} user={user} />
         </>
       ) : (
         <>
+          {/* phone */}
           <MediaQuery maxWidth={767}>
             <LoginForm Login={Login} error={error} />
           </MediaQuery>
+          {/* tablet */}
           <MediaQuery minWidth={767} and maxWidth={1025}>
             <div className={styles.login_container}>
               <img className={styles.login_img} src={loginImg} alt="login" />
@@ -83,6 +91,7 @@ const Login = () => {
               </div>
             </div>
           </MediaQuery>
+          {/* desktop */}
           <MediaQuery minWidth={1026}>
             <div className={styles.login_container}>
               <img

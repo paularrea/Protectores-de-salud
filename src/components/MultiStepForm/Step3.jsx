@@ -2,19 +2,17 @@ import React from "react";
 import { Form } from "usetheform";
 import styles from "./form.module.scss";
 import step3 from "../../img/steps/step3.png";
+import Element from "./components/element";
 
-import ChapterOne from "./components/Cuestionario/chapterOne";
-import ChapterTwo from "./components/Cuestionario/chapterTwo";
-import ChapterThree from "./components/Cuestionario/chapterThree";
-import ChapterFour from "./components/Cuestionario/chapterFour";
-import ChapterFive from "./components/Cuestionario/chapterFive";
-import ChapterSix from "./components/Cuestionario/chapterSix";
-
-function Step3({ prevPage, ...props }) {
+function Step3({ topRef, prevPage, ...props }) {
   if (props.step !== 3) {
     return null;
   }
-  const questionaryData = props.questionaryData && props.questionaryData;
+  const cuestionario = props.questionaryData
+    ? props.questionaryData.map((question, i) => (
+        <Element key={i} question={question} />
+      ))
+    : null;
 
   return (
     <div className={styles.container}>
@@ -26,14 +24,7 @@ function Step3({ prevPage, ...props }) {
         </div>
       </div>
       <Form name="Step3" {...props}>
-        <div className={styles.content}>
-          <ChapterOne questionaryData={questionaryData} />
-          <ChapterTwo questionaryData={questionaryData} />
-          <ChapterThree questionaryData={questionaryData} />
-          <ChapterFour questionaryData={questionaryData} />
-          <ChapterFive questionaryData={questionaryData} />
-          <ChapterSix questionaryData={questionaryData} />
-        </div>
+        <div className={styles.content}>{cuestionario}</div>
       </Form>
     </div>
   );

@@ -14,6 +14,7 @@ function Step4(props) {
     props.patientDate.split(",")[1] + props.patientDate.split(",")[2];
 
   return (
+    <>
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
@@ -46,6 +47,7 @@ function Step4(props) {
         </div>
       </Form>
     </div>
+    </>
   );
 }
 

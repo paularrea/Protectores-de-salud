@@ -9,7 +9,7 @@ const NotificationList = ({ user }) => {
   const [closeBlueNotification, setCloseBlueNotification] = useState(false);
 
   useEffect(() => {
-    fetch("https://my-json-server.typicode.com/paularrea/json-repo/users")
+    fetch("https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content")
       .then((res) => {
         return res.json();
       })
@@ -20,9 +20,11 @@ const NotificationList = ({ user }) => {
 
   const closeRedNoti = () => {
     setCloseRedNotification(true);
+    sessionStorage.setItem("Red noti", "closed");
   };
   const closeBlueNoti = () => {
     setCloseBlueNotification(true);
+    sessionStorage.setItem("Blue noti", "closed");
   };
 
   const redNotifications =
@@ -33,7 +35,8 @@ const NotificationList = ({ user }) => {
 
   return (
     <div>
-      {redNotifications &&
+      {sessionStorage.getItem("Red noti") !== "closed" &&
+        redNotifications &&
         !closeRedNotification &&
         redNotifications[0].map((item, id) => (
           <div
@@ -55,7 +58,8 @@ const NotificationList = ({ user }) => {
           </div>
         ))}
 
-      {blueNotifications &&
+      {sessionStorage.getItem("Blue noti") !== "closed" &&
+        blueNotifications &&
         !closeBlueNotification &&
         blueNotifications[0].map((item, id) => (
           <div

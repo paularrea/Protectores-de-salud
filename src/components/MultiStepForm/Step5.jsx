@@ -2,19 +2,21 @@ import React from "react";
 import { Form } from "usetheform";
 import styles from "./form.module.scss";
 import step5 from "../../img/steps/step5.png";
-
-import Evaluation1 from "./Evaluation/evaluation1";
-import Evaluation2 from "./Evaluation/evaluation2";
-import Evaluation3 from "./Evaluation/evaluation3";
-import Evaluation4 from "./Evaluation/evaluation4";
+import Element from "./components/element"
 
 function Step5(props) {
   if (props.step !== 5) {
     return null;
   }
-  const evaluationData = props.evaluationData && props.evaluationData;
+
+  const evaluation = props.evaluationData
+    ? props.evaluationData.map((question, i) => (
+        <Element key={i} question={question} />
+      ))
+    : null;
 
   return (
+    <>
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
@@ -25,19 +27,11 @@ function Step5(props) {
       </div>
       <Form name="Step5" {...props}>
         <div className={styles.content}>
-          <section>
-            <p>{evaluationData[0].question_content}</p>
-            <Evaluation1 evaluationData={evaluationData} />
-            <p>{evaluationData[1].question_content}</p>
-            <Evaluation2 evaluationData={evaluationData} />
-            <p>{evaluationData[2].question_content}</p>
-            <Evaluation3 evaluationData={evaluationData} />
-            <h4 style={{marginBottom:'1rem'}}>Comentarios</h4>
-            <Evaluation4/>
-          </section>
+          <section>{evaluation}</section>
         </div>
       </Form>
     </div>
+    </>
   );
 }
 
