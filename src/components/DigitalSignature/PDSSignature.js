@@ -4,7 +4,7 @@ import styles from "./digitalSignature.module.scss";
 import clear from "../../img/clear.png";
 import MediaQuery from "react-responsive";
 
-const DigitalSignature = ({setIsPDSSigned}) => {
+const PDSSignature = ({setIsPDSSigned}) => {
   const [imageData, setImageData] = useState("");
   const [error, setError] = useState(false);
   const signatureRef = useRef({});
@@ -97,4 +97,4 @@ const DigitalSignature = ({setIsPDSSigned}) => {
   );
 };
 
-export default DigitalSignature;
+export default PDSSignature;

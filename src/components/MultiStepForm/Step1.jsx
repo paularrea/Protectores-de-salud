@@ -3,7 +3,8 @@ import { Form } from "usetheform";
 import "./form.css";
 import styles from "./form.module.scss";
 import step1 from "../../img/steps/step1.png";
-import { FormControl, InputLabel, OutlinedInput } from "@material-ui/core";
+import { FormControl, InputLabel} from "@material-ui/core";
+import OutlinedInput from "./components/OutlinedInput"
 
 const Step1 = ({ topRef, patient, prevPage, ...props }) => {
   const [editName, setEditName] = useState(true);
@@ -54,7 +55,6 @@ const Step1 = ({ topRef, patient, prevPage, ...props }) => {
   if (props.step !== 1) {
     return null;
   }
-
   const isVisit = patient.intervention_type === "VISIT";
 
   return (

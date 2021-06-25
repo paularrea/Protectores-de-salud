@@ -5,6 +5,7 @@ import step3 from "../../img/steps/step3.png";
 import Element from "./components/element";
 
 function Step3({ topRef, prevPage, ...props }) {
+
   if (props.step !== 3) {
     return null;
   }

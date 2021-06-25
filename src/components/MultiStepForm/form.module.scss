@@ -34,6 +34,19 @@
     font-size: 16px;
     font-weight: 700;
 }
+.grey_button{
+    background-color: rgb(184, 184, 184);
+    cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 100px !important;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
 .grey{
     background-color: #000000;
     opacity: 0.3;

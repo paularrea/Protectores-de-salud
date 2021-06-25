@@ -23,6 +23,8 @@ const MultiStepForm = () => {
   const [questionaryData, setQuestionaryData] = useState(null);
   const [evaluationData, setEvaluationData] = useState();
   const [sendForm, setSendForm] = useState(false);
+  const [isPDSSigned, setIsPDSSigned] = useState(false);
+  const [isConfirmationigned, setIsConfirmationSigned] = useState(false);
 
   const patient = location.state.patient;
   const patientDate = location.state.patientDate;
@@ -112,9 +114,25 @@ const MultiStepForm = () => {
 
   const signButton = () => {
     let step = currentPage.step;
-    if (step === 2 || step === 4) {
+    if (step === 2) {
       return (
-        <button className={styles.green_button} type="button" onClick={_next}>
+        <button
+          disabled={!isPDSSigned}
+          className={isPDSSigned ? styles.green_button : styles.grey_button}
+          type="button"
+          onClick={_next}
+        >
+          Firmar y seguir
+        </button>
+      );
+    } else if (step === 4) {
+      return (
+        <button
+          disabled={!isConfirmationigned}
+          className={isConfirmationigned ? styles.green_button : styles.grey_button}
+          type="button"
+          onClick={_next}
+        >
           Firmar y seguir
         </button>
       );
@@ -151,7 +169,12 @@ const MultiStepForm = () => {
             step={currentPage.step}
             {...wizard}
           />
-          <Step2 topRef={topRef} step={currentPage.step} {...wizard} />
+          <Step2
+            setIsPDSSigned={setIsPDSSigned}
+            topRef={topRef}
+            step={currentPage.step}
+            {...wizard}
+          />
           <Step3
             topRef={topRef}
             questionaryData={questionaryData}
@@ -159,6 +182,7 @@ const MultiStepForm = () => {
             {...wizard}
           />
           <Step4
+            setIsConfirmationSigned={setIsConfirmationSigned}
             topRef={topRef}
             patientDate={patientDate}
             patient={patient}

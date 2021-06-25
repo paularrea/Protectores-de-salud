@@ -1,14 +1,15 @@
 import React from "react";
 import { Form } from "usetheform";
 import step2 from "../../img/steps/step2.png";
-import DigitalSignature from "../DigitalSignature/digitalSignature";
+import PDSSignature from "../DigitalSignature/PDSSignature";
 import styles from "./form.module.scss";
 
-const Step2 = ({ topRef, prevPage, ...props }) => {
-
+const Step2 = ({ setIsPDSSigned, topRef, prevPage, ...props }) => {
+  
   if (props.step !== 2) {
     return null;
   }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -128,7 +129,7 @@ const Step2 = ({ topRef, prevPage, ...props }) => {
               de mis derechos legales.
             </p>
           </div>
-          <DigitalSignature/>
+         <PDSSignature setIsPDSSigned={setIsPDSSigned}/>
         </div>
       </Form>
     </div>

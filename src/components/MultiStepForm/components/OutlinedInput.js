@@ -1,31 +1,32 @@
 import React from "react";
-import { default as TextFieldMUI } from "@material-ui/core/TextField";
+import { default as OutlinedInputMUI } from "@material-ui/core/OutlinedInput";
 import { useField, useValidation } from "usetheform";
 
 export default function TextField({
   name,
   touched,
-  disabled,
   validators,
   label,
+  value
 }) {
+  
   const [status, validation] = useValidation(validators);
   const props = useField({
     type: "text",
     name,
     touched,
-    ...validation,
+    value,
+    ...validation
   });
+
   const showError = status.error !== undefined;
+
   return (
-    <TextFieldMUI
-      label={label}
-      disabled={disabled}
-      multiline
-      rowsMax={4}
-      error={showError}
-      {...props}
-      variant="outlined"
-    />
+    <OutlinedInputMUI
+    label={label}
+    value={value}
+    error={showError}
+    {...props}
+  />
   );
 }

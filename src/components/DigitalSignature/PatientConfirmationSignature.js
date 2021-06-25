@@ -4,14 +4,14 @@ import styles from "./digitalSignature.module.scss";
 import clear from "../../img/clear.png";
 import MediaQuery from "react-responsive";
 
-const DigitalSignature = ({setIsPDSSigned}) => {
+const PatientConfirmationSignature = ({setIsConfirmationSigned}) => {
   const [imageData, setImageData] = useState("");
   const [error, setError] = useState(false);
   const signatureRef = useRef({});
 
   const saveSignature = (signature) => {
     setImageData(signature);
-    setIsPDSSigned(true)
+    setIsConfirmationSigned(true)
   };
 
   useEffect(() => {
@@ -97,4 +97,4 @@ const DigitalSignature = ({setIsPDSSigned}) => {
   );
 };
 
-export default DigitalSignature;
+export default PatientConfirmationSignature;
