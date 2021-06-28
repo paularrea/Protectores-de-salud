@@ -14,7 +14,7 @@ export default function RadioQuestion({ value, name, disabled, label }) {
       <FormControlLabel
         control={<Radio color="primary" />}
         disabled={disabled}
-        label={label}
+        label={<span style={{ fontWeight: 700 }}>{label}</span>}
         {...props}
       />
     </>

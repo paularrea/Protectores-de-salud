@@ -19,7 +19,7 @@ export default function TextField({
   const showError = status.error !== undefined;
   return (
     <TextFieldMUI
-      label={label}
+    label={<span style={{ fontWeight: 700 }}>{label}</span>}
       disabled={disabled}
       multiline
       rowsMax={4}

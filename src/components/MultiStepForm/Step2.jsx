@@ -4,23 +4,24 @@ import step2 from "../../img/steps/step2.png";
 import PDSSignature from "../DigitalSignature/PDSSignature";
 import styles from "./form.module.scss";
 
-const Step2 = ({ setIsPDSSigned, topRef, prevPage, ...props }) => {
-  
+const Step2 = ({ setIsPDSSigned, refProp, prevPage, ...props }) => {
   if (props.step !== 2) {
     return null;
   }
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.fixed_header}>
+        <div className={styles.header}>
         <div>
-          <img src={step2} alt="step2" />
-          <p>PASO {props.step}</p>
-          <h2>Aceptación programa PDS</h2>
+            <img src={step2} alt="step2" />
+            <p>PASO {props.step}</p>
+            <h2>Aceptación programa PDS</h2>
+          </div>
         </div>
       </div>
       <Form name="Step2" {...props}>
-        <div className={styles.legal_container}>
+        <div ref={refProp} className={styles.legal_container}>
           <p className={styles.grey_text}>
             Por favor, lea atentamente este texto legal y firme si está
             conforme.
@@ -129,11 +130,11 @@ const Step2 = ({ setIsPDSSigned, topRef, prevPage, ...props }) => {
               de mis derechos legales.
             </p>
           </div>
-         <PDSSignature setIsPDSSigned={setIsPDSSigned}/>
+          <PDSSignature setIsPDSSigned={setIsPDSSigned} />
         </div>
       </Form>
     </div>
   );
-}
+};
 
-export default Step2
+export default Step2;

@@ -4,8 +4,7 @@ import styles from "./form.module.scss";
 import step3 from "../../img/steps/step3.png";
 import Element from "./components/element";
 
-function Step3({ topRef, prevPage, ...props }) {
-
+function Step3({ refProp, prevPage, ...props }) {
   if (props.step !== 3) {
     return null;
   }
@@ -17,15 +16,17 @@ function Step3({ topRef, prevPage, ...props }) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div>
-          <img src={step3} alt="step3" />
-          <p>PASO {props.step}</p>
-          <h2>Cuestionario</h2>
+      <div className={styles.fixed_header}>
+        <div className={styles.header}>
+          <div>
+            <img src={step3} alt="step3" />
+            <p>PASO {props.step}</p>
+            <h2>Cuestionario</h2>
+          </div>
         </div>
       </div>
       <Form name="Step3" {...props}>
-        <div className={styles.content}>{cuestionario}</div>
+        <div ref={refProp} className={styles.content}>{cuestionario}</div>
       </Form>
     </div>
   );

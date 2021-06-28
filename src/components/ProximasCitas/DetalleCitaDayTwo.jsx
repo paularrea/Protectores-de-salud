@@ -52,7 +52,7 @@ const DetalleCitaDayTwo = () => {
     );
     const currentPatient = currentAppointment[0];
     setCurrentPatient(currentPatient);
-    setPatientDate(contextUser && contextUser.agenda.day_2.date)
+    setPatientDate(contextUser && contextUser.agenda.day_2.date);
   }, [contextUser, id]);
 
   const date = contextUser.agenda.day_2.date;
@@ -81,7 +81,8 @@ const DetalleCitaDayTwo = () => {
               >
                 <p>
                   Tienes una cita {isVisit ? "presencial" : "telefónica"} con{" "}
-                  {currentPatient.patient_name} {currentPatient.patient_middle_name} {date}, a las{" "}
+                  {currentPatient.patient_name}{" "}
+                  {currentPatient.patient_middle_name} {date}, a las{" "}
                   {currentPatient.hour}
                 </p>
 
@@ -143,29 +144,50 @@ const DetalleCitaDayTwo = () => {
               </div>
 
               <div className={styles.form_button_container}>
-                <h3>Listo para empezar?</h3>
-                <Link
-                  to={{
-                    pathname: "/form",
-                    state: {
-                      patient: patient,
-                      patientDate: patientDate,
-                    },
-                  }}
-                >
-                  <div className={styles.green_button}>
-                    <h3>Empezar visita</h3>
-                    <img src={arrow} alt="arrow" />
-                  </div>
-                </Link>
-              </div>
-              <div className={styles.text}>
-                <h3>¿No has podido realizar la visita?</h3>
-                <p>
-                  Si has intentado llamar a la paciente pero no has podido
-                  contactar con ella, puedes pasar directamente a la evaluación
-                  de la intervención.
-                </p>
+                <div className={styles.text}>
+                  <h3>Listo para empezar?</h3>
+                  <p>
+                    Si has intentado llamar a la paciente pero no has podido
+                    contactar con ella, puedes pasar directamente a la
+                    evaluación de la intervención.
+                  </p>
+                  <Link
+                    to={{
+                      pathname: "/pds-form",
+                      state: {
+                        patient: patient,
+                        patientDate: patientDate,
+                      },
+                    }}
+                  >
+                    <div className={styles.green_button}>
+                      <h3>Empezar visita</h3>
+                      <img src={arrow} alt="arrow" />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className={styles.text}>
+                  <h3>Evalúa la entrevista</h3>
+                  <p>
+                    Rellena este formulario una vez hayas terminado con la
+                    visita.
+                  </p>
+                  <Link
+                    to={{
+                      pathname: "/evaluation-form",
+                      state: {
+                        patient: patient,
+                        patientDate: patientDate,
+                      },
+                    }}
+                  >
+                    <div className={styles.green_button}>
+                      <h3>Empezar evaluación</h3>
+                      <img src={arrow} alt="arrow" />
+                    </div>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

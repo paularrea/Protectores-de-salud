@@ -70,7 +70,7 @@ const PDSSignature = ({setIsPDSSigned}) => {
               setError(false);
             }}
             canvasProps={{
-              width: 500,
+              width: 400,
               height: 250,
               style: { border: "2px solid #a7a7a7", borderRadius: "10px" },
             }}

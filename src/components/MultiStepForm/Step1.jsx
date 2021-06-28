@@ -3,10 +3,10 @@ import { Form } from "usetheform";
 import "./form.css";
 import styles from "./form.module.scss";
 import step1 from "../../img/steps/step1.png";
-import { FormControl, InputLabel} from "@material-ui/core";
-import OutlinedInput from "./components/OutlinedInput"
+import { FormControl, InputLabel } from "@material-ui/core";
+import OutlinedInput from "./components/OutlinedInput";
 
-const Step1 = ({ topRef, patient, prevPage, ...props }) => {
+const Step1 = ({ refProp, patient, prevPage, ...props }) => {
   const [editName, setEditName] = useState(true);
   const [editMiddleName, setEditMiddleName] = useState(true);
   const [editLastName, setEditLastName] = useState(true);
@@ -59,14 +59,16 @@ const Step1 = ({ topRef, patient, prevPage, ...props }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div>
-          <img src={step1} alt="step1" />
-          <p>PASO {props.step}</p>
-          <h2>Verificar datos personales</h2>
+      <div className={styles.fixed_header}>
+        <div className={styles.header}>
+          <div>
+            <img src={step1} alt="step1" />
+            <p>PASO {props.step}</p>
+            <h2>Verificar datos personales</h2>
+          </div>
         </div>
       </div>
-      <div className={styles.form_content}>
+      <div ref={refProp} className={styles.form_content}>
         <Form name="Step1" {...props}>
           <div className={styles.content}>
             <div className={styles.input_container}>

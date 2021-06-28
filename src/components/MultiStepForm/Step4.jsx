@@ -16,15 +16,17 @@ function Step4(props) {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <div>
-            <img src={step4} alt="step4" />
-            <p>PASO {props.step}</p>
-            <h2>Conformidad Paciente</h2>
+        <div className={styles.fixed_header}>
+          <div className={styles.header}>
+            <div>
+              <img src={step4} alt="step4" />
+              <p>PASO {props.step}</p>
+              <h2>Conformidad Paciente</h2>
+            </div>
           </div>
         </div>
         <Form name="Step4" {...props}>
-          <div className={styles.legal_container}>
+          <div ref={props.refProp} className={styles.legal_container}>
             <p className={styles.grey_text}>
               Por favor, lea atentamente este texto legal y firme si está
               conforme.
@@ -43,7 +45,9 @@ function Step4(props) {
                 clase alguna.
               </p>
             </div>
-            <PatientConfirmationSignature setIsConfirmationSigned={props.setIsConfirmationSigned} />
+            <PatientConfirmationSignature
+              setIsConfirmationSigned={props.setIsConfirmationSigned}
+            />
           </div>
         </Form>
       </div>

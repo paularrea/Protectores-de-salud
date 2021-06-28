@@ -1,26 +1,28 @@
 import React from "react";
 import { Form } from "usetheform";
 import styles from "./form.module.scss";
-import step6 from "../../img/steps/step6.png";
+import evaluationStep2 from "../../img/steps/step6.png";
 import notiStyles from "../Notificaciones/notificaciones.module.scss";
 import { FormControl, FormControlLabel, Checkbox } from "@material-ui/core";
 import campana from "../../img/campana.png";
 
-function Step6(props) {
-  if (props.step !== 6) {
+function EvaluationStep2(props) {
+  if (props.step !== 2) {
     return null;
   }
   return (
     <div className={styles.container}>
+            <div className={styles.fixed_header}>
       <div className={styles.header}>
         <div>
-          <img src={step6} alt="step6" />
+          <img src={evaluationStep2} alt="EvaluationStep2" />
           <p>PASO {props.step}</p>
           <h2>Finalizar Intervención y Enviar</h2>
         </div>
+        </div>
       </div>
       <Form name="Step5" {...props}>
-        <div style={{ paddingTop: "2rem" }} className={styles.content}>
+        <div ref={props.topRef} style={{ paddingTop: "2rem" }} className={styles.content}>
           <FormControl component="fieldset">
             <FormControlLabel
               control={
@@ -55,4 +57,4 @@ function Step6(props) {
     </div>
   );
 }
-export default Step6;
+export default EvaluationStep2;
