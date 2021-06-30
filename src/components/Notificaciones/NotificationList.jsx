@@ -9,7 +9,9 @@ const NotificationList = ({ user }) => {
   const [closeBlueNotification, setCloseBlueNotification] = useState(false);
 
   useEffect(() => {
-    fetch("https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content")
+    fetch(
+      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content"
+    )
       .then((res) => {
         return res.json();
       })
@@ -80,6 +82,10 @@ const NotificationList = ({ user }) => {
             </div>
           </div>
         ))}
+
+      {sessionStorage.getItem("Red noti") === "closed" && sessionStorage.getItem("Blue noti") === "closed" && (
+        <p className={styles.no_notifications}>No tienes nuevas notificaciones.</p>
+      )}
     </div>
   );
 };

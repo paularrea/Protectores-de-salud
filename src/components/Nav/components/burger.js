@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { fallDown as Menu } from "react-burger-menu";
 import "./burger.css";
-import logo2 from "../../../img/logo2.png";
+import { Link } from "react-router-dom";
+import styles from "../navigation.module.scss";
+import arrow from "../../../img/arrow.png";
+import logout_logo from "../../../img/logout-logo.png";
+import MediaQuery from "react-responsive";
+import BurgerDesktop from "./burgerDesktop";
 
 const Burger = ({ user, Logout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const UserFirstLetter = user && user.supervisor_name.charAt(0);
 
   const handleStateChange = (state) => {
     setMenuOpen(state.isOpen);
@@ -15,19 +21,53 @@ const Burger = ({ user, Logout }) => {
       <Menu
         customBurgerIcon={
           <div className="burger-icon">
-            <p>P</p>
+            <p>{UserFirstLetter}</p>
           </div>
         }
         right
         isOpen={menuOpen}
         onStateChange={(state) => handleStateChange(state)}
       >
-        <div className="logo-menu">
-          <img src={logo2} alt="" />
-        </div>
-        <nav className="bm-item-list">
-          <button onClick={Logout}>Logout</button>
-        </nav>
+        <MediaQuery maxWidth={1024}>
+          <nav className={styles.mobile_menu}>
+            <h3 style={{ paddingBottom: "2rem" }}>Mi perfil</h3>
+            <button>
+              <Link
+                to={{
+                  pathname: "/edit-profile",
+                  state: {
+                    user: user,
+                  },
+                }}
+              >
+                <p>Cambiar contraseña</p>
+              </Link>
+              <div>
+                <img src={arrow} alt="editar perfil" />
+              </div>
+            </button>
+            <button
+              className={styles.logout}
+              style={{ borderBottom: "2px solid #00000033" }}
+              onClick={Logout}
+            >
+              <div>
+                <p>Logout</p>
+              </div>{" "}
+              <div>
+                <img src={logout_logo} alt="logout" />
+              </div>
+            </button>
+          </nav>
+        </MediaQuery>
+        <MediaQuery minWidth={1025}>
+          <BurgerDesktop
+            user={user}
+            setMenuOpen={setMenuOpen}
+            UserFirstLetter={UserFirstLetter}
+            Logout={Logout}
+          />
+        </MediaQuery>
       </Menu>
     </>
   );

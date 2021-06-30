@@ -12,6 +12,7 @@ import RecuperarContra from "../components/RecuperarContra.jsx";
 import MultiStepForm from "../components/MultiStepForm/MultiStepForm";
 import FormSent from "../components/MultiStepForm/formSent";
 import EvaluationForm from "../components/MultiStepForm/EvaluationForm";
+import EditProfile from "../components/Nav/components/editProfile";
 
 const Routes = () => {
   const [contextUser, setContextUser] = useState();
@@ -57,6 +58,7 @@ const Routes = () => {
           <Route exact path="/pds-form" component={MultiStepForm} />
           <Route exact path="/evaluation-form" component={EvaluationForm} />
           <Route exact path="/success-form" component={FormSent} />
+          <Route exact path="/edit-profile" component={EditProfile} />
         </UserContext.Provider>
       </Switch>
     </BrowserRouter>

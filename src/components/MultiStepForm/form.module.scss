@@ -51,7 +51,6 @@
     font-size: 16px;
     font-weight: 700;
 }
-
 .grey{
     background-color: #000000;
     opacity: 0.3;
@@ -112,7 +111,7 @@
         margin: 0 auto;
     }
     .legal_container{
-        width: 90%;
+        width: 85%;
         margin: 0 auto;
         margin-top: 180px;
         text-align: justify;
@@ -138,7 +137,7 @@
             font-weight: 700;
         }
         p{
-            font-size: 16px;
+            font-size: 14px;
             line-height: 28.8px;
             font-weight: 400;
         }
@@ -186,13 +185,14 @@
             }
         }
         .input_container{
+            margin-bottom: 2rem;
             position: relative;
             .edit{
                 cursor: pointer;
                 color: #2E83F8;
                 position: absolute;
                 right: 0;
-                bottom: .8rem;
+                bottom: -1.2rem;
             }
         }
     }

@@ -27,7 +27,7 @@ const Dashboard = ({ Logout }) => {
   return (
     <>
         <div className={styles.container}>
-          <Navbar Logout={Logout} />
+          <Navbar user={contextUser} Logout={Logout} />
           <div className={styles.flex_desktop}>
             <IntroNotis />
             <section>

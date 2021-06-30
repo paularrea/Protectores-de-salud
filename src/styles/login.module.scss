@@ -14,11 +14,11 @@ input[type=text], input[type=button], button {
     img{
         width: 150px;
         height: 150px;
-        margin: 3rem auto;
+        margin: 3rem auto 1rem auto;
     }
     .input{
         margin: 0 auto;
-        margin-top: 2rem;
+        margin-top: 2rem !important;
         width: 80%;
         max-width: 380px;
     }
@@ -40,6 +40,7 @@ input[type=text], input[type=button], button {
     }
     .recuperar{
         margin: 0;
+        margin-top: .5rem;
         text-align: justify;
     }
 }
