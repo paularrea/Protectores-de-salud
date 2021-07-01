@@ -8,8 +8,7 @@ function Step4(props) {
   if (props.step !== 4) {
     return null;
   }
-
-  const name = props.patient.patient;
+  const name = props.user.supervisor_name;
   const date =
     props.patientDate.split(",")[1] + props.patientDate.split(",")[2];
 

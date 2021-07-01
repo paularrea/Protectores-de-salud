@@ -20,7 +20,7 @@ const PatientConfirmationSignature = ({setIsConfirmationSigned}) => {
 
   return (
     <section className={styles.signature_container}>
-      <h4>Firma del paciente</h4>
+      <h4>Firma PDS</h4>
       <div className={styles.signature_canvas}>
         <pre>{error ? <div>La firma es obligatoria</div> : false}</pre>
         <MediaQuery maxWidth={767}>

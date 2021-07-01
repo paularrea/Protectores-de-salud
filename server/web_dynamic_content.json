@@ -1,6 +1,19 @@
 {
     "supervisor_name": "Jonathan",
-    "notifications": [],
+
+
+    "notifications": [{
+        "rojas": [{
+            "id": 1,
+            "message": "Tu cita de hoy, jueves 16 de abril, a las 5:00 p.m. ha sido cancelada por el paciente."
+        }],
+        "azules": [{
+            "id": 2,
+            "message": "Ya tienes disponible el resumen de tus intervenciones de la semana pasada."
+        }]
+    }],
+
+
     "agenda": {
         "day_1": {
             "date": "Hoy, Lunes, 31 Mayo",

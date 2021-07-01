@@ -9,16 +9,8 @@ const NotificationList = ({ user }) => {
   const [closeBlueNotification, setCloseBlueNotification] = useState(false);
 
   useEffect(() => {
-    fetch(
-      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content"
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setAllNotifications(data.map((item) => item.notifications[0]));
-      });
-  }, []);
+    setAllNotifications(user && user.notifications.map((item) => item));
+  }, [user]);
 
   const closeRedNoti = () => {
     setCloseRedNotification(true);
@@ -83,9 +75,12 @@ const NotificationList = ({ user }) => {
           </div>
         ))}
 
-      {sessionStorage.getItem("Red noti") === "closed" && sessionStorage.getItem("Blue noti") === "closed" && (
-        <p className={styles.no_notifications}>No tienes nuevas notificaciones.</p>
-      )}
+      {sessionStorage.getItem("Red noti") === "closed" &&
+        sessionStorage.getItem("Blue noti") === "closed" && (
+          <p className={styles.no_notifications}>
+            No tienes nuevas notificaciones.
+          </p>
+        )}
     </div>
   );
 };

@@ -339,3 +339,19 @@
         }
     }
     }
+
+    @media (max-height: 420px) {
+        .container{
+            .header{
+                height:80px;
+                padding: 1rem;
+                img{
+                    display: none;
+                }
+            }
+            .content, .legal_container{
+                margin-top: 80px;
+            }
+        }
+        
+    }

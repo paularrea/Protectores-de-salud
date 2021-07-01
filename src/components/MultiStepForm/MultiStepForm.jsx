@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useMultipleForm } from "usetheform";
 import styles from "./form.module.scss";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { Redirect, useLocation } from "react-router-dom";
 import desktopStyle from "../../styles/dashboard.module.scss";
 import IntroNotis from "../IntroNotis/IntroNotis";
 import arrow from "../../img/arrow_back.png";
+import { UserContext } from "../../UserContext.js";
 
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -14,6 +15,7 @@ import Step4 from "./Step4";
 import MediaQuery from "react-responsive";
 
 const MultiStepForm = () => {
+  const { contextUser } = useContext(UserContext);
   const location = useLocation();
   const topRef = useRef(null);
   const [currentPage, setPage] = useState({
@@ -169,6 +171,7 @@ const MultiStepForm = () => {
           <Step4
             setIsConfirmationSigned={setIsConfirmationSigned}
             refProp={topRef}
+            user={contextUser}
             patientDate={patientDate}
             patient={patient}
             questionaryData={questionaryData}
