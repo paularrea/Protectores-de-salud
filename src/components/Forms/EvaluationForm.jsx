@@ -1,43 +1,43 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useMultipleForm } from "usetheform";
 import styles from "./form.module.scss";
 import { Link } from "react-router-dom";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import desktopStyle from "../../styles/dashboard.module.scss";
-import IntroNotis from "../IntroNotis/IntroNotis";
+import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 import arrow from "../../img/arrow_back.png";
-import { UserContext } from "../../UserContext.js";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
-import Step1 from "./Step1";
-import Step2 from "./Step2";
-import Step3 from "./Step3";
-import Step4 from "./Step4";
+import EvaluationStep1 from "./EvaluationStep1";
+import EvaluationStep2 from "./EvaluationStep2";
 import MediaQuery from "react-responsive";
 
-const MultiStepForm = () => {
-  const { contextUser } = useContext(UserContext);
-  const location = useLocation();
+const blue_pds = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#4284F3',
+    } 
+  },
+});
+
+const EvaluationForm = () => {
+  // const location = useLocation();
   const topRef = useRef(null);
   const [currentPage, setPage] = useState({
     step: 1,
   });
-  const [questionaryData, setQuestionaryData] = useState(null);
+  const [evaluationData, setEvaluationData] = useState();
   const [sendForm, setSendForm] = useState(false);
-  const [isPDSSigned, setIsPDSSigned] = useState(false);
-  const [isConfirmationigned, setIsConfirmationSigned] = useState(false);
-
-  const patient = location.state.patient;
-  const patientDate = location.state.patientDate;
 
   useEffect(() => {
     fetch(
-      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_PDS_PROGRAM"
+      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_POST_INTERVENTION"
     )
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        setQuestionaryData(data);
+        setEvaluationData(data);
       });
   }, []);
 
@@ -103,7 +103,7 @@ const MultiStepForm = () => {
 
   const nextButton = () => {
     let step = currentPage.step;
-    if (step === 1 || step === 3) {
+    if (step === 1) {
       return (
         <button className={styles.green_button} type="button" onClick={_next}>
           Confirmar y seguir
@@ -113,30 +113,16 @@ const MultiStepForm = () => {
     return null;
   };
 
-  const signButton = () => {
+  const submitButton = () => {
     let step = currentPage.step;
     if (step === 2) {
       return (
         <button
-          disabled={!isPDSSigned}
-          className={isPDSSigned ? styles.green_button : styles.grey_button}
-          type="button"
-          onClick={_next}
-        >
-          Firmar y seguir
-        </button>
-      );
-    } else if (step === 4) {
-      return (
-        <button
-          disabled={!isConfirmationigned}
-          className={
-            isConfirmationigned ? styles.green_button : styles.grey_button
-          }
-          type="button"
+          className={styles.green_button}
+          type="submit"
           onClick={onSubmitWizard}
         >
-          Firmar y enviar
+          Aceptar y enviar
         </button>
       );
     }
@@ -146,35 +132,19 @@ const MultiStepForm = () => {
   return (
     <div className={desktopStyle.container}>
       <div className={desktopStyle.flex_desktop}>
+      <ThemeProvider theme={blue_pds}>
         <MediaQuery minWidth={1026}>
-          <IntroNotis />
+          <LayoutDesktop />
         </MediaQuery>
         <div className="container-mobile" style={{height:'60vh', top:'8rem'}}>
-          <Step1
-            refProp={topRef}
-            patient={patient}
+          <EvaluationStep1
+            topRef={topRef}
+            evaluationData={evaluationData}
             step={currentPage.step}
             {...wizard}
           />
-          <Step2
-            setIsPDSSigned={setIsPDSSigned}
-            refProp={topRef}
-            step={currentPage.step}
-            {...wizard}
-          />
-          <Step3
-            refProp={topRef}
-            questionaryData={questionaryData}
-            step={currentPage.step}
-            {...wizard}
-          />
-          <Step4
-            setIsConfirmationSigned={setIsConfirmationSigned}
-            refProp={topRef}
-            user={contextUser}
-            patientDate={patientDate}
-            patient={patient}
-            questionaryData={questionaryData}
+          <EvaluationStep2
+            topRef={topRef}
             step={currentPage.step}
             {...wizard}
           />
@@ -182,14 +152,15 @@ const MultiStepForm = () => {
             <div className={styles.fixed}>
               {previousButton()}
               {nextButton()}
-              {signButton()}
+              {submitButton()}
             </div>
           </div>
           {sendForm && <Redirect to="/success-form" />}
         </div>
+      </ThemeProvider>
       </div>
     </div>
   );
 };
 
-export default MultiStepForm;
+export default EvaluationForm;

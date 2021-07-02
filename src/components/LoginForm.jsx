@@ -6,12 +6,22 @@ import {
   OutlinedInput,
   InputLabel,
   IconButton,
+  ThemeProvider,
+  createMuiTheme,
 } from "@material-ui/core";
 
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 import styles from "../styles/login.module.scss";
 import logo from "../img/logo.png";
+
+const blue_pds = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#4284F3',
+    } 
+  },
+});
 
 const LoginForm = ({ Login, error }) => {
   const [details, setDetails] = useState({ username: "", password: "" });
@@ -38,44 +48,47 @@ const LoginForm = ({ Login, error }) => {
       <div className={styles.form_container}>
         <img src={logo} alt="Protectores de salud" />
         {error !== "" && <div className="error">{error}</div>}
-        <TextField
-          className={styles.input}
-          id="username"
-          label="Username"
-          variant="outlined"
-          type="text"
-          name="username"
-          onChange={(e) => setDetails({ ...details, username: e.target.value })}
-          value={details.username}
-        />
-
-        <FormControl className={styles.input} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={values.showPassword ? "text" : "password"}
+        <ThemeProvider theme={blue_pds}>
+          <TextField
+            className={styles.input}
+            id="username"
+            label="Username"
+            variant="outlined"
+            type="text"
+            name="username"
             onChange={(e) =>
-              setDetails({ ...details, password: e.target.value })
+              setDetails({ ...details, username: e.target.value })
             }
-            value={details.password}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={70}
+            value={details.username}
           />
-        </FormControl>
 
+          <FormControl className={styles.input} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Contraseña
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={values.showPassword ? "text" : "password"}
+              onChange={(e) =>
+                setDetails({ ...details, password: e.target.value })
+              }
+              value={details.password}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              labelWidth={83}
+            />
+          </FormControl>
+        </ThemeProvider>
         <div className={styles.recuperar}>
           <a className="link" href="/recuperar-contraseña">
             Recuperar contraseña

@@ -3,10 +3,10 @@ import ProximasCitas from "../components/ProximasCitas/ProximasCitas.jsx";
 import styles from "../styles/dashboard.module.scss";
 import MediaQuery from "react-responsive";
 import "../styles/App.scss";
-import Navbar from "../components/Nav/navbar.jsx";
+import Navbar from "../components/Navigation/navbar.jsx";
 import { UserContext } from "../UserContext.js";
 // import useCurrentLocation from "../hooks/useCurrentLocation.js";
-import IntroNotis from "../components/IntroNotis/IntroNotis.jsx";
+import LayoutDesktop from "../components/LayoutDesktop/LayoutDesktop.jsx";
 
 // const geolocationOptions = {
 //   // Using this option you can define when should the location request timeout and
@@ -29,7 +29,7 @@ const Dashboard = ({ Logout }) => {
         <div className={styles.container}>
           <Navbar user={contextUser} Logout={Logout} />
           <div className={styles.flex_desktop}>
-            <IntroNotis />
+            <LayoutDesktop />
             <section>
               <MediaQuery minWidth={1026}>
                 <h3 style={{ marginBottom: "1rem" }}>Próximas citas</h3>

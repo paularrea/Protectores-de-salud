@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "usetheform";
 import styles from "./form.module.scss";
 import evaluationStep2 from "../../img/steps/step6.png";
-import notiStyles from "../Notificaciones/notificaciones.module.scss";
+import notiStyles from "../Notifications/notificaciones.module.scss";
 import { FormControl, FormControlLabel, Checkbox } from "@material-ui/core";
 import campana from "../../img/campana.png";
 
@@ -44,7 +44,7 @@ function EvaluationStep2(props) {
               className={notiStyles.notificaciones_container}
             >
               <p>
-                AVISO: Si acepta, la intervención se dará por finalizada y ya no
+                AVISO: Si acepta, la evaluación se dará por finalizada y ya no
                 podrá modificar la información introducida.
               </p>
               <div className={notiStyles.icon}>

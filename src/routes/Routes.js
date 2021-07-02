@@ -9,10 +9,10 @@ import DetalleCitaDayThree from "../components/ProximasCitas/DetalleCitaDayThree
 import DetalleCitaDayFour from "../components/ProximasCitas/DetalleCitaDayFour";
 import DetalleCitaDayFive from "../components/ProximasCitas/DetalleCitaDayFive";
 import RecuperarContra from "../components/RecuperarContra.jsx";
-import MultiStepForm from "../components/MultiStepForm/MultiStepForm";
-import FormSent from "../components/MultiStepForm/formSent";
-import EvaluationForm from "../components/MultiStepForm/EvaluationForm";
-import EditProfile from "../components/Nav/components/editProfile";
+import InterventionForm from "../components/Forms/InterventionForm";
+import FormSent from "../components/Forms/formSent";
+import EvaluationForm from "../components/Forms/EvaluationForm";
+import EditProfile from "../components/Navigation/components/editProfile";
 
 const Routes = () => {
   const [contextUser, setContextUser] = useState();
@@ -55,7 +55,7 @@ const Routes = () => {
             path="/intervention-details-5/:id"
             render={(props) => <DetalleCitaDayFive {...props} />}
           />
-          <Route exact path="/pds-form" component={MultiStepForm} />
+          <Route exact path="/pds-form" component={InterventionForm} />
           <Route exact path="/evaluation-form" component={EvaluationForm} />
           <Route exact path="/success-form" component={FormSent} />
           <Route exact path="/edit-profile" component={EditProfile} />

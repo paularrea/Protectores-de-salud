@@ -49,7 +49,7 @@ const Login = () => {
     } else {
       console.log("not logged in!");
       setError(
-        <p style={{ color: "#CE112C", marginBottom: "2rem" }}>
+        <p style={{ color: "#CE112C", marginBottom: "1rem" }}>
           El usuario o contraseña son incorrectos
         </p>
       );

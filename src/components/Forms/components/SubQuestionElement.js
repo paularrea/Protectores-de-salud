@@ -3,11 +3,7 @@ import Checkbox from "./Checkbox";
 import Select from "./ReactSelect";
 import TextField from "./TextField";
 import Radio from "./Radio";
-import {
-  FormControl,
-  FormGroup,
-  RadioGroup,
-} from "@material-ui/core";
+import { FormControl, FormGroup, RadioGroup } from "@material-ui/core";
 
 const SubQuestionElement = ({
   showSubQuestion,
@@ -16,13 +12,17 @@ const SubQuestionElement = ({
   sub_response_style,
   sub_response_content,
 }) => {
+  const titleStyle = {
+    color: !showSubQuestion ? "#C5C5C5" : "black",
+    fontWeight: 400,
+    marginBottom: "1rem",
+  };
+
   switch (sub_response_style) {
     case "EDITABLE":
       return (
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-          <h4 style={{ color: !showSubQuestion ? "#C5C5C5" : "black" }}>
-            {sub_question_content}
-          </h4>
+          <h4 style={titleStyle}>{sub_question_content}</h4>
           <TextField
             disabled={!showSubQuestion}
             variant="outlined"
@@ -33,9 +33,7 @@ const SubQuestionElement = ({
     case "MULTI_BOXES":
       return (
         <div style={{ marginTop: "1rem" }}>
-          <h4 style={{ color: !showSubQuestion ? "#C5C5C5" : "black" }}>
-            {sub_question_content}
-          </h4>
+          <h4 style={titleStyle}>{sub_question_content}</h4>
           <FormControl disabled={!showSubQuestion} component="fieldset">
             <FormGroup>
               {sub_response_content.map((item) => (
@@ -48,9 +46,7 @@ const SubQuestionElement = ({
     case "CHECK_BOXES":
       return (
         <div style={{ marginTop: "1rem" }}>
-          <h4 style={{ color: !showSubQuestion ? "#C5C5C5" : "black" }}>
-            {sub_question_content}
-          </h4>
+          <h4 style={titleStyle}>{sub_question_content}</h4>
           <FormControl disabled={!showSubQuestion} component="fieldset">
             <RadioGroup>
               {sub_response_content.map((item) => (
@@ -63,9 +59,7 @@ const SubQuestionElement = ({
     case "DROPDOWN_MENU":
       return (
         <div style={{ marginTop: "1rem", marginBottom: "3rem" }}>
-          <h4 style={{ color: !showSubQuestion ? "#C5C5C5" : "black" }}>
-            {sub_question_content}
-          </h4>
+          <h4 style={titleStyle}>{sub_question_content}</h4>
           <Select
             isDisabled={!showSubQuestion}
             options={sub_response_content.map((answer) => ({

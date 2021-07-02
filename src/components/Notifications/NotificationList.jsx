@@ -2,17 +2,28 @@ import React, { useState, useEffect } from "react";
 import styles from "./notificaciones.module.scss";
 import campana from "../../img/campana.png";
 import alert from "../../img/alert.png";
+import { useTracking } from "react-tracking";
 
 const NotificationList = ({ user }) => {
   const [allNotifications, setAllNotifications] = useState();
   const [closeRedNotification, setCloseRedNotification] = useState(false);
   const [closeBlueNotification, setCloseBlueNotification] = useState(false);
+  const { trackEvent } = useTracking();
 
   useEffect(() => {
-    setAllNotifications(user && user.notifications.map((item) => item));
+    setAllNotifications(user ? user.notifications.map((item) => item) : null);
   }, [user]);
 
   const closeRedNoti = () => {
+    console.log(
+      user &&
+        trackEvent({
+          action: "NOTIF_SENT",
+          date: new Date(),
+          userId: user.id,
+        }),
+      "traking"
+    );
     setCloseRedNotification(true);
     sessionStorage.setItem("Red noti", "closed");
   };
@@ -21,11 +32,13 @@ const NotificationList = ({ user }) => {
     sessionStorage.setItem("Blue noti", "closed");
   };
 
-  const redNotifications =
-    allNotifications && allNotifications.map((red) => red.rojas);
+  const redNotifications = allNotifications
+    ? allNotifications.map((red) => red.rojas)
+    : null;
 
-  const blueNotifications =
-    allNotifications && allNotifications.map((blue) => blue.azules);
+  const blueNotifications = allNotifications
+    ? allNotifications.map((blue) => blue.azules)
+    : null;
 
   return (
     <div>
@@ -81,6 +94,13 @@ const NotificationList = ({ user }) => {
             No tienes nuevas notificaciones.
           </p>
         )}
+      {allNotifications
+        ? allNotifications.length === 0 && (
+            <p className={styles.no_notifications}>
+              No tienes nuevas notificaciones.
+            </p>
+          )
+        : null}
     </div>
   );
 };

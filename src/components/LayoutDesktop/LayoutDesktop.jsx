@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import styles from "../../styles/dashboard.module.scss";
 import "../../styles/App.scss";
-import NotificationList from "../../components/Notificaciones/NotificationList.jsx";
+import NotificationList from "../Notifications/NotificationList.jsx";
 import { UserContext } from "../../UserContext.js";
 import MediaQuery from "react-responsive";
 
-const IntroNotis = () => {
+const LayoutDesktop = () => {
   const { contextUser } = useContext(UserContext);
   return (
     <section className="intro-notis">
@@ -30,4 +30,4 @@ const IntroNotis = () => {
   );
 };
 
-export default IntroNotis;
+export default LayoutDesktop;

@@ -6,7 +6,7 @@ import MediaQuery from "react-responsive"
 import desktopStyle from "../../styles/dashboard.module.scss"
 import successIcon from "../../img/success.png";
 import closeIcon from "../../img/close.png";
-import IntroNotis from "../IntroNotis/IntroNotis";
+import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 
 const FormSent = () => {
   const history = useHistory();
@@ -20,7 +20,7 @@ const FormSent = () => {
     <div className={desktopStyle.container}>
     <div className={desktopStyle.flex_desktop}>
       <MediaQuery minWidth={1026}>
-        <IntroNotis/>
+        <LayoutDesktop/>
       </MediaQuery>
     <div className="container-mobile">
       <div className={styles.success_container}>

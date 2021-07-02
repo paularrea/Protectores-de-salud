@@ -1,5 +1,4 @@
 import React from "react";
-// import DropDown from "./components/DropDown";
 import style from "./proximasCitas.module.scss";
 import MediaQuery from "react-responsive";
 import DayOne from "../ProximasCitas/components/DayOne";
@@ -14,7 +13,6 @@ const ProximasCitas = () => {
       <MediaQuery maxWidth={1025}>
         <h3 className={style.title}>Próximas citas</h3>
       </MediaQuery>
-      {/* <DropDown/> */}
       <DayOne />
       <DayTwo />
       <DayThree />

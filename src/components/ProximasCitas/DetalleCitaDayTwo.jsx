@@ -7,17 +7,15 @@ import MediaQuery from "react-responsive";
 import "../../styles/App.scss";
 import styles from "./proximasCitas.module.scss";
 import desktopStyle from "../../styles/dashboard.module.scss";
-import notificationStyles from "../Notificaciones/notificaciones.module.scss";
 
 import userIcon from "../../img/User.png";
 import closeIcon from "../../img/close.png";
 import phoneIcon from "../../img/phone.png";
 import locationIcon from "../../img/Place.png";
 import arrow from "../../img/arrow-right.png";
-import IntroNotis from "../IntroNotis/IntroNotis";
+import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 
 const DetalleCitaDayTwo = () => {
-  const [closeNoti, setCloseNoti] = useState(false);
   const history = useHistory();
   const [patient, setCurrentPatient] = useState({});
   const [patientDate, setPatientDate] = useState();
@@ -30,9 +28,6 @@ const DetalleCitaDayTwo = () => {
 
   const handleBack = () => {
     history.goBack();
-  };
-  const closeNotification = () => {
-    setCloseNoti(true);
   };
 
   const currentPatient = currentAppointment[0];
@@ -55,14 +50,13 @@ const DetalleCitaDayTwo = () => {
     setPatientDate(contextUser && contextUser.agenda.day_2.date);
   }, [contextUser, id]);
 
-  const date = contextUser.agenda.day_2.date;
   const isVisit = currentPatient.intervention_type === "VISIT";
 
   return (
     <div className={desktopStyle.container}>
       <div className={desktopStyle.flex_desktop}>
         <MediaQuery minWidth={1026}>
-          <IntroNotis />
+          <LayoutDesktop />
         </MediaQuery>
         <div className="container-mobile">
           <div className={styles.container}>
@@ -71,27 +65,6 @@ const DetalleCitaDayTwo = () => {
                 <img src={closeIcon} alt="close" />
               </button>
             </div>
-            {!closeNoti && (
-              <div
-                style={{
-                  backgroundColor: "#F3F8FF",
-                  borderLeft: "2px solid #2E83F8",
-                }}
-                className={notificationStyles.notificaciones_container}
-              >
-                <p>
-                  Tienes una cita {isVisit ? "presencial" : "telefónica"} con{" "}
-                  {currentPatient.patient_name}{" "}
-                  {currentPatient.patient_middle_name} {date}, a las{" "}
-                  {currentPatient.hour}
-                </p>
-
-                <button className="link" onClick={closeNotification}>
-                  Ok, entendido.
-                </button>
-              </div>
-            )}
-
             <div className={styles.container_detalle}>
               <div className={styles.user_flex}>
                 <div>
@@ -161,17 +134,17 @@ const DetalleCitaDayTwo = () => {
                     }}
                   >
                     <div className={styles.green_button}>
-                      <h3>Empezar visita</h3>
+                      <h3>Empezar intervención</h3>
                       <img src={arrow} alt="arrow" />
                     </div>
                   </Link>
                 </div>
 
                 <div className={styles.text}>
-                  <h3>Evalúa la entrevista</h3>
+                  <h3>Evalúa la intervención</h3>
                   <p>
                     Rellena este formulario una vez hayas terminado con la
-                    visita.
+                    intervención.
                   </p>
                   <Link
                     to={{
