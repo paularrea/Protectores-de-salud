@@ -24,7 +24,6 @@ export default function TextField({
   return (
     <OutlinedInputMUI
     label={<span style={{ fontWeight: 700 }}>{label}</span>}
-    value={value}
     error={showError}
     {...props}
   />

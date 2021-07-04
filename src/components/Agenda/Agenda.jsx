@@ -1,13 +1,13 @@
 import React from "react";
-import style from "./proximasCitas.module.scss";
+import style from "./agenda.module.scss";
 import MediaQuery from "react-responsive";
-import DayOne from "../ProximasCitas/components/DayOne";
-import DayTwo from "../ProximasCitas/components/DayTwo";
+import DayOne from "../Agenda/components/DayOne";
+import DayTwo from "../Agenda/components/DayTwo";
 import DayThree from "./components/DayThree";
 import DayFour from "./components/DayFour";
 import DayFive from "./components/DayFive";
 
-const ProximasCitas = () => {
+const Agenda = () => {
   return (
     <div className={style.container}>
       <MediaQuery maxWidth={1025}>
@@ -22,4 +22,4 @@ const ProximasCitas = () => {
   );
 };
 
-export default ProximasCitas;
+export default Agenda;

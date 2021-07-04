@@ -8,7 +8,6 @@ function EvaluationStep1(props) {
   if (props.step !== 1) {
     return null;
   }
-console.log(props, 'jjhb')
   const evaluation = props.evaluationData
     ? props.evaluationData.map((question, i) => (
         <Element key={i} question={question} />

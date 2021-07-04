@@ -4,23 +4,23 @@ import styles from "./digitalSignature.module.scss";
 import clear from "../../img/clear.png";
 import MediaQuery from "react-responsive";
 
-const PatientConfirmationSignature = ({setIsConfirmationSigned}) => {
+const PatientConfirmationSignature = ({ setIsConfirmationSigned }) => {
   const [imageData, setImageData] = useState("");
   const [error, setError] = useState(false);
   const signatureRef = useRef({});
 
   const saveSignature = (signature) => {
     setImageData(signature);
-    setIsConfirmationSigned(true)
+    setIsConfirmationSigned(true);
   };
 
   useEffect(() => {
-    console.log(imageData);
+    console.log({ firmaPaciente2: imageData });
   }, [imageData]);
 
   return (
     <section className={styles.signature_container}>
-      <h4>Firma PDS</h4>
+      <h4>Firma Paciente</h4>
       <div className={styles.signature_canvas}>
         <pre>{error ? <div>La firma es obligatoria</div> : false}</pre>
         <MediaQuery maxWidth={767}>

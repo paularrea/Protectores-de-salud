@@ -20,7 +20,7 @@ const blue_pds = createMuiTheme({
   },
 });
 
-const EvaluationForm = () => {
+const EvaluationForm = (props) => {
   // const location = useLocation();
   const topRef = useRef(null);
   const [currentPage, setPage] = useState({
@@ -41,12 +41,15 @@ const EvaluationForm = () => {
       });
   }, []);
 
-  const [getWizardState, wizard] = useMultipleForm();
+  const patientId = props.location.state.patient.intervention_id;
+  const [getWizardState, wizard] = useMultipleForm({
+  });
 
   const onSubmitWizard = () => {
     console.log(getWizardState());
     setSendForm(true);
   };
+
   const _next = () => {
     let step = currentPage.step;
     step = step + 1;
@@ -61,7 +64,6 @@ const EvaluationForm = () => {
       step: step,
     });
   };
-
   const _prev = () => {
     let step = currentPage.step;
     step = step <= 1 ? 1 : step - 1;
@@ -75,7 +77,6 @@ const EvaluationForm = () => {
       step: step,
     });
   };
-
   const previousButton = () => {
     let step = currentPage.step;
     if (step === 1) {
@@ -100,7 +101,6 @@ const EvaluationForm = () => {
       );
     }
   };
-
   const nextButton = () => {
     let step = currentPage.step;
     if (step === 1) {
@@ -112,7 +112,6 @@ const EvaluationForm = () => {
     }
     return null;
   };
-
   const submitButton = () => {
     let step = currentPage.step;
     if (step === 2) {

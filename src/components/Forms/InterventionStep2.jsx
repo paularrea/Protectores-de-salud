@@ -130,7 +130,7 @@ const Step2 = ({ setIsPDSSigned, refProp, prevPage, ...props }) => {
               de mis derechos legales.
             </p>
           </div>
-          <PDSSignature setIsPDSSigned={setIsPDSSigned} />
+          <PDSSignature {...props.wizzard} setIsPDSSigned={setIsPDSSigned} />
         </div>
       </Form>
     </div>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ProximasCitas from "../components/ProximasCitas/ProximasCitas.jsx";
+import ProximasCitas from "../components/Agenda/Agenda.jsx";
 import styles from "../styles/dashboard.module.scss";
 import MediaQuery from "react-responsive";
 import "../styles/App.scss";

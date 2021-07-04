@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import MediaQuery from "react-responsive";
 
 import "../../styles/App.scss";
-import styles from "./proximasCitas.module.scss";
+import styles from "./agenda.module.scss";
 import desktopStyle from "../../styles/dashboard.module.scss";
 
 import userIcon from "../../img/User.png";
@@ -15,42 +15,47 @@ import locationIcon from "../../img/Place.png";
 import arrow from "../../img/arrow-right.png";
 import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 
-const DetalleCitaDayFive = () => {
+const DetalleCitaDayThree = () => {
   const history = useHistory();
   const [patient, setCurrentPatient] = useState({});
   const [patientDate, setPatientDate] = useState();
   const { contextUser } = useContext(UserContext);
   const { id } = useParams();
-  const interventions = contextUser && contextUser.agenda.day_5.interventions;
-  const currentAppointment = interventions.filter(
-    (intervention) => intervention.intervention_id === id
-  );
+  const interventions = contextUser && contextUser.agenda.day_3.interventions;
+  const currentAppointment =
+    interventions &&
+    interventions.filter((intervention) => intervention.intervention_id === id);
 
   const handleBack = () => {
     history.goBack();
   };
 
-  const currentPatient = currentAppointment[0];
-  const actions = currentAppointment[0].actions.map((action, key) => (
-    <div key={key} className={styles.flex_actions}>
-      <div className={styles.number}>{key + 1}</div>
-      <p>{action}</p>
-    </div>
-  ));
+  const currentPatient = currentAppointment && currentAppointment[0];
+  const actions =
+    currentAppointment &&
+    currentAppointment[0].actions.map((action, key) => (
+      <div key={key} className={styles.flex_actions}>
+        <div className={styles.number}>{key + 1}</div>
+        <p>{action}</p>
+      </div>
+    ));
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const interventions = contextUser && contextUser.agenda.day_5.interventions;
-    const currentAppointment = interventions.filter(
-      (intervention) => intervention.intervention_id === id
-    );
-    const currentPatient = currentAppointment[0];
+    const interventions = contextUser && contextUser.agenda.day_3.interventions;
+    const currentAppointment =
+      interventions &&
+      interventions.filter(
+        (intervention) => intervention.intervention_id === id
+      );
+    const currentPatient = currentAppointment && currentAppointment[0];
     setCurrentPatient(currentPatient);
-    setPatientDate(contextUser && contextUser.agenda.day_5.date);
+    setPatientDate(contextUser && contextUser.agenda.day_3.date);
   }, [contextUser, id]);
 
-  const isVisit = currentPatient.intervention_type === "VISIT";
+  const isVisit =
+    currentPatient && currentPatient.intervention_type === "VISIT";
 
   return (
     <div className={desktopStyle.container}>
@@ -71,10 +76,10 @@ const DetalleCitaDayFive = () => {
                   <img src={userIcon} alt="user" />
                 </div>
                 <h3>
-                  {currentPatient.patient_name}{" "}
-                  {currentPatient.patient_middle_name}{" "}
-                  {currentPatient.patient_last_name}{" "}
-                  {currentPatient.patient_second_last_name}
+                  {currentPatient && currentPatient.patient_name}{" "}
+                  {currentPatient && currentPatient.patient_middle_name}{" "}
+                  {currentPatient && currentPatient.patient_last_name}{" "}
+                  {currentPatient && currentPatient.patient_second_last_name}
                 </h3>
               </div>
               {isVisit && (
@@ -87,14 +92,19 @@ const DetalleCitaDayFive = () => {
                       <img src={locationIcon} alt="location" />
                     </div>
                     <h3 style={{ fontWeight: "400", lineHeight: "24px" }}>
-                      {currentPatient.address} {currentPatient.city}{" "}
-                      {currentPatient.country} <br />
+                      {currentPatient && currentPatient.address}{" "}
+                      {currentPatient && currentPatient.city}{" "}
+                      {currentPatient && currentPatient.country} <br />
                       <a
                         style={{ fontSize: "12px", fontWeight: "700" }}
                         className="link"
                         target="_blank"
                         rel="noreferrer"
-                        href={`https://www.google.es/maps/place/${currentPatient.address},+${currentPatient.city},+${currentPatient.country}`}
+                        href={`https://www.google.es/maps/place/${
+                          currentPatient && currentPatient.address
+                        },+${currentPatient && currentPatient.city},+${
+                          currentPatient && currentPatient.country
+                        }`}
                       >
                         VER MAPA
                       </a>
@@ -102,10 +112,10 @@ const DetalleCitaDayFive = () => {
                   </div>
                 </>
               )}
-              <a href={`tel:${currentPatient.phone}`}>
+              <a href={`tel:${currentPatient && currentPatient.phone}`}>
                 <div className={styles.phone_flex}>
                   <img src={phoneIcon} alt="phone" />
-                  <h3>{currentPatient.phone}</h3>
+                  <h3>{currentPatient && currentPatient.phone}</h3>
                 </div>
               </a>
 
@@ -170,4 +180,4 @@ const DetalleCitaDayFive = () => {
   );
 };
 
-export default DetalleCitaDayFive;
+export default DetalleCitaDayThree;
