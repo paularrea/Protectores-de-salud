@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Form } from "usetheform";
+import { TextField } from "mui-rff";
+
 import "./form.css";
 import styles from "./form.module.scss";
 import step1 from "../../img/steps/step1.png";
-import { FormControl, InputLabel } from "@material-ui/core";
-import OutlinedInput from "./components/OutlinedInput";
+
 
 const Step1 = ({ refProp, patient, prevPage, ...props }) => {
   const [editName, setEditName] = useState(true);
@@ -55,7 +55,6 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
   if (props.step !== 1) {
     return null;
   }
-  const isVisit = patient.intervention_type === "VISIT";
 
   return (
     <div className={styles.container}>
@@ -69,162 +68,167 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
         </div>
       </div>
       <div ref={refProp} className={styles.form_content}>
-        <Form name="Step1" {...props}>
-          <div className={styles.content}>
-            <div className={styles.input_container}>
-              <FormControl variant="outlined" disabled={editName}>
-                <InputLabel>Primer Nombre</InputLabel>
-                <OutlinedInput
-                  label="Primer Nombre"
-                  value={name}
-                  name="firstName"
-                  type="text"
-                  onChange={handleChangeName}
-                />
-              </FormControl>
-              <button
-                className={styles.edit}
-                onClick={() => setEditName(!editName)}
-              >
-                Editar
-              </button>
-            </div>
-
-            <div className={styles.input_container}>
-              <FormControl variant="outlined" disabled={editMiddleName}>
-                <InputLabel>Segundo Nombre</InputLabel>
-                <OutlinedInput
-                  label="Segundo Nombre"
-                  value={middleName}
-                  name="middleName"
-                  type="text"
-                  onChange={handleChangeMiddleName}
-                />
-              </FormControl>
-              <button
-                className={styles.edit}
-                onClick={() => setEditMiddleName(!editMiddleName)}
-              >
-                Editar
-              </button>
-            </div>
-
-            <div className={styles.input_container}>
-              <FormControl variant="outlined" disabled={editLastName}>
-                <InputLabel>Primer Apellido</InputLabel>
-                <OutlinedInput
-                  label="Primer Apellido"
-                  value={lastName}
-                  name="lastName"
-                  type="text"
-                  onChange={handleChangeLastName}
-                />
-              </FormControl>
-              <button
-                className={styles.edit}
-                onClick={() => setEditLastName(!editLastName)}
-              >
-                Editar
-              </button>
-            </div>
-
-            <div className={styles.input_container}>
-              <FormControl variant="outlined" disabled={editSecondLastName}>
-                <InputLabel>Segundo Apellido</InputLabel>
-                <OutlinedInput
-                  label="Segundo Apellido"
-                  value={secondLastName}
-                  name="secondLastName"
-                  type="text"
-                  onChange={handleChangeSecondLastName}
-                />
-              </FormControl>
-              <button
-                className={styles.edit}
-                onClick={() => setEditSecondLastName(!editSecondLastName)}
-              >
-                Editar
-              </button>
-            </div>
-
-            <div className={styles.input_container}>
-              <FormControl variant="outlined" disabled={editPhone}>
-                <InputLabel>Número de teléfono</InputLabel>
-                <OutlinedInput
-                  label="Número de teléfono"
-                  value={phone}
-                  name="phone"
-                  type="text"
-                  onChange={handleChangePhone}
-                />
-              </FormControl>
-              <button
-                className={styles.edit}
-                onClick={() => setEditPhone(!editPhone)}
-              >
-                Editar
-              </button>
-            </div>
-
-            <div className={styles.input_container}>
-              <FormControl variant="outlined" disabled={editCountry}>
-                <InputLabel>País</InputLabel>
-                <OutlinedInput
-                  label="País"
-                  value={country}
-                  name="country"
-                  type="text"
-                  onChange={handleChangeCountry}
-                />
-              </FormControl>
-              <button
-                className={styles.edit}
-                onClick={() => setEditCountry(!editCountry)}
-              >
-                Editar
-              </button>
-            </div>
-
-            <div className={styles.input_container}>
-              <FormControl variant="outlined" disabled={editCity}>
-                <InputLabel>Ciudad</InputLabel>
-                <OutlinedInput
-                  label="Ciudad"
-                  value={city}
-                  name="city"
-                  type="text"
-                  onChange={handleChangeCity}
-                />
-              </FormControl>
-              <button
-                className={styles.edit}
-                onClick={() => setEditCity(!editCity)}
-              >
-                Editar
-              </button>
-            </div>
-            {isVisit && (
-              <div className={styles.input_container}>
-                <FormControl variant="outlined" disabled={editAddress}>
-                  <InputLabel style={{ zIndex: "1" }}>Calle</InputLabel>
-                  <OutlinedInput
-                    label="Calle"
-                    value={address}
-                    name="address"
-                    type="text"
-                    onChange={handleChangeAddress}
-                  />
-                </FormControl>
-                <button
-                  className={styles.edit}
-                  onClick={() => setEditAddress(!editAddress)}
-                >
-                  Editar
-                </button>
-              </div>
-            )}
+        <div className={styles.content}>
+          <div className={styles.input_container}>
+            <TextField
+              variant="outlined"
+              label="Primer Nombre"
+              name="firstName"
+              disabled={editName}
+              value={name}
+              margin="none"
+              required={true}
+              onChange={handleChangeName}
+            />
+            <button
+              className={styles.edit}
+              type="button"
+              onClick={() => setEditName(!editName)}
+            >
+              Editar
+            </button>
           </div>
-        </Form>
+
+          <div className={styles.input_container}>
+            <TextField
+              variant="outlined"
+              label="Segundo Nombre"
+              disabled={editMiddleName}
+              value={middleName}
+              name="middleName"
+              margin="none"
+              required={false}
+              onChange={handleChangeMiddleName}
+            />
+            <button
+              className={styles.edit}
+              type="button"
+              onClick={() => setEditMiddleName(!editMiddleName)}
+            >
+              Editar
+            </button>
+          </div>
+
+          <div className={styles.input_container}>
+            <TextField
+              variant="outlined"
+              label="Primer Apellido"
+              disabled={editLastName}
+              value={lastName}
+              name="middleName"
+              margin="none"
+              required={true}
+              onChange={handleChangeLastName}
+            />
+            <button
+              className={styles.edit}
+              type="button"
+              onClick={() => setEditLastName(!editLastName)}
+            >
+              Editar
+            </button>
+          </div>
+
+          <div className={styles.input_container}>
+            <TextField
+              variant="outlined"
+              disabled={editSecondLastName}
+              label="Segundo Apellido"
+              value={secondLastName}
+              name="secondLastName"
+              margin="none"
+              required={false}
+              onChange={handleChangeSecondLastName}
+            />
+            <button
+              className={styles.edit}
+              type="button"
+              onClick={() => setEditSecondLastName(!editSecondLastName)}
+            >
+              Editar
+            </button>
+          </div>
+
+          <div className={styles.input_container}>
+            <TextField
+              variant="outlined"
+              disabled={editPhone}
+              label="Número de teléfono"
+              value={phone}
+              name="phone"
+              margin="none"
+              required={true}
+              onChange={handleChangePhone}
+            />
+            <button
+              className={styles.edit}
+              type="button"
+              onClick={() => setEditPhone(!editPhone)}
+            >
+              Editar
+            </button>
+          </div>
+
+          <div className={styles.input_container}>
+            <TextField
+              variant="outlined"
+              disabled={editCountry}
+              label="País"
+              value={country}
+              name="country"
+              onChange={handleChangeCountry}
+              margin="none"
+              required={true}
+            />
+            <button
+              className={styles.edit}
+              type="button"
+              onClick={() => setEditCountry(!editCountry)}
+            >
+              Editar
+            </button>
+          </div>
+
+          <div className={styles.input_container}>
+            <TextField
+              variant="outlined"
+              disabled={editAddress}
+              label="Ciudad"
+              value={city}
+              name="city"
+              onChange={handleChangeCity}
+              margin="none"
+              required={true}
+            />
+            <button
+              className={styles.edit}
+              type="button"
+              onClick={() => setEditCity(!editCity)}
+            >
+              Editar
+            </button>
+          </div>
+
+          <div className={styles.input_container}>
+            <TextField
+              variant="outlined"
+              disabled={editCity}
+              label="Calle"
+              value={address}
+              name="address"
+              onChange={handleChangeAddress}
+              margin="none"
+              required={true}
+            />
+            <button
+              className={styles.edit}
+              type="button"
+              onClick={() => setEditAddress(!editAddress)}
+            >
+              Editar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

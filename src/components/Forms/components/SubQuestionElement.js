@@ -1,9 +1,6 @@
 import React from "react";
-import Checkbox from "./Checkbox";
-import Select from "./ReactSelect";
-import TextField from "./TextField";
-import Radio from "./Radio";
-import { FormControl, FormGroup, RadioGroup } from "@material-ui/core";
+import { TextField, Checkboxes, Radios, Select } from "mui-rff";
+import { MenuItem } from "@material-ui/core";
 
 const SubQuestionElement = ({
   showSubQuestion,
@@ -27,6 +24,7 @@ const SubQuestionElement = ({
             disabled={!showSubQuestion}
             variant="outlined"
             name={question_uuid}
+            margin="none"
           />
         </div>
       );
@@ -34,26 +32,41 @@ const SubQuestionElement = ({
       return (
         <div style={{ marginTop: "1rem" }}>
           <h4 style={titleStyle}>{sub_question_content}</h4>
-          <FormControl disabled={!showSubQuestion} component="fieldset">
-            <FormGroup>
-              {sub_response_content.map((item) => (
-                <Checkbox label={item} value={item} name={question_uuid} />
-              ))}
-            </FormGroup>
-          </FormControl>
+          <Checkboxes
+            disabled={!showSubQuestion}
+            color="primary"
+            name={question_uuid}
+            formControlProps={{ margin: "none" }}
+            data={sub_response_content.map((item) => ({
+              label: (
+                <span style={titleStyle}>
+                  <b>{item}</b>
+                </span>
+              ),
+              value: item,
+            }))}
+          />
         </div>
       );
     case "CHECK_BOXES":
       return (
         <div style={{ marginTop: "1rem" }}>
           <h4 style={titleStyle}>{sub_question_content}</h4>
-          <FormControl disabled={!showSubQuestion} component="fieldset">
-            <RadioGroup>
-              {sub_response_content.map((item) => (
-                <Radio label={item} value={item} name={question_uuid} />
-              ))}
-            </RadioGroup>
-          </FormControl>
+          <Radios
+            name={question_uuid}
+            disabled={!showSubQuestion}
+            color="primary"
+            formControlProps={{ margin: "none" }}
+            radioGroupProps={{ row: false }}
+            data={sub_response_content.map((item) => ({
+              label: (
+                <span style={titleStyle}>
+                  <b>{item}</b>
+                </span>
+              ),
+              value: item,
+            }))}
+          />
         </div>
       );
     case "DROPDOWN_MENU":
@@ -62,16 +75,14 @@ const SubQuestionElement = ({
           <h4 style={titleStyle}>{sub_question_content}</h4>
           <Select
             isDisabled={!showSubQuestion}
-            options={sub_response_content.map((answer) => ({
-              value: answer,
-              label: answer,
-            }))}
+            variant="outlined"
             name={question_uuid}
-            question_uuid={question_uuid}
-            question_content={sub_question_content}
-            sub_question_content={sub_question_content}
-            sub_response_style={sub_response_style}
-          />
+            formControlProps={{ margin: "none" }}
+          >
+            {sub_response_content.map((answer) => (
+              <MenuItem value={answer}>{answer}</MenuItem>
+            ))}
+          </Select>
         </div>
       );
 

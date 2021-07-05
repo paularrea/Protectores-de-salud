@@ -10,7 +10,6 @@ const Chapter = ({ questions }) => {
     setOpen(!open);
   };
   const chapterName = questions && questions[0].props.question.chapter_name;
-  console.log(chapterName, 'questi')
 
   return (
     <>

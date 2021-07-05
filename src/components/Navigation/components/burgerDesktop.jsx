@@ -10,7 +10,9 @@ const BurgerDesktop = ({ user, Logout, UserFirstLetter, setMenuOpen }) => {
       <div className={styles.blue_section}>
         <div className={styles.menu}>
           <div className={styles.avatar}>
-            <div className={styles.circle}>{UserFirstLetter}</div>
+            <div className={styles.circle}>
+              {UserFirstLetter} <div className={styles.red_dot}></div>
+            </div>
           </div>
           <h3>Mi perfil</h3>
           <button>

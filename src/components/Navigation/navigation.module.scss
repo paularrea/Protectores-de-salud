@@ -79,10 +79,12 @@
                 flex-direction: column;
                 align-items: flex-end;
                 justify-content: flex-end;
+            
                 .avatar{
                     width: 312px;
                     margin: 4rem 0;
                     .circle{
+                    position: relative;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -93,6 +95,16 @@
                     width: 85px;
                     height: 85px;
                     border-radius: 100px;
+                    .red_dot{
+                        position: absolute;
+                        background-color: #FF2E79;
+                        width: 20px;
+                        border-radius: 100px;
+                        top: 0;
+                        right: .3rem;
+                        height: 20px;
+                        border: 2px solid white;
+                    }
                     }
                 }
                 h3{

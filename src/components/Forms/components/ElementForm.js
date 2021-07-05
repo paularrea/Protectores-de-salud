@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from "react";
-// import Checkbox from "./Checkbox";
-import Select from "./ReactSelect";
-import TextField from "./TextField";
-import Radio from "./Radio";
-import {
-  RadioGroup,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
-import styles from "../form.module.scss"; 
+import React, { useState } from "react";
+import { TextField, Checkboxes, Radios, Select } from "mui-rff";
+import { MenuItem } from "@material-ui/core";
+import styles from "../form.module.scss";
 import "../form.css";
 import SubQuestionElement from "./SubQuestionElement";
 
@@ -28,19 +20,6 @@ const Element = ({
   },
 }) => {
   const [showSubQuestion, setShowSubQuestion] = useState(false);
-  const [checkedItems, setCheckedItems] = useState({}); //plain object as state
-
-  const handleChangeCheckbox = (event) => {
-    // updating an object instead of a Map
-    setCheckedItems({
-      ...checkedItems,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  useEffect(() => {
-    console.log("checkedItems: ", checkedItems);
-  }, [checkedItems]);
 
   const subQuestion =
     sub_question_content !== "NULL" ? (
@@ -64,16 +43,21 @@ const Element = ({
       return (
         <div style={{ margin: "1rem 0 2rem 0" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
-          <RadioGroup onChange={handleChangeRadio}>
-            {response_content.map((item, index) => (
-              <Radio
-                key={index}
-                label={item}
-                value={item}
-                name={question_uuid}
-              />
-            ))}
-          </RadioGroup>
+          <Radios
+            onClick={handleChangeRadio}
+            name={question_uuid}
+            color="primary"
+            formControlProps={{ margin: "none" }}
+            radioGroupProps={{ row: false }}
+            data={response_content.map((item) => ({
+              label: (
+                <span>
+                  <b>{item}</b>
+                </span>
+              ),
+              value: item,
+            }))}
+          />
           {subQuestion}
         </div>
       );
@@ -82,16 +66,14 @@ const Element = ({
         <div style={{ marginTop: "1rem", marginBottom: "3rem" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
           <Select
-            options={response_content.map((answer) => ({
-              value: answer,
-              label: answer,
-            }))}
+            variant="outlined"
             name={question_uuid}
-            question_uuid={question_uuid}
-            question_content={question_content}
-            sub_question_content={sub_question_content}
-            sub_response_style={sub_response_style}
-          />
+            formControlProps={{ margin: "none" }}
+          >
+            {response_content.map((answer) => (
+              <MenuItem value={answer}>{answer}</MenuItem>
+            ))}
+          </Select>
           {subQuestion}
         </div>
       );
@@ -99,25 +81,26 @@ const Element = ({
       return (
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
-          <TextField name={question_uuid} />
+          <TextField variant="outlined" name={question_uuid} margin="none" />
         </div>
       );
     case "MULTI_BOXES":
       return (
         <div style={{ margin: "1rem 0 2rem 0" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
-          <FormGroup>
-            {response_content.map((item, index) => (
-              <FormControlLabel
-                key={index}
-                control={<Checkbox color="primary" />}
-                label={<span style={{ fontWeight: 700 }}>{item}</span>}
-                name={item}
-                checked={checkedItems[item]}
-                onChange={handleChangeCheckbox}
-              />
-            ))}
-          </FormGroup>
+          <Checkboxes
+            color="primary"
+            name={question_uuid}
+            formControlProps={{ margin: "none" }}
+            data={response_content.map((item) => ({
+              label: (
+                <span>
+                  <b>{item}</b>
+                </span>
+              ),
+              value: item,
+            }))}
+          />
           {subQuestion}
         </div>
       );

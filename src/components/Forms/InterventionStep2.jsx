@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "usetheform";
 import step2 from "../../img/steps/step2.png";
 import PDSSignature from "../DigitalSignature/PDSSignature";
 import styles from "./form.module.scss";
@@ -20,7 +19,6 @@ const Step2 = ({ setIsPDSSigned, refProp, prevPage, ...props }) => {
           </div>
         </div>
       </div>
-      <Form name="Step2" {...props}>
         <div ref={refProp} className={styles.legal_container}>
           <p className={styles.grey_text}>
             Por favor, lea atentamente este texto legal y firme si está
@@ -132,7 +130,6 @@ const Step2 = ({ setIsPDSSigned, refProp, prevPage, ...props }) => {
           </div>
           <PDSSignature {...props.wizzard} setIsPDSSigned={setIsPDSSigned} />
         </div>
-      </Form>
     </div>
   );
 };

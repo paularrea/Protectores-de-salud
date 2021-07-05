@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "usetheform";
 import step4 from "../../img/steps/step4.png";
 import PatientConfirmationSignature from "../DigitalSignature/PatientConfirmationSignature";
 import styles from "./form.module.scss";
@@ -24,7 +23,6 @@ function Step4(props) {
             </div>
           </div>
         </div>
-        <Form name="Step4" {...props}>
           <div ref={props.refProp} className={styles.legal_container}>
             <p className={styles.grey_text}>
               Por favor, lea atentamente este texto legal y firme si está
@@ -48,7 +46,6 @@ function Step4(props) {
               setIsConfirmationSigned={props.setIsConfirmationSigned}
             />
           </div>
-        </Form>
       </div>
     </>
   );

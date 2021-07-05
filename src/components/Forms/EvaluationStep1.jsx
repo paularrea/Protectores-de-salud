@@ -1,13 +1,13 @@
 import React from "react";
-import { Form } from "usetheform";
 import styles from "./form.module.scss";
 import evaluationStep1 from "../../img/steps/step5.png";
-import Element from "./components/element";
+import Element from "./components/ElementForm";
 
 function EvaluationStep1(props) {
   if (props.step !== 1) {
     return null;
   }
+
   const evaluation = props.evaluationData
     ? props.evaluationData.map((question, i) => (
         <Element key={i} question={question} />
@@ -26,11 +26,10 @@ function EvaluationStep1(props) {
             </div>
           </div>
         </div>
-        <Form name="evaluationStep1" {...props}>
-          <div ref={props.topRef} className={styles.content}>
-            <section>{evaluation}</section>
-          </div>
-        </Form>
+
+        <div ref={props.topRef} className={styles.content}>
+          <section>{evaluation}</section>
+        </div>
       </div>
     </>
   );

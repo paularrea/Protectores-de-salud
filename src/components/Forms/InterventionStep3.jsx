@@ -1,8 +1,7 @@
 import React from "react";
-import { Form } from "usetheform";
 import styles from "./form.module.scss";
 import step3 from "../../img/steps/step3.png";
-import Element from "./components/element";
+import Element from "./components/ElementForm";
 import Chapter from "./components/Chapter/chapter";
 
 function Step3({ refProp, prevPage, ...props }) {
@@ -63,7 +62,6 @@ function Step3({ refProp, prevPage, ...props }) {
           </div>
         </div>
       </div>
-      <Form name="Step3" {...props}>
         <div ref={refProp} className={styles.content}>
           <Chapter questions={chapterOne} />
           <Chapter questions={chapterTwo} />
@@ -72,7 +70,6 @@ function Step3({ refProp, prevPage, ...props }) {
           <Chapter questions={chapterFive} />
           <Chapter questions={chapterSix} />
         </div>
-      </Form>
     </div>
   );
 }

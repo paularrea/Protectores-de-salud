@@ -13,7 +13,6 @@ const PDSSignature = ({ setIsPDSSigned, props }) => {
     setImageData(signature);
     setIsPDSSigned(true);
   };
-
   useEffect(() => {
     console.log({
       firmaPaciente: imageData,

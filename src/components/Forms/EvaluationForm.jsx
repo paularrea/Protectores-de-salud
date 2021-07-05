@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useMultipleForm } from "usetheform";
+import { Form } from "react-final-form";
 import styles from "./form.module.scss";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
@@ -15,8 +15,8 @@ import MediaQuery from "react-responsive";
 const blue_pds = createMuiTheme({
   palette: {
     primary: {
-      main: '#4284F3',
-    } 
+      main: "#4284F3",
+    },
   },
 });
 
@@ -27,8 +27,10 @@ const EvaluationForm = (props) => {
     step: 1,
   });
   const [evaluationData, setEvaluationData] = useState();
+  const [formResults, collectFormResults] = useState({});
   const [sendForm, setSendForm] = useState(false);
 
+  const interventionId = props.location.state.patient.intervention_id;
   useEffect(() => {
     fetch(
       "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_POST_INTERVENTION"
@@ -41,24 +43,19 @@ const EvaluationForm = (props) => {
       });
   }, []);
 
-  const patientId = props.location.state.patient.intervention_id;
-  const [getWizardState, wizard] = useMultipleForm({
-  });
-
-  const onSubmitWizard = () => {
-    console.log(getWizardState());
+  const onSubmitEvaluationForm = async (values) => {
+    collectFormResults(JSON.stringify(values, 0, 2));
     setSendForm(true);
   };
+  console.log(formResults, "evaluation form results");
 
   const _next = () => {
     let step = currentPage.step;
     step = step + 1;
-    console.log(getWizardState());
-    if (window.innerWidth > 1026){
+    if (window.innerWidth > 1026) {
       topRef.current.scrollIntoView();
-
     } else {
-    window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
     }
     setPage({
       step: step,
@@ -67,11 +64,10 @@ const EvaluationForm = (props) => {
   const _prev = () => {
     let step = currentPage.step;
     step = step <= 1 ? 1 : step - 1;
-    if (window.innerWidth > 1026){
+    if (window.innerWidth > 1026) {
       topRef.current.scrollIntoView();
-
     } else {
-    window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
     }
     setPage({
       step: step,
@@ -116,11 +112,7 @@ const EvaluationForm = (props) => {
     let step = currentPage.step;
     if (step === 2) {
       return (
-        <button
-          className={styles.green_button}
-          type="submit"
-          onClick={onSubmitWizard}
-        >
+        <button className={styles.green_button} type="submit">
           Aceptar y enviar
         </button>
       );
@@ -131,32 +123,38 @@ const EvaluationForm = (props) => {
   return (
     <div className={desktopStyle.container}>
       <div className={desktopStyle.flex_desktop}>
-      <ThemeProvider theme={blue_pds}>
-        <MediaQuery minWidth={1026}>
-          <LayoutDesktop />
-        </MediaQuery>
-        <div className="container-mobile" style={{height:'60vh', top:'8rem'}}>
-          <EvaluationStep1
-            topRef={topRef}
-            evaluationData={evaluationData}
-            step={currentPage.step}
-            {...wizard}
-          />
-          <EvaluationStep2
-            topRef={topRef}
-            step={currentPage.step}
-            {...wizard}
-          />
-          <div className={styles.fixed_container}>
-            <div className={styles.fixed}>
-              {previousButton()}
-              {nextButton()}
-              {submitButton()}
-            </div>
+        <ThemeProvider theme={blue_pds}>
+          <MediaQuery minWidth={1026}>
+            <LayoutDesktop />
+          </MediaQuery>
+          <div
+            className="container-mobile"
+            style={{ height: "60vh", top: "8rem" }}
+          >
+            <Form
+              onSubmit={onSubmitEvaluationForm}
+              initialValues={{ interventionId: interventionId }}
+              render={({ values, handleSubmit }) => (
+                <form onSubmit={handleSubmit}>
+                  <EvaluationStep1
+                    topRef={topRef}
+                    evaluationData={evaluationData}
+                    step={currentPage.step}
+                  />
+                  <EvaluationStep2 topRef={topRef} step={currentPage.step} />
+                  <div className={styles.fixed_container}>
+                    <div className={styles.fixed}>
+                      {previousButton()}
+                      {nextButton()}
+                      {submitButton()}
+                    </div>
+                  </div>
+                </form>
+              )}
+            />
+            {sendForm && <Redirect to="/success-form" />}
           </div>
-          {sendForm && <Redirect to="/success-form" />}
-        </div>
-      </ThemeProvider>
+        </ThemeProvider>
       </div>
     </div>
   );

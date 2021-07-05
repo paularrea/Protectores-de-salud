@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { useMultipleForm } from "usetheform";
+import { Form } from "react-final-form";
 import styles from "./form.module.scss";
 import { Link } from "react-router-dom";
 import { Redirect, useLocation } from "react-router-dom";
@@ -33,11 +33,14 @@ const MultiStepForm = () => {
   });
   const [questionaryData, setQuestionaryData] = useState(null);
   const [sendForm, setSendForm] = useState(false);
+  const [formResults, collectFormResults] = useState({});
   const [isPDSSigned, setIsPDSSigned] = useState(false);
   const [isConfirmationigned, setIsConfirmationSigned] = useState(false);
 
   const patient = location.state.patient;
   const patientDate = location.state.patientDate;
+  const interventionId = location.state.patient.intervention_id;
+
 
   useEffect(() => {
     fetch(
@@ -51,16 +54,15 @@ const MultiStepForm = () => {
       });
   }, []);
 
-  const [getWizardState, wizard] = useMultipleForm();
-
-  const onSubmitWizard = () => {
-    console.log(getWizardState());
+  const onSubmitEvaluationForm = async (values) => {
+    collectFormResults(JSON.stringify(values, 0, 2));
     setSendForm(true);
   };
+
+  console.log(formResults, "evaluation form results");
   const _next = () => {
     let step = currentPage.step;
     step = step + 1;
-    console.log(getWizardState());
     if (window.innerWidth > 1026) {
       topRef.current.scrollIntoView();
     } else {
@@ -155,11 +157,7 @@ const MultiStepForm = () => {
     let step = currentPage.step;
     if (step === 5) {
       return (
-        <button
-          className={styles.green_button}
-          type="submit"
-          onClick={onSubmitWizard}
-        >
+        <button className={styles.green_button} type="submit">
           Aceptar y enviar
         </button>
       );
@@ -178,43 +176,49 @@ const MultiStepForm = () => {
             className="container-mobile"
             style={{ height: "60vh", top: "8rem" }}
           >
-            <Step1
-              refProp={topRef}
-              patient={patient}
-              step={currentPage.step}
-              {...wizard}
+            <Form
+              onSubmit={onSubmitEvaluationForm}
+              initialValues={{ interventionId: interventionId }}
+              render={({ values, handleSubmit }) => (
+                <form onSubmit={handleSubmit}>
+                  <Step1
+                    refProp={topRef}
+                    patient={patient}
+                    step={currentPage.step}
+                  />
+                  <Step2
+                    setIsPDSSigned={setIsPDSSigned}
+                    refProp={topRef}
+                    step={currentPage.step}
+                  />
+                  <Step3
+                    refProp={topRef}
+                    questionaryData={questionaryData}
+                    step={currentPage.step}
+                  />
+                  <Step4
+                    setIsConfirmationSigned={setIsConfirmationSigned}
+                    refProp={topRef}
+                    user={contextUser}
+                    patientDate={patientDate}
+                    patient={patient}
+                    questionaryData={questionaryData}
+                    step={currentPage.step}
+                  />
+                  <Step5 topRef={topRef} step={currentPage.step} />
+                  <div className={styles.fixed_container}>
+                    <div className={styles.fixed}>
+                      {previousButton()}
+                      {nextButton()}
+                      {signButton()}
+                      {submitButton()}
+                    </div>
+                  </div>
+                  <pre>{JSON.stringify(values, 0, 2)}</pre>
+
+                </form>
+              )}
             />
-            <Step2
-              setIsPDSSigned={setIsPDSSigned}
-              refProp={topRef}
-              step={currentPage.step}
-              {...wizard}
-            />
-            <Step3
-              refProp={topRef}
-              questionaryData={questionaryData}
-              step={currentPage.step}
-              {...wizard}
-            />
-            <Step4
-              setIsConfirmationSigned={setIsConfirmationSigned}
-              refProp={topRef}
-              user={contextUser}
-              patientDate={patientDate}
-              patient={patient}
-              questionaryData={questionaryData}
-              step={currentPage.step}
-              {...wizard}
-            />
-            <Step5 topRef={topRef} step={currentPage.step} {...wizard} />
-            <div className={styles.fixed_container}>
-              <div className={styles.fixed}>
-                {previousButton()}
-                {nextButton()}
-                {signButton()}
-                {submitButton()}
-              </div>
-            </div>
             {sendForm && <Redirect to="/success-form" />}
           </div>
         </ThemeProvider>
