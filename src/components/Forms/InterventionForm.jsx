@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 import { Redirect, useLocation } from "react-router-dom";
 import desktopStyle from "../../styles/dashboard.module.scss";
 import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
+import MediaQuery from "react-responsive";
 import arrow from "../../img/arrow_back.png";
+import { makeValidate, makeRequired } from "mui-rff";
 import { UserContext } from "../../UserContext.js";
+import schema from "./components/validationSchema";
 
 import Step1 from "./InterventionStep1";
 import Step2 from "./InterventionStep2";
 import Step3 from "./InterventionStep3";
 import Step4 from "./InterventionStep4";
-import MediaQuery from "react-responsive";
 import Step5 from "./InterventionStep5";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
@@ -23,6 +25,10 @@ const blue_pds = createMuiTheme({
     },
   },
 });
+
+// const required = message => value => value ? undefined : message || "Campo obligatorio";
+const validate = makeValidate(schema);
+const required = makeRequired(schema);
 
 const MultiStepForm = () => {
   const { contextUser } = useContext(UserContext);
@@ -35,16 +41,16 @@ const MultiStepForm = () => {
   const [sendForm, setSendForm] = useState(false);
   const [formResults, collectFormResults] = useState({});
   const [isPDSSigned, setIsPDSSigned] = useState(false);
-  const [isConfirmationigned, setIsConfirmationSigned] = useState(false);
+  const [isConfirmationSigned, setIsConfirmationSigned] = useState(false);
 
   const patient = location.state.patient;
   const patientDate = location.state.patientDate;
   const interventionId = location.state.patient.intervention_id;
 
-
   useEffect(() => {
     fetch(
       "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_PDS_PROGRAM"
+      // "http://localhost:3004/questionnaire_PDS_PROGRAM"
     )
       .then((res) => {
         return res.json();
@@ -54,12 +60,9 @@ const MultiStepForm = () => {
       });
   }, []);
 
-  const onSubmitEvaluationForm = async (values) => {
-    collectFormResults(JSON.stringify(values, 0, 2));
-    setSendForm(true);
-  };
+  console.log(formResults, "INTERVENTION DATA RESULTS");
+  console.log(schema.fields, "schema");
 
-  console.log(formResults, "evaluation form results");
   const _next = () => {
     let step = currentPage.step;
     step = step + 1;
@@ -74,16 +77,39 @@ const MultiStepForm = () => {
   };
 
   const _prev = () => {
-    let step = currentPage.step;
-    step = step <= 1 ? 1 : step - 1;
     if (window.innerWidth > 1026) {
       topRef.current.scrollIntoView();
     } else {
       window.scrollTo(0, 0);
     }
+    let step = currentPage.step;
+    step = step <= 1 ? 1 : step - 1;
     setPage({
       step: step,
     });
+  };
+
+  const handleSubmit = async (values) => {
+    let step = currentPage.step;
+    if (step === 5) {
+      collectFormResults(JSON.stringify(values, 0, 2));
+      setSendForm(true);
+    } else {
+      console.log("next page");
+      _next()
+    }
+  };
+
+  const nextButton = () => {
+    let step = currentPage.step;
+    if (step === 1 || step === 3) {
+      return (
+        <button className={styles.green_button} type="submit">
+          Confirmar y seguir
+        </button>
+      );
+    }
+    return null;
   };
 
   const previousButton = () => {
@@ -111,18 +137,6 @@ const MultiStepForm = () => {
     }
   };
 
-  const nextButton = () => {
-    let step = currentPage.step;
-    if (step === 1 || step === 3) {
-      return (
-        <button className={styles.green_button} type="button" onClick={_next}>
-          Confirmar y seguir
-        </button>
-      );
-    }
-    return null;
-  };
-
   const signButton = () => {
     let step = currentPage.step;
     if (step === 2) {
@@ -130,8 +144,7 @@ const MultiStepForm = () => {
         <button
           disabled={!isPDSSigned}
           className={isPDSSigned ? styles.green_button : styles.grey_button}
-          type="button"
-          onClick={_next}
+          type="submit"
         >
           Firmar y seguir
         </button>
@@ -139,12 +152,11 @@ const MultiStepForm = () => {
     } else if (step === 4) {
       return (
         <button
-          disabled={!isConfirmationigned}
+          disabled={!isConfirmationSigned}
           className={
-            isConfirmationigned ? styles.green_button : styles.grey_button
+            isConfirmationSigned ? styles.green_button : styles.grey_button
           }
-          type="button"
-          onClick={_next}
+          type="submit"
         >
           Firmar y seguir
         </button>
@@ -177,11 +189,23 @@ const MultiStepForm = () => {
             style={{ height: "60vh", top: "8rem" }}
           >
             <Form
-              onSubmit={onSubmitEvaluationForm}
-              initialValues={{ interventionId: interventionId }}
+              onSubmit={handleSubmit}
+              validate={validate}
+              initialValues={{
+                interventionId: interventionId,
+                patient_name: patient.patient_name,
+                patient_middle_name: patient.patient_middle_name,
+                patient_last_name: patient.patient_last_name,
+                patient_second_last_name: patient.patient_second_last_name,
+                phone: patient.phone,
+                city: patient.city,
+                coutry: patient.coutry,
+                address: patient.address,
+              }}
               render={({ values, handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
                   <Step1
+                    required={required}
                     refProp={topRef}
                     patient={patient}
                     step={currentPage.step}
@@ -205,7 +229,11 @@ const MultiStepForm = () => {
                     questionaryData={questionaryData}
                     step={currentPage.step}
                   />
-                  <Step5 topRef={topRef} step={currentPage.step} />
+                  <Step5
+                    required={required}
+                    topRef={topRef}
+                    step={currentPage.step}
+                  />
                   <div className={styles.fixed_container}>
                     <div className={styles.fixed}>
                       {previousButton()}
@@ -215,7 +243,6 @@ const MultiStepForm = () => {
                     </div>
                   </div>
                   <pre>{JSON.stringify(values, 0, 2)}</pre>
-
                 </form>
               )}
             />

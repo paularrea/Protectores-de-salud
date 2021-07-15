@@ -4,20 +4,19 @@ import styles from "./digitalSignature.module.scss";
 import clear from "../../img/clear.png";
 import MediaQuery from "react-responsive";
 
-const PDSSignature = ({ setIsPDSSigned, props }) => {
-  const [imageData, setImageData] = useState("");
+const PDSSignature = ({ setIsPDSSigned, setPdsSign, pdsSign, props }) => {
   const [error, setError] = useState(false);
   const signatureRef = useRef({});
 
   const saveSignature = (signature) => {
-    setImageData(signature);
+    setPdsSign(signature);
     setIsPDSSigned(true);
   };
   useEffect(() => {
     console.log({
-      firmaPaciente: imageData,
+      firmaPaciente: pdsSign,
     });
-  }, [imageData]);
+  }, [pdsSign]);
 
   return (
     <section {...props} className={styles.signature_container}>

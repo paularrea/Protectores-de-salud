@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { TextField, Checkboxes, Radios, Select } from "mui-rff";
+import { Field } from "formik";
+import { TextField, Select } from "formik-material-ui";
 import { MenuItem } from "@material-ui/core";
 import styles from "../form.module.scss";
 import "../form.css";
@@ -43,21 +44,36 @@ const Element = ({
       return (
         <div style={{ margin: "1rem 0 2rem 0" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
-          <Radios
-            onClick={handleChangeRadio}
-            name={question_uuid}
-            color="primary"
-            formControlProps={{ margin: "none" }}
-            radioGroupProps={{ row: false }}
-            data={response_content.map((item) => ({
-              label: (
-                <span>
-                  <b>{item}</b>
-                </span>
-              ),
-              value: item,
-            }))}
-          />
+          <div
+            role="group"
+            aria-labelledby="radio-group"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            {response_content.map((answer, key) => (
+              <label
+                key={key}
+                style={{
+                  cursor: "pointer",
+                  marginBottom: "1rem",
+                  fontWeight: 700,
+                }}
+                onChange={handleChangeRadio}
+              >
+                <Field
+                  style={{
+                    cursor: "pointer",
+                    margin: "0 1rem 0 0",
+                    width: "18px",
+                    height: "18px",
+                  }}
+                  type="radio"
+                  name={question_uuid}
+                  value={answer}
+                />
+                {answer}
+              </label>
+            ))}
+          </div>
           {subQuestion}
         </div>
       );
@@ -65,15 +81,19 @@ const Element = ({
       return (
         <div style={{ marginTop: "1rem", marginBottom: "3rem" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
-          <Select
+          <Field
+            type="select"
             variant="outlined"
+            style={{ width: "100%" }}
+            component={Select}
             name={question_uuid}
-            formControlProps={{ margin: "none" }}
           >
-            {response_content.map((answer) => (
-              <MenuItem value={answer}>{answer}</MenuItem>
+            {response_content.map((answer, key) => (
+              <MenuItem key={key} value={answer}>
+                {answer}
+              </MenuItem>
             ))}
-          </Select>
+          </Field>
           {subQuestion}
         </div>
       );
@@ -81,26 +101,48 @@ const Element = ({
       return (
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
-          <TextField variant="outlined" name={question_uuid} margin="none" />
+          <Field
+            type="text"
+            variant="outlined"
+            name={question_uuid}
+            margin="none"
+            component={TextField}
+          />
         </div>
       );
     case "MULTI_BOXES":
       return (
         <div style={{ margin: "1rem 0 2rem 0" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
-          <Checkboxes
-            color="primary"
-            name={question_uuid}
-            formControlProps={{ margin: "none" }}
-            data={response_content.map((item) => ({
-              label: (
-                <span>
-                  <b>{item}</b>
-                </span>
-              ),
-              value: item,
-            }))}
-          />
+          <div
+            role="group"
+            aria-labelledby="checkbox-group"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            {response_content.map((answer, key) => (
+              <label
+                key={key}
+                style={{
+                  cursor: "pointer",
+                  marginBottom: "1rem",
+                  fontWeight: 700,
+                }}
+              >
+                <Field
+                  style={{
+                    cursor: "pointer",
+                    margin: "0 1rem 0 0",
+                    width: "16px",
+                    height: "16px",
+                  }}
+                  type="checkbox"
+                  name={question_uuid}
+                  value={answer}
+                />
+                {answer}
+              </label>
+            ))}
+          </div>
           {subQuestion}
         </div>
       );

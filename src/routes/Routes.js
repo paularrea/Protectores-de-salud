@@ -9,9 +9,9 @@ import DetalleCitaDayThree from "../components/Agenda/DetalleCitaDayThree";
 import DetalleCitaDayFour from "../components/Agenda/DetalleCitaDayFour";
 import DetalleCitaDayFive from "../components/Agenda/DetalleCitaDayFive";
 import RecuperarContra from "../components/RecuperarContra.jsx";
-import InterventionForm from "../components/Forms/InterventionForm";
+import InterventionForm from "../components/Forms/Intervention";
 import FormSent from "../components/Forms/formSent";
-import EvaluationForm from "../components/Forms/EvaluationForm";
+import EvaluationForm from "../components/Forms/Evaluation";
 import EditProfile from "../components/Navigation/components/editProfile";
 
 const Routes = () => {
@@ -19,7 +19,8 @@ const Routes = () => {
 
   useEffect(() => {
     fetch(
-      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content"
+      // "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content"
+      "http://localhost:3004/users"
     )
       .then((res) => {
         return res.json();

@@ -4,9 +4,9 @@ import styles from "./form.module.scss";
 import { Field, ErrorMessage } from "formik";
 import notiStyles from "../Notifications/notificaciones.module.scss";
 import campana from "../../img/campana.png";
-import step2 from "../../img/steps/step2.png";
+import step5 from "../../img/steps/step5.png"
 
-const EvaluationStep2 = (props) => {
+const Step5 = (props) => {
   return (
     <div className={styles.container}>
       <div
@@ -15,39 +15,39 @@ const EvaluationStep2 = (props) => {
         className={styles.content}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <ErrorMessage
-            name="acceptAndSent"
-            component="div"
-            className={styles.error_message}
-          />
-        </div>
-        <label
-          style={{
-            cursor: "pointer",
-            marginBottom: "1rem",
-            fontWeight: 700,
-          }}
-        >
-          <Field
+              <ErrorMessage
+                name="acceptAndSent"
+                component="div"
+                className={styles.error_message}
+              />
+            </div>
+          <label
             style={{
               cursor: "pointer",
-              margin: "1rem",
-              marginLeft: 0,
-              width: "16px",
-              height: "16px",
+              marginBottom: "1rem",
+              fontWeight: 700,
             }}
-            type="checkbox"
-            name="acceptAndSent"
-          />
-          Estoy conforme y quiero finalizar el proceso
-        </label>
+          >
+            <Field
+              style={{
+                cursor: "pointer",
+                margin: "1rem",
+                marginLeft: 0,
+                width: "16px",
+                height: "16px",
+              }}
+              type="checkbox"
+              name="acceptAndSent"
+            />
+            Estoy conforme y quiero finalizar el proceso
+          </label>
         <div className={styles.noti_content}>
           <div
             style={{
               backgroundColor: "#FFF2F7",
               borderLeft: "2px solid #FF2E79",
               margin: 0,
-              marginTop: "2rem",
+              marginTop:'2rem'
             }}
             className={notiStyles.notificaciones_container}
           >
@@ -65,15 +65,15 @@ const EvaluationStep2 = (props) => {
   );
 };
 
-EvaluationStep2.label = "Finalizar Intervención y Enviar";
+Step5.label = "Finalizar Intervención y Enviar";
 
-EvaluationStep2.validationSchema = Yup.object().shape({
+Step5.validationSchema = Yup.object().shape({
   acceptAndSent: Yup.bool().oneOf(
     [true],
     "Accept Terms & Conditions is required"
   ),
 });
 
-EvaluationStep2.Img = step2;
+Step5.Img = step5
 
-export default EvaluationStep2;
+export default Step5;

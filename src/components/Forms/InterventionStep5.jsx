@@ -27,8 +27,9 @@ function Step5(props) {
       >
         <Checkboxes
           color="primary"
-          name="Estoy conforme y quiero finalizar el proceso"
+          name="submit_form"
           formControlProps={{ margin: "none" }}
+          fieldProps={{validate: props.required('Rellena este campo para finalizar y enviar la intervención')}}
           formGroupProps={{ row: false }}
           data={{
             label: "Estoy conforme y quiero finalizar el proceso",

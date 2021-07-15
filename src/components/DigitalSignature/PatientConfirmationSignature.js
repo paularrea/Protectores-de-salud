@@ -4,19 +4,22 @@ import styles from "./digitalSignature.module.scss";
 import clear from "../../img/clear.png";
 import MediaQuery from "react-responsive";
 
-const PatientConfirmationSignature = ({ setIsConfirmationSigned }) => {
-  const [imageData, setImageData] = useState("");
+const PatientConfirmationSignature = ({
+  setIsConfirmationSigned,
+  setConfirmationSign,
+  confirmationSign,
+}) => {
   const [error, setError] = useState(false);
   const signatureRef = useRef({});
 
   const saveSignature = (signature) => {
-    setImageData(signature);
+    setConfirmationSign(signature);
     setIsConfirmationSigned(true);
   };
 
   useEffect(() => {
-    console.log({ firmaPaciente2: imageData });
-  }, [imageData]);
+    console.log({ firmaPaciente2: confirmationSign });
+  }, [confirmationSign]);
 
   return (
     <section className={styles.signature_container}>

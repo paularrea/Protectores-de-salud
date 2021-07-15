@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { TextField } from "mui-rff";
-
 import "./form.css";
 import styles from "./form.module.scss";
 import step1 from "../../img/steps/step1.png";
 
-
-const Step1 = ({ refProp, patient, prevPage, ...props }) => {
+const Step1 = ({
+  refProp,
+  setAllInputsRequiredFilled,
+  patient,
+  prevPage,
+  required,
+  ...props
+}) => {
   const [editName, setEditName] = useState(true);
   const [editMiddleName, setEditMiddleName] = useState(true);
   const [editLastName, setEditLastName] = useState(true);
@@ -69,15 +74,23 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
       </div>
       <div ref={refProp} className={styles.form_content}>
         <div className={styles.content}>
+        <TextField
+              variant="outlined"
+              label="Primer Nombre"
+              name="patientFirstName"
+              margin="none"
+            />
+
           <div className={styles.input_container}>
             <TextField
               variant="outlined"
               label="Primer Nombre"
-              name="firstName"
+              name="name"
               disabled={editName}
               value={name}
               margin="none"
-              required={true}
+              // fieldProps={{validation: required()}}
+              // required={required.patientFirstName}
               onChange={handleChangeName}
             />
             <button
@@ -95,7 +108,7 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
               label="Segundo Nombre"
               disabled={editMiddleName}
               value={middleName}
-              name="middleName"
+              name="patientMiddleName"
               margin="none"
               required={false}
               onChange={handleChangeMiddleName}
@@ -108,16 +121,17 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
               Editar
             </button>
           </div>
-
+{/* 
           <div className={styles.input_container}>
             <TextField
               variant="outlined"
-              label="Primer Apellido"
+              label="Primer apellido"
               disabled={editLastName}
               value={lastName}
-              name="middleName"
+              name="patientLastName"
               margin="none"
-              required={true}
+              // fieldProps={{validation: required()}}
+              // required={required.patientLastName}
               onChange={handleChangeLastName}
             />
             <button
@@ -135,7 +149,7 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
               disabled={editSecondLastName}
               label="Segundo Apellido"
               value={secondLastName}
-              name="secondLastName"
+              name="patientSecondLastName"
               margin="none"
               required={false}
               onChange={handleChangeSecondLastName}
@@ -155,9 +169,10 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
               disabled={editPhone}
               label="Número de teléfono"
               value={phone}
-              name="phone"
+              name="patientPhone"
               margin="none"
-              required={true}
+              // fieldProps={{validation: required()}}
+              // required={required.patientPhone}
               onChange={handleChangePhone}
             />
             <button
@@ -175,10 +190,11 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
               disabled={editCountry}
               label="País"
               value={country}
-              name="country"
+              name="patientCountry"
               onChange={handleChangeCountry}
               margin="none"
-              required={true}
+              // fieldProps={{validation: required()}}
+              // required={required.patientCountry}
             />
             <button
               className={styles.edit}
@@ -192,13 +208,14 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
           <div className={styles.input_container}>
             <TextField
               variant="outlined"
-              disabled={editAddress}
+              disabled={editCity}
               label="Ciudad"
               value={city}
-              name="city"
+              name="patientCity"
               onChange={handleChangeCity}
               margin="none"
-              required={true}
+              // fieldProps={{validation: required()}}
+              // required={required.patientCity}
             />
             <button
               className={styles.edit}
@@ -212,13 +229,14 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
           <div className={styles.input_container}>
             <TextField
               variant="outlined"
-              disabled={editCity}
+              disabled={editAddress}
               label="Calle"
               value={address}
-              name="address"
+              name="patientAddress"
               onChange={handleChangeAddress}
               margin="none"
-              required={true}
+              // fieldProps={{validation: required()}}
+              // required={required.patientAddress}
             />
             <button
               className={styles.edit}
@@ -227,7 +245,7 @@ const Step1 = ({ refProp, patient, prevPage, ...props }) => {
             >
               Editar
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

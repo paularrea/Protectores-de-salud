@@ -20,7 +20,8 @@ const Login = () => {
 
   useEffect(() => {
     fetch(
-      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content"
+      // "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/web_dynamic_content"
+      'http://localhost:3004/users'
     )
       .then((res) => {
         return res.json();
@@ -49,7 +50,7 @@ const Login = () => {
     } else {
       console.log("not logged in!");
       setError(
-        <p style={{ color: "#CE112C", marginBottom: "1rem" }}>
+        <p style={{ color: "#CE112C", marginTop: "2rem" }}>
           El usuario o contraseña son incorrectos
         </p>
       );

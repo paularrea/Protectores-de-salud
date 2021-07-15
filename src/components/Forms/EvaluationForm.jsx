@@ -34,6 +34,7 @@ const EvaluationForm = (props) => {
   useEffect(() => {
     fetch(
       "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_POST_INTERVENTION"
+      // 'http://localhost:3004/questionnaire_POST_INTERVENTION'
     )
       .then((res) => {
         return res.json();
@@ -101,7 +102,7 @@ const EvaluationForm = (props) => {
     let step = currentPage.step;
     if (step === 1) {
       return (
-        <button className={styles.green_button} type="button" onClick={_next}>
+        <button className={styles.green_button} type="submit" onClick={_next}>
           Confirmar y seguir
         </button>
       );
