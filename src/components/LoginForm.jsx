@@ -14,12 +14,13 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 import styles from "../styles/login.module.scss";
 import logo from "../img/logo.png";
+import ErrorNotification from "./Notifications/ErrorNotification";
 
 const blue_pds = createMuiTheme({
   palette: {
     primary: {
-      main: '#4284F3',
-    } 
+      main: "#4284F3",
+    },
   },
 });
 
@@ -47,7 +48,6 @@ const LoginForm = ({ Login, error }) => {
     <form onSubmit={submitHandler}>
       <div className={styles.form_container}>
         <img src={logo} alt="Protectores de salud" />
-        {error !== "" && <div className="error">{error}</div>}
         <ThemeProvider theme={blue_pds}>
           <TextField
             className={styles.input}
@@ -94,6 +94,11 @@ const LoginForm = ({ Login, error }) => {
             Recuperar contraseña
           </a>
         </div>
+        {error !== "" && (
+          <ErrorNotification>
+            Los datos introducidos no corresponden a ningún usuario.
+          </ErrorNotification>
+        )}
         <input className={styles.blue_button} type="submit" value="Login" />
       </div>
     </form>

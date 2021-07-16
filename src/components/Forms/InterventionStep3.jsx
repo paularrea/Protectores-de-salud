@@ -1,77 +1,95 @@
 import React from "react";
 import styles from "./form.module.scss";
-import step3 from "../../img/steps/step3.png";
+// import * as Yup from "yup";
 import Element from "./components/ElementForm";
 import Chapter from "./components/Chapter/chapter";
+import step3 from "../../img/steps/step3.png";
 
-function Step3({ refProp, prevPage, ...props }) {
-  if (props.step !== 3) {
-    return null;
-  }
+const Step3 = ({ refProp, ...props }) => {
   const cuestionario = props.questionaryData
     ? props.questionaryData.map((question, i) => (
         <Element key={i} question={question} />
       ))
     : null;
 
-  let chapterOne = cuestionario.reduce(function (filteredGroup, question) {
-    if (question.props.question.chapter_name === "Seguro médico") {
-      filteredGroup.push(question);
-    }
-    return filteredGroup;
-  }, []);
-  let chapterTwo = cuestionario.reduce(function (filteredGroup, question) {
-    if (question.props.question.chapter_name === "Información general") {
-      filteredGroup.push(question);
-    }
-    return filteredGroup;
-  }, []);
-  let chapterThree = cuestionario.reduce(function (filteredGroup, question) {
-    if (question.props.question.chapter_name === "Hogar") {
-      filteredGroup.push(question);
-    }
-    return filteredGroup;
-  }, []);
-  let chapterFour = cuestionario.reduce(function (filteredGroup, question) {
-    if (question.props.question.chapter_name === "Acceso a servicios") {
-      filteredGroup.push(question);
-    }
-    return filteredGroup;
-  }, []);
-  let chapterFive = cuestionario.reduce(function (filteredGroup, question) {
-    if (question.props.question.chapter_name === "Entorno") {
-      filteredGroup.push(question);
-    }
-    return filteredGroup;
-  }, []);
-  let chapterSix = cuestionario.reduce(function (filteredGroup, question) {
-    if (question.props.question.chapter_name === "Historial Médico") {
-      filteredGroup.push(question);
-    }
-    return filteredGroup;
-  }, []);
+  let chapterOne =
+    cuestionario &&
+    cuestionario.reduce(function (filteredGroup, question) {
+      if (question.props.question.chapter_name === "Seguro médico") {
+        filteredGroup.push(question);
+      }
+      return filteredGroup;
+    }, []);
+  let chapterTwo =
+    cuestionario &&
+    cuestionario.reduce(function (filteredGroup, question) {
+      if (question.props.question.chapter_name === "Información general") {
+        filteredGroup.push(question);
+      }
+      return filteredGroup;
+    }, []);
+  let chapterThree =
+    cuestionario &&
+    cuestionario.reduce(function (filteredGroup, question) {
+      if (question.props.question.chapter_name === "Hogar") {
+        filteredGroup.push(question);
+      }
+      return filteredGroup;
+    }, []);
+  let chapterFour =
+    cuestionario &&
+    cuestionario.reduce(function (filteredGroup, question) {
+      if (question.props.question.chapter_name === "Acceso a servicios") {
+        filteredGroup.push(question);
+      }
+      return filteredGroup;
+    }, []);
+  let chapterFive =
+    cuestionario &&
+    cuestionario.reduce(function (filteredGroup, question) {
+      if (question.props.question.chapter_name === "Entorno") {
+        filteredGroup.push(question);
+      }
+      return filteredGroup;
+    }, []);
+  let chapterSix =
+    cuestionario &&
+    cuestionario.reduce(function (filteredGroup, question) {
+      if (question.props.question.chapter_name === "Historial Médico") {
+        filteredGroup.push(question);
+      }
+      return filteredGroup;
+    }, []);
+
+  const questionnaireInChapters = (
+    <div name="questionnairePDS">
+      <Chapter questions={chapterOne} />
+      <Chapter questions={chapterTwo} />
+      <Chapter questions={chapterThree} />
+      <Chapter questions={chapterFour} />
+      <Chapter questions={chapterFive} />
+      <Chapter questions={chapterSix} />
+    </div>
+  );
 
   return (
     <div className={styles.container}>
-      <div className={styles.fixed_header}>
-        <div className={styles.header}>
-          <div>
-            <img src={step3} alt="step3" />
-            <p>PASO {props.step}</p>
-            <h2>Cuestionario</h2>
-          </div>
-        </div>
+      <div ref={refProp} className={styles.content}>
+        {questionnaireInChapters.props.children}
       </div>
-        <div ref={refProp} className={styles.content}>
-          <Chapter questions={chapterOne} />
-          <Chapter questions={chapterTwo} />
-          <Chapter questions={chapterThree} />
-          <Chapter questions={chapterFour} />
-          <Chapter questions={chapterFive} />
-          <Chapter questions={chapterSix} />
-        </div>
     </div>
   );
-}
+};
+
+Step3.label = "Cuestionario";
+
+// Step3.validationSchema = Yup.object().shape({
+//   checkboxGroup: Yup.array().min(1, "at least one must be selected"),
+//   radioGroup: Yup.string().required("radio group required"),
+//   select: Yup.string().required('select one field!'),
+//   editable: Yup.string().required('editable!'),
+// });
+
+Step3.Img = step3;
 
 export default Step3;

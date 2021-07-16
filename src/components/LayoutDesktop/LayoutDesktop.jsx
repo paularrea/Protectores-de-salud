@@ -20,7 +20,7 @@ const LayoutDesktop = () => {
       </MediaQuery>
       <MediaQuery minWidth={1026}>
         <div style={{ width: "80%", marginTop: "15%" }}>
-          <h3 style={{ marginBottom: "1rem", marginLeft: "2rem" }}>
+          <h3 style={{ marginBottom: "1rem" }}>
             Mis notificaciones
           </h3>
           <NotificationList user={contextUser} />

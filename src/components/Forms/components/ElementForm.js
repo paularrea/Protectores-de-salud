@@ -101,13 +101,13 @@ const Element = ({
       return (
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
-          <Field
-            type="text"
-            variant="outlined"
-            name={question_uuid}
-            margin="none"
-            component={TextField}
-          />
+            <Field
+              type="text"
+              variant="outlined"
+              name={question_uuid}
+              margin="none"
+              component={TextField}
+            />
         </div>
       );
     case "MULTI_BOXES":

@@ -85,6 +85,7 @@ const PDSSignature = ({ setIsPDSSigned, setPdsSign, pdsSign, props }) => {
         </MediaQuery>
         <button
           className={styles.clear}
+          type='button'
           onClick={() => {
             signatureRef.current.clear();
             saveSignature(null);

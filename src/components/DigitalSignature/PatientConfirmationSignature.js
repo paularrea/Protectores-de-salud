@@ -88,6 +88,7 @@ const PatientConfirmationSignature = ({
         </MediaQuery>
         <button
           className={styles.clear}
+          type='button'
           onClick={() => {
             signatureRef.current.clear();
             saveSignature(null);
@@ -96,6 +97,7 @@ const PatientConfirmationSignature = ({
           <img src={clear} alt="Borrar firma" />
         </button>
       </div>
+
     </section>
   );
 };

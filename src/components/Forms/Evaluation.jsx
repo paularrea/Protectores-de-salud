@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Form, Formik } from "formik";
 
 import styles from "./form.module.scss";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect, useLocation, Link } from "react-router-dom";
 import { Stepper } from "@material-ui/core";
 import SwipeableViews from "react-swipeable-views";
 import arrow from "../../img/arrow_back.png";
@@ -45,7 +45,7 @@ const blue_pds = createMuiTheme({
 
 const Evaluation = (props) => {
   const location = useLocation();
-  const topRef = useRef(null);
+  const topRefEv = useRef(null);
   const [evaluationData, setEvaluationData] = useState();
   const [activeStep, setActiveStep] = useState(0);
   const [isSent, sendForm] = useState(false);
@@ -70,7 +70,7 @@ const Evaluation = (props) => {
   };
   const handlePrev = () => {
     if (window.innerWidth > 1026) {
-      topRef.current.scrollIntoView();
+      topRefEv.current.scrollIntoView();
     } else {
       window.scrollTo(0, 0);
     }
@@ -79,7 +79,7 @@ const Evaluation = (props) => {
 
   const handleNext = () => {
     if (window.innerWidth > 1026) {
-      topRef.current.scrollIntoView();
+      topRefEv.current.scrollIntoView();
     } else {
       window.scrollTo(0, 0);
     }
@@ -160,7 +160,7 @@ const Evaluation = (props) => {
                             values={values}
                             interventionId={interventionId}
                             evaluationData={evaluationData}
-                            refProp={topRef}
+                            refProp={topRefEv}
                             key={index}
                           />
                         </ThemeProvider>
@@ -169,13 +169,25 @@ const Evaluation = (props) => {
                   </SwipeableViews>
                   <div className={styles.fixed_container}>
                     <div className={styles.fixed}>
-                      <button
-                        disabled={activeStep === 0 || isSubmitting}
-                        type="button"
-                        onClick={handlePrev}
-                      >
-                        <img src={arrow} alt="go back" />
-                      </button>
+                      {activeStep !== 0 ? (
+                        <button
+                          disabled={activeStep === 0 || isSubmitting}
+                          type="button"
+                          onClick={handlePrev}
+                        >
+                          <img src={arrow} alt="go back" />
+                        </button>
+                      ) : (
+                        <Link
+                          to={{
+                            pathname: "/",
+                          }}
+                        >
+                          <button>
+                            <img src={arrow} alt="go back" />
+                          </button>
+                        </Link>
+                      )}
                       {activeStep === 1 ? (
                         <button className={styles.green_button} type="submit">
                           Aceptar y enviar

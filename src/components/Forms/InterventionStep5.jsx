@@ -1,52 +1,57 @@
 import React from "react";
-import { Checkboxes } from "mui-rff";
+import * as Yup from "yup";
 import styles from "./form.module.scss";
-import step5 from "../../img/steps/step6.png";
+import { Field, ErrorMessage } from "formik";
 import notiStyles from "../Notifications/notificaciones.module.scss";
 import campana from "../../img/campana.png";
+import step5 from "../../img/steps/step5.png"
 
-function Step5(props) {
-  if (props.step !== 5) {
-    return null;
-  }
+const Step5 = (props) => {
   return (
     <div className={styles.container}>
-      <div className={styles.fixed_header}>
-        <div className={styles.header}>
-          <div>
-            <img src={step5} alt="Step5" />
-            <p>PASO {props.step}</p>
-            <h2>Finalizar Intervención y Enviar</h2>
-          </div>
-        </div>
-      </div>
       <div
         ref={props.topRef}
         style={{ paddingTop: "2rem" }}
         className={styles.content}
       >
-        <Checkboxes
-          color="primary"
-          name="submit_form"
-          formControlProps={{ margin: "none" }}
-          fieldProps={{validate: props.required('Rellena este campo para finalizar y enviar la intervención')}}
-          formGroupProps={{ row: false }}
-          data={{
-            label: "Estoy conforme y quiero finalizar el proceso",
-            value: true,
-          }}
-        />
-
+        <div style={{ display: "flex", flexDirection: "column" }}>
+              <ErrorMessage
+                name="acceptAndSent"
+                component="div"
+                className={styles.error_message}
+              />
+            </div>
+          <label
+            style={{
+              cursor: "pointer",
+              marginBottom: "1rem",
+              fontWeight: 700,
+            }}
+          >
+            <Field
+              style={{
+                cursor: "pointer",
+                margin: "1rem",
+                marginLeft: 0,
+                width: "16px",
+                height: "16px",
+              }}
+              type="checkbox"
+              name="acceptAndSent"
+            />
+            Estoy conforme y quiero finalizar el proceso
+          </label>
         <div className={styles.noti_content}>
           <div
             style={{
               backgroundColor: "#FFF2F7",
               borderLeft: "2px solid #FF2E79",
               margin: 0,
+              marginTop:'2rem'
             }}
             className={notiStyles.notificaciones_container}
           >
-            <p>
+            <p style={{ padding: 0 }}>
               AVISO: Si acepta, la intervención se dará por finalizada y ya no
               podrá modificar la información introducida.
             </p>
@@ -58,5 +63,17 @@ function Step5(props) {
       </div>
     </div>
   );
-}
+};
+
+Step5.label = "Finalizar Intervención y Enviar";
+
+Step5.validationSchema = Yup.object().shape({
+  acceptAndSent: Yup.bool().oneOf(
+    [true],
+    "Accept Terms & Conditions is required"
+  ),
+});
+
+Step5.Img = step5
+
 export default Step5;

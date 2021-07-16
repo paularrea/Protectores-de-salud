@@ -4,13 +4,13 @@ import styles from "./form.module.scss";
 import { Field, ErrorMessage } from "formik";
 import notiStyles from "../Notifications/notificaciones.module.scss";
 import campana from "../../img/campana.png";
-import step2 from "../../img/steps/step2.png";
+import step2 from "../../img/steps/evaluation-step2.png";
 
 const EvaluationStep2 = (props) => {
   return (
     <div className={styles.container}>
       <div
-        ref={props.topRef}
+        ref={props.refProp}
         style={{ paddingTop: "2rem" }}
         className={styles.content}
       >

@@ -1,54 +1,50 @@
-import React from "react";
-import step4 from "../../img/steps/step4.png";
+import React, { useContext } from "react";
+import { UserContext } from "../../UserContext.js";
 import PatientConfirmationSignature from "../DigitalSignature/PatientConfirmationSignature";
 import styles from "./form.module.scss";
+import step4 from "../../img/steps/step4.png"
 
-function Step4(props) {
-  if (props.step !== 4) {
-    return null;
-  }
-  const name = props.user.supervisor_name;
+const Step4 = (props) => {
+  const { contextUser } = useContext(UserContext);
+  const name = contextUser && contextUser.supervisor_name;
   const date =
     props.patientDate.split(",")[1] + props.patientDate.split(",")[2];
 
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.fixed_header}>
-          <div className={styles.header}>
-            <div>
-              <img src={step4} alt="step4" />
-              <p>PASO {props.step}</p>
-              <h2>Conformidad Paciente</h2>
-            </div>
-          </div>
-        </div>
-          <div ref={props.refProp} className={styles.legal_container}>
-            <p className={styles.grey_text}>
-              Por favor, lea atentamente este texto legal y firme si está
-              conforme.
+        <div ref={props.refProp} className={styles.legal_container}>
+          <p className={styles.grey_text}>
+            Por favor, lea atentamente este texto legal y firme si está
+            conforme.
+          </p>
+          <div>
+            <h4>
+              CERTIFICACIÓN VALIDANDO INTERVENCIÓN/SERVICIO DE PROTECTOR DE
+              SALUD
+            </h4>
+            <p>
+              Certifico que, {name}, representante de Protectores de Salud,
+              completó intervención durante el {date}. Certifico que
+              representante presentó su identificación y que la información
+              brindada por mí es veraz y completa de acuerdo a mi mejor
+              conocimiento y sin que haya mediado coacción o intimidación de
+              clase alguna.
             </p>
-            <div>
-              <h4>
-                CERTIFICACIÓN VALIDANDO INTERVENCIÓN/SERVICIO DE PROTECTOR DE
-                SALUD
-              </h4>
-              <p>
-                Certifico que, {name}, representante de Protectores de Salud,
-                completó intervención durante el {date}. Certifico que
-                representante presentó su identificación y que la información
-                brindada por mí es veraz y completa de acuerdo a mi mejor
-                conocimiento y sin que haya mediado coacción o intimidación de
-                clase alguna.
-              </p>
-            </div>
-            <PatientConfirmationSignature
-              setIsConfirmationSigned={props.setIsConfirmationSigned}
-            />
           </div>
+          <PatientConfirmationSignature
+            setIsConfirmationSigned={props.setIsConfirmationSigned}
+            confirmationSign={props.confirmationSign}
+            setConfirmationSign={props.setConfirmationSign}
+          />
+        </div>
       </div>
     </>
   );
-}
+};
+
+Step4.label = "Conformidad Paciente";
+
+Step4.Img = step4
 
 export default Step4;

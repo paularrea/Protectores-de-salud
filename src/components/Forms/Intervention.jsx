@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { Form, Formik } from "formik";
-
 import styles from "./form.module.scss";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect, useLocation, Link } from "react-router-dom";
 import { Stepper } from "@material-ui/core";
 import SwipeableViews from "react-swipeable-views";
 import arrow from "../../img/arrow_back.png";
@@ -13,11 +12,11 @@ import { UserContext } from "../../UserContext.js";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import "./form.css";
 
-import Step1 from "./FormikStep1";
-import Step2 from "./FormikStep2";
-import Step3 from "./FormikStep3";
-import Step4 from "./FormikStep4";
-import Step5 from "./FormikStep5";
+import Step1 from "./InterventionStep1";
+import Step2 from "./InterventionStep2";
+import Step3 from "./InterventionStep3";
+import Step4 from "./InterventionStep4";
+import Step5 from "./InterventionStep5";
 
 const steps = [Step1, Step2, Step3, Step4, Step5];
 
@@ -122,9 +121,10 @@ const Intervention = (props) => {
   //   }),
   //   {}
   // );
-  
+
   const ActiveStep = steps[activeStep];
   const validationSchema = ActiveStep.validationSchema;
+
   return (
     <div className={desktopStyle.container}>
       <div className={desktopStyle.flex_desktop}>
@@ -174,12 +174,8 @@ const Intervention = (props) => {
                     </div>
                   </div>
 
-                  <SwipeableViews
-                    disabled
-                    index={activeStep}
-                  >
+                  <SwipeableViews disabled index={activeStep}>
                     {steps.map((step, index) => {
-
                       const Component = steps[index];
                       return (
                         <ThemeProvider theme={blue_pds}>
@@ -205,13 +201,25 @@ const Intervention = (props) => {
                   </SwipeableViews>
                   <div className={styles.fixed_container}>
                     <div className={styles.fixed}>
-                      <button
-                        disabled={activeStep === 0 || isSubmitting}
-                        type="button"
-                        onClick={handlePrev}
-                      >
-                        <img src={arrow} alt="go back" />
-                      </button>
+                      {activeStep !== 0 ? (
+                        <button
+                          disabled={activeStep === 0 || isSubmitting}
+                          type="button"
+                          onClick={handlePrev}
+                        >
+                          <img src={arrow} alt="go back" />
+                        </button>
+                      ) : (
+                        <Link
+                          to={{
+                            pathname: "/",
+                          }}
+                        >
+                          <button>
+                            <img src={arrow} alt="go back" />
+                          </button>
+                        </Link>
+                      )}
                       {activeStep === 1 && (
                         <button
                           disabled={!isPDSSigned}

@@ -1,24 +1,12 @@
 import React from "react";
-import step2 from "../../img/steps/step2.png";
 import PDSSignature from "../DigitalSignature/PDSSignature";
 import styles from "./form.module.scss";
+import step2 from "../../img/steps/step2.png"
 
-const Step2 = ({ setIsPDSSigned, refProp, prevPage, ...props }) => {
-  if (props.step !== 2) {
-    return null;
-  }
+const Step2 = ({ setIsPDSSigned, pdsSign, setPdsSign, refProp}) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.fixed_header}>
-        <div className={styles.header}>
-        <div>
-            <img src={step2} alt="step2" />
-            <p>PASO {props.step}</p>
-            <h2>Aceptación programa PDS</h2>
-          </div>
-        </div>
-      </div>
         <div ref={refProp} className={styles.legal_container}>
           <p className={styles.grey_text}>
             Por favor, lea atentamente este texto legal y firme si está
@@ -128,10 +116,13 @@ const Step2 = ({ setIsPDSSigned, refProp, prevPage, ...props }) => {
               de mis derechos legales.
             </p>
           </div>
-          <PDSSignature {...props.wizzard} setIsPDSSigned={setIsPDSSigned} />
+          <PDSSignature setIsPDSSigned={setIsPDSSigned} pdsSign={pdsSign} setPdsSign={setPdsSign} />
         </div>
     </div>
   );
 };
+
+Step2.label = 'Aceptación programa PDS';
+Step2.Img = step2
 
 export default Step2;
