@@ -52,7 +52,7 @@ const EvaluationStep2 = (props) => {
             className={notiStyles.notificaciones_container}
           >
             <p style={{ padding: 0 }}>
-              AVISO: Si acepta, la intervención se dará por finalizada y ya no
+              AVISO: Si acepta, la evaluación se dará por finalizada y ya no
               podrá modificar la información introducida.
             </p>
             <div className={notiStyles.icon}>

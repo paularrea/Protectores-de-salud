@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import styles from "./digitalSignature.module.scss";
 import clear from "../../img/clear.png";
@@ -17,9 +17,9 @@ const PatientConfirmationSignature = ({
     setIsConfirmationSigned(true);
   };
 
-  useEffect(() => {
-    console.log({ firmaPaciente2: confirmationSign });
-  }, [confirmationSign]);
+  // useEffect(() => {
+  //   console.log({ firmaPaciente2: confirmationSign });
+  // }, [confirmationSign]);
 
   return (
     <section className={styles.signature_container}>

@@ -21,7 +21,7 @@ const Burger = ({ user, Logout }) => {
       <Menu
         customBurgerIcon={
           <div className="burger-icon">
-            <p>{UserFirstLetter}</p>
+            {UserFirstLetter} <div className="red-dot"></div>
           </div>
         }
         right

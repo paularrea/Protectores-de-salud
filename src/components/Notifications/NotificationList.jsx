@@ -1,33 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./notificaciones.module.scss";
 import campana from "../../img/campana.png";
 import alert from "../../img/alert.png";
-import { useTracking } from "react-tracking";
+import { UserContext } from "../../UserContext";
 
 const NotificationList = ({ user }) => {
+  const { contextUser } = useContext(UserContext);
   const [allNotifications, setAllNotifications] = useState();
   const [closeRedNotification, setCloseRedNotification] = useState(false);
   const [closeBlueNotification, setCloseBlueNotification] = useState(false);
-  const { trackEvent } = useTracking();
+  const [notifSent, setNotifSent] = useState({});
 
   useEffect(() => {
-    setAllNotifications(user ? user.notifications.map((item) => item) : null);
-  }, [user]);
+    setAllNotifications(
+      contextUser ? contextUser.notifications.map((item) => item) : null
+    );
+
+    setNotifSent({
+      action: "NOTIF_SENT",
+      LocalDateAndTime: new Date().toString(),
+      UTCDateAndTime: new Date().toUTCString(),
+      userAgent: navigator.userAgent,
+      userId: contextUser && contextUser.id,
+    });
+  }, [contextUser, user]);
 
   const closeRedNoti = () => {
-    console.log(
-      user &&
-        trackEvent({
-          action: "NOTIF_SENT",
-          date: new Date(),
-          userId: user.id,
-        }),
-      "traking"
-    );
+    // NOTIF_SENT
+    console.log(user && notifSent, "NOTIF_SENT");
     setCloseRedNotification(true);
     sessionStorage.setItem("Red noti", "closed");
   };
   const closeBlueNoti = () => {
+    console.log(user && notifSent, "NOTIF_SENT");
     setCloseBlueNotification(true);
     sessionStorage.setItem("Blue noti", "closed");
   };

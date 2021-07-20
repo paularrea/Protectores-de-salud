@@ -12,7 +12,8 @@ const Step3 = ({ refProp, ...props }) => {
       ))
     : null;
 
-  let chapterOne =
+    
+    let chapterOne =
     cuestionario &&
     cuestionario.reduce(function (filteredGroup, question) {
       if (question.props.question.chapter_name === "Seguro médico") {
@@ -20,7 +21,7 @@ const Step3 = ({ refProp, ...props }) => {
       }
       return filteredGroup;
     }, []);
-  let chapterTwo =
+    let chapterTwo =
     cuestionario &&
     cuestionario.reduce(function (filteredGroup, question) {
       if (question.props.question.chapter_name === "Información general") {
@@ -28,7 +29,7 @@ const Step3 = ({ refProp, ...props }) => {
       }
       return filteredGroup;
     }, []);
-  let chapterThree =
+    let chapterThree =
     cuestionario &&
     cuestionario.reduce(function (filteredGroup, question) {
       if (question.props.question.chapter_name === "Hogar") {
@@ -36,7 +37,7 @@ const Step3 = ({ refProp, ...props }) => {
       }
       return filteredGroup;
     }, []);
-  let chapterFour =
+    let chapterFour =
     cuestionario &&
     cuestionario.reduce(function (filteredGroup, question) {
       if (question.props.question.chapter_name === "Acceso a servicios") {
@@ -44,7 +45,7 @@ const Step3 = ({ refProp, ...props }) => {
       }
       return filteredGroup;
     }, []);
-  let chapterFive =
+    let chapterFive =
     cuestionario &&
     cuestionario.reduce(function (filteredGroup, question) {
       if (question.props.question.chapter_name === "Entorno") {
@@ -52,7 +53,7 @@ const Step3 = ({ refProp, ...props }) => {
       }
       return filteredGroup;
     }, []);
-  let chapterSix =
+    let chapterSix =
     cuestionario &&
     cuestionario.reduce(function (filteredGroup, question) {
       if (question.props.question.chapter_name === "Historial Médico") {
@@ -60,9 +61,9 @@ const Step3 = ({ refProp, ...props }) => {
       }
       return filteredGroup;
     }, []);
-
-  const questionnaireInChapters = (
-    <div name="questionnairePDS">
+    
+    const questionnaireInChapters = (
+      <div name="questionnairePDS">
       <Chapter questions={chapterOne} />
       <Chapter questions={chapterTwo} />
       <Chapter questions={chapterThree} />
@@ -71,7 +72,7 @@ const Step3 = ({ refProp, ...props }) => {
       <Chapter questions={chapterSix} />
     </div>
   );
-
+  
   return (
     <div className={styles.container}>
       <div ref={refProp} className={styles.content}>
@@ -83,12 +84,7 @@ const Step3 = ({ refProp, ...props }) => {
 
 Step3.label = "Cuestionario";
 
-// Step3.validationSchema = Yup.object().shape({
-//   checkboxGroup: Yup.array().min(1, "at least one must be selected"),
-//   radioGroup: Yup.string().required("radio group required"),
-//   select: Yup.string().required('select one field!'),
-//   editable: Yup.string().required('editable!'),
-// });
+// Step3.validationSchema = Yup.object().required('required!')
 
 Step3.Img = step3;
 

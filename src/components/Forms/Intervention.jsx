@@ -57,6 +57,11 @@ const Intervention = (props) => {
   const [confirmationSign, setConfirmationSign] = useState("");
   const [isConfirmationSigned, setIsConfirmationSigned] = useState(false);
   const [questionaryData, setQuestionaryData] = useState(null);
+  const [formDataEvent, setFormDataEvent] = useState({
+    LocalDateAndTime: new Date().toString(),
+    UTCDateAndTime: new Date().toUTCString(),
+    userAgent: navigator.userAgent,
+  });
 
   const patient = location.state.patient;
   const patientDate = location.state.patientDate;
@@ -84,10 +89,20 @@ const Intervention = (props) => {
     } else {
       window.scrollTo(0, 0);
     }
+    setFormDataEvent({
+      ...formDataEvent,
+      action: "FORM_DATA_PREV",
+      step: activeStep + 1,
+      interventionId: interventionId,
+      userId: contextUser.id,
+      pdsSignature: pdsSign,
+      confirmationSignature: confirmationSign,
+    });
+    console.log(formDataEvent, "FORM_DATA_PREV");
     setActiveStep(Math.max(activeStep - 1, 0));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (window.innerWidth > 1026) {
       topRef.current.scrollIntoView();
     } else {
@@ -96,22 +111,30 @@ const Intervention = (props) => {
     setActiveStep(Math.min(activeStep + 1, steps.length - 1));
   };
 
-  const onSubmit = (values, formikBag) => {
-    const { setSubmitting } = formikBag;
-    isLastStep() && sendForm(true);
-    if (!isLastStep()) {
-      setSubmitting(false);
-      handleNext();
-      return;
-    }
-    console.log({
-      PDSform: values,
+  function _sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  const onSubmit = async (values) => {
+    await _sleep(1000);
+    setFormDataEvent({
+      ...formDataEvent,
+      action: "FORM_DATA_NEXT",
+      PDSform: await values,
+      step: activeStep + 1,
+      interventionId: interventionId,
+      userId: contextUser.id,
       pdsSignature: pdsSign,
       confirmationSignature: confirmationSign,
     });
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 1000);
+    console.log(formDataEvent, "FORM_DATA_NEXT");
+
+    if (!isLastStep()) {
+      handleNext();
+      return;
+    } else {
+      alert(JSON.stringify(values, null, 2));
+      sendForm(true);
+    }
   };
 
   // const initialValues = steps.reduce(

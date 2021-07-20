@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import styles from "./digitalSignature.module.scss";
 import clear from "../../img/clear.png";
@@ -12,11 +12,11 @@ const PDSSignature = ({ setIsPDSSigned, setPdsSign, pdsSign, props }) => {
     setPdsSign(signature);
     setIsPDSSigned(true);
   };
-  useEffect(() => {
-    console.log({
-      firmaPaciente: pdsSign,
-    });
-  }, [pdsSign]);
+  // useEffect(() => {
+  //   console.log({
+  //     firmaPaciente: pdsSign,
+  //   });
+  // }, [pdsSign]);
 
   return (
     <section {...props} className={styles.signature_container}>

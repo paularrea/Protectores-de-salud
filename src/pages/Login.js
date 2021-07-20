@@ -16,6 +16,7 @@ const Login = () => {
     password: "",
     data: {},
   });
+  const [userLoggedEvent, setUserLoggedEvent] = useState({});
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -32,16 +33,22 @@ const Login = () => {
           password: data[0].supervisor_password,
           data: data[0],
         });
+        setUserLoggedEvent({
+          action: "USER_LOGGED",
+          LocalDateAndTime: new Date().toString(),
+          UTCDateAndTime: new Date().toUTCString(),
+          userAgent: navigator.userAgent,
+          userId: data[0].id,
+        });
       });
   }, []);
 
   const Login = (details) => {
-    console.log(details);
     if (
       details.username === dbUser.username &&
       details.password === dbUser.password
     ) {
-      console.log("logged in!");
+      console.log(userLoggedEvent, "USER_LOGGED_EVENT");
       setUser({
         username: details.username,
         password: details.password,
