@@ -274,7 +274,7 @@ const Intervention = (props) => {
                           Confirmar y seguir
                         </button>
                       )}
-                      {activeStep === 4 && (
+                      {activeStep === 4 &&  (
                         <button className={styles.green_button} type="submit">
                           Aceptar y enviar
                         </button>
