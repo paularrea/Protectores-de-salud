@@ -205,7 +205,14 @@ const Evaluation = (props) => {
               </>
             )}
           </Formik>
-          {isSent && <Redirect to="/success-form" />}
+          {isSent && (
+            <Redirect
+              to={{
+                pathname: "/success-form",
+                state: { interventionType: "EVALUATION" },
+              }}
+            />
+          )}
         </div>
       </div>
     </div>

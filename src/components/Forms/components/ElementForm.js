@@ -111,6 +111,8 @@ const Element = ({
             <Field
               type="text"
               variant="outlined"
+              multiline
+              rowsMax={4}
               name={question_uuid}
               margin="none"
               component={TextField}

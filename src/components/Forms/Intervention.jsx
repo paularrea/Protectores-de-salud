@@ -57,11 +57,7 @@ const Intervention = (props) => {
   const [confirmationSign, setConfirmationSign] = useState("");
   const [isConfirmationSigned, setIsConfirmationSigned] = useState(false);
   const [questionaryData, setQuestionaryData] = useState(null);
-  const [formDataEvent, setFormDataEvent] = useState({
-    LocalDateAndTime: new Date().toString(),
-    UTCDateAndTime: new Date().toUTCString(),
-    userAgent: navigator.userAgent,
-  });
+  const [formDataEvent, setFormDataEvent] = useState({});
 
   const patient = location.state.patient;
   const patientDate = location.state.patientDate;
@@ -80,25 +76,34 @@ const Intervention = (props) => {
       });
   }, []);
 
+  useEffect(
+    (values) => {
+      setFormDataEvent({
+        local_date_time: new Date().toString(),
+        utc_date_time: new Date().toUTCString(),
+        device_user_agent: navigator.userAgent,
+        action: "INTERVENTION_QUESTIONNAIRE_EVENT",
+        pds_questionnaire: values,
+        step: activeStep + 1,
+        intervention_id: interventionId,
+        user_id: contextUser && contextUser.id,
+        pds_program_signature: pdsSign,
+        confirmation_signature: confirmationSign,
+      });
+    },
+    [activeStep, interventionId, contextUser, pdsSign, confirmationSign]
+  );
+
   const isLastStep = () => {
     return activeStep === steps.length - 1;
   };
-  const handlePrev = () => {
+  const handlePrev = (values) => {
     if (window.innerWidth > 1026) {
       topRef.current.scrollIntoView();
     } else {
       window.scrollTo(0, 0);
     }
-    setFormDataEvent({
-      ...formDataEvent,
-      action: "FORM_DATA_PREV",
-      step: activeStep + 1,
-      interventionId: interventionId,
-      userId: contextUser.id,
-      pdsSignature: pdsSign,
-      confirmationSignature: confirmationSign,
-    });
-    console.log(formDataEvent, "FORM_DATA_PREV");
+    console.log(formDataEvent, "GO_BACK");
     setActiveStep(Math.max(activeStep - 1, 0));
   };
 
@@ -111,23 +116,8 @@ const Intervention = (props) => {
     setActiveStep(Math.min(activeStep + 1, steps.length - 1));
   };
 
-  function _sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
   const onSubmit = async (values) => {
-    await _sleep(1000);
-    setFormDataEvent({
-      ...formDataEvent,
-      action: "FORM_DATA_NEXT",
-      PDSform: await values,
-      step: activeStep + 1,
-      interventionId: interventionId,
-      userId: contextUser.id,
-      pdsSignature: pdsSign,
-      confirmationSignature: confirmationSign,
-    });
-    console.log(formDataEvent, "FORM_DATA_NEXT");
-
+    console.log(formDataEvent);
     if (!isLastStep()) {
       handleNext();
       return;
@@ -273,7 +263,7 @@ const Intervention = (props) => {
                           Confirmar y seguir
                         </button>
                       )}
-                      {activeStep === 4 &&  (
+                      {activeStep === 4 && (
                         <button className={styles.green_button} type="submit">
                           Aceptar y enviar
                         </button>
@@ -286,7 +276,14 @@ const Intervention = (props) => {
               </>
             )}
           </Formik>
-          {isSent && <Redirect to="/success-form" />}
+          {isSent && (
+            <Redirect
+              to={{
+                pathname: "/success-form",
+                state: { interventionType: "INTERVENTION" },
+              }}
+            />
+          )}
         </div>
       </div>
     </div>

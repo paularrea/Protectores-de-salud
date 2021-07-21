@@ -54,11 +54,11 @@ const DetalleCitaDayOne = () => {
     setCurrentPatient(currentPatient);
     setPatientDate(contextUser && contextUser.agenda.day_1.date);
     setCallEvent({
-      action: "CALL_EVENT",
-      LocalDateAndTime: new Date().toString(),
-      UTCDateAndTime: new Date().toUTCString(),
-      userAgent: navigator.userAgent,
-      userId: contextUser && contextUser.id,
+      action: "CALL",
+      local_date_time: new Date().toString(),
+      utc_date_time: new Date().toUTCString(),
+      device_user_agent: navigator.userAgent,
+      user_id: contextUser.id,
     });
   }, [contextUser, id]);
 

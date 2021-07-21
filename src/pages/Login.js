@@ -34,11 +34,11 @@ const Login = () => {
           data: data[0],
         });
         setUserLoggedEvent({
-          action: "USER_LOGGED",
-          LocalDateAndTime: new Date().toString(),
-          UTCDateAndTime: new Date().toUTCString(),
-          userAgent: navigator.userAgent,
-          userId: data[0].id,
+          action: "LOGIN",
+          local_date_time: new Date().toString(),
+          utc_date_time: new Date().toUTCString(),
+          device_user_agent: navigator.userAgent,
+          user_id: data[0].id,
         });
       });
   }, []);

@@ -17,13 +17,13 @@ const NotificationList = ({ user }) => {
     );
 
     setNotifSent({
-      action: "NOTIF_SENT",
-      LocalDateAndTime: new Date().toString(),
-      UTCDateAndTime: new Date().toUTCString(),
-      userAgent: navigator.userAgent,
-      userId: contextUser && contextUser.id,
+      action: "NOTIFICATION_ACKNOWLEDGED",
+      local_date_time: new Date().toString(),
+      utc_date_time: new Date().toUTCString(),
+      device_user_agent: navigator.userAgent,
+      user_id: contextUser && contextUser.id,
     });
-  }, [contextUser, user]);
+  }, [contextUser]);
 
   const closeRedNoti = () => {
     // NOTIF_SENT

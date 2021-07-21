@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect, useContext} from "react";
+import { UserContext } from "../UserContext";
 import "../styles/App.scss";
 
 const LegalAdvise = ({ accept, setAccept }) => {
+  const { contextUser } = useContext(UserContext);
+  const [legalAdviceEvent, setLegalAdviceEvent] = useState({});
   const handleAccept = () => {
     setAccept(true);
-    sessionStorage.setItem("Legal advise", 'accepted');
+    sessionStorage.setItem("Legal advise", "accepted");
+    console.log(legalAdviceEvent);
   };
+  useEffect(() => {
+    setLegalAdviceEvent({
+      action: "LEGAL_DISCLAIMER_ACCEPTANCE",
+      local_date_time: new Date().toString(),
+      utc_date_time: new Date().toUTCString(),
+      device_user_agent: navigator.userAgent,
+      user_id: contextUser.id,
+    });
+  }, [contextUser]);
   return (
     <div>
       {!accept && (
