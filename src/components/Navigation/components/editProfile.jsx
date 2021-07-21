@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "../../Forms/form.module.scss";
+import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
+import X from "../../../img/X.png";
 import * as Yup from "yup";
 import navStyles from "../navigation.module.scss";
 import {
@@ -27,6 +29,7 @@ const blue_pds = createMuiTheme({
 });
 
 const EditProfile = ({ user, ...props }) => {
+  const history = useHistory();
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -83,181 +86,183 @@ const EditProfile = ({ user, ...props }) => {
   });
 
   return (
-    <Formik
-      initialValues={{
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-      }}
-      validationSchema={validationSchema}
-      onSubmit={submitChangePassword}
-    >
-      {({
-        values,
-        touched,
-        errors,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isValid,
-        isSubmitting,
-      }) => {
-        return (
-          <form
-            className={navStyles.edit_form_container}
-            onSubmit={handleSubmit}
-          >
-            <h2>Cambiar contraseña</h2>
-            <ThemeProvider theme={blue_pds}>
-              <FormControl className={styles.input} variant="outlined">
-                <InputLabel
-                  htmlFor="outlined-adornment-password"
-                  error={Boolean(
-                    touched.currentPassword && errors.currentPassword
-                  )}
-                >
-                  Contraseña actual
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  name="currentPassword"
-                  value={values.currentPassword}
-                  onBlur={handleBlur}
-                  type={showCurrentPassword ? "text" : "password"}
-                  onChange={handleChange}
-                  error={Boolean(
-                    touched.currentPassword && errors.currentPassword
-                  )}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowCurrentPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showCurrentPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  labelWidth={135}
-                />
-                <FormHelperText
-                  error={Boolean(
-                    touched.currentPassword && errors.currentPassword
-                  )}
-                >
-                  {touched.currentPassword && errors.currentPassword
-                    ? errors.currentPassword
-                    : ""}
-                </FormHelperText>
-              </FormControl>
-              <div style={{ margin: "1rem 0 3rem 0" }}>
-                <a className="link" href="/recuperar-contraseña">
-                  Recuperar contraseña
-                </a>
-              </div>
-              <FormControl className={styles.input} variant="outlined">
-                <InputLabel
-                  htmlFor="outlined-adornment-password"
-                  error={Boolean(touched.newPassword && errors.newPassword)}
-                >
-                  Nueva contraseña
-                </InputLabel>
-                <OutlinedInput
-                  name="newPassword"
-                  value={values.newPassword}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  error={Boolean(touched.newPassword && errors.newPassword)}
-                  id="outlined-adornment-password"
-                  type={showNewPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowNewPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showNewPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  labelWidth={132}
-                />
-                <FormHelperText
-                  error={Boolean(touched.newPassword && errors.newPassword)}
-                >
-                  {touched.newPassword && errors.newPassword
-                    ? errors.newPassword
-                    : ""}
-                </FormHelperText>
-              </FormControl>
-              <div style={{ height: "1rem" }}></div>
-              <FormControl className={styles.input} variant="outlined">
-                <InputLabel
-                  htmlFor="outlined-adornment-password"
-                  error={Boolean(
-                    touched.confirmPassword && errors.confirmPassword
-                  )}
-                >
-                  Confirmar contraseña
-                </InputLabel>
-                <OutlinedInput
-                  name="confirmPassword"
-                  value={values.confirmPassword}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  error={Boolean(
-                    touched.confirmPassword && errors.confirmPassword
-                  )}
-                  id="outlined-adornment-password"
-                  type={showConfirmPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowRepeatNewPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showConfirmPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  labelWidth={157}
-                />{" "}
-                <FormHelperText
-                  error={Boolean(
-                    touched.confirmPassword && errors.confirmPassword
-                  )}
-                >
-                  {touched.confirmPassword && errors.confirmPassword
-                    ? errors.confirmPassword
-                    : ""}
-                </FormHelperText>
-              </FormControl>
-            </ThemeProvider>
-            <button className="green-button" type="submit">
-              Cambiar contraseña
-            </button>
-          </form>
-        );
-      }}
-    </Formik>
+    <>
+      <button className={styles.go_back} onClick={() => history.goBack()}>
+        <img src={X} alt="editar perfil" />
+      </button>
+
+      <Formik
+        initialValues={{
+          currentPassword: "",
+          newPassword: "",
+          confirmPassword: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={submitChangePassword}
+      >
+        {({
+          values,
+          touched,
+          errors,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isValid,
+          isSubmitting,
+        }) => {
+          return (
+            <form
+              className={navStyles.edit_form_container}
+              onSubmit={handleSubmit}
+            >
+              <h2>Cambiar contraseña</h2>
+              <ThemeProvider theme={blue_pds}>
+                <FormControl className={styles.input} variant="outlined">
+                  <InputLabel
+                    htmlFor="outlined-adornment-password"
+                    error={Boolean(
+                      touched.currentPassword && errors.currentPassword
+                    )}
+                  >
+                    Contraseña actual
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    name="currentPassword"
+                    value={values.currentPassword}
+                    onBlur={handleBlur}
+                    type={showCurrentPassword ? "text" : "password"}
+                    onChange={handleChange}
+                    error={Boolean(
+                      touched.currentPassword && errors.currentPassword
+                    )}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowCurrentPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showCurrentPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={135}
+                  />
+                  <FormHelperText
+                    error={Boolean(
+                      touched.currentPassword && errors.currentPassword
+                    )}
+                  >
+                    {touched.currentPassword && errors.currentPassword
+                      ? errors.currentPassword
+                      : ""}
+                  </FormHelperText>
+                </FormControl>
+                <div style={{ margin: "1rem 0 3rem 0" }}>
+                  <a className="link" href="/recuperar-contraseña">
+                    Recuperar contraseña
+                  </a>
+                </div>
+                <FormControl className={styles.input} variant="outlined">
+                  <InputLabel
+                    htmlFor="outlined-adornment-password"
+                    error={Boolean(touched.newPassword && errors.newPassword)}
+                  >
+                    Nueva contraseña
+                  </InputLabel>
+                  <OutlinedInput
+                    name="newPassword"
+                    value={values.newPassword}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    error={Boolean(touched.newPassword && errors.newPassword)}
+                    id="outlined-adornment-password"
+                    type={showNewPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowNewPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showNewPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={132}
+                  />
+                  <FormHelperText
+                    error={Boolean(touched.newPassword && errors.newPassword)}
+                  >
+                    {touched.newPassword && errors.newPassword
+                      ? errors.newPassword
+                      : ""}
+                  </FormHelperText>
+                </FormControl>
+                <div style={{ height: "1rem" }}></div>
+                <FormControl className={styles.input} variant="outlined">
+                  <InputLabel
+                    htmlFor="outlined-adornment-password"
+                    error={Boolean(
+                      touched.confirmPassword && errors.confirmPassword
+                    )}
+                  >
+                    Confirmar contraseña
+                  </InputLabel>
+                  <OutlinedInput
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    error={Boolean(
+                      touched.confirmPassword && errors.confirmPassword
+                    )}
+                    id="outlined-adornment-password"
+                    type={showConfirmPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowRepeatNewPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showConfirmPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={157}
+                  />{" "}
+                  <FormHelperText
+                    error={Boolean(
+                      touched.confirmPassword && errors.confirmPassword
+                    )}
+                  >
+                    {touched.confirmPassword && errors.confirmPassword
+                      ? errors.confirmPassword
+                      : ""}
+                  </FormHelperText>
+                </FormControl>
+              </ThemeProvider>
+              <button className="green-button" type="submit">
+                Cambiar contraseña
+              </button>
+            </form>
+          );
+        }}
+      </Formik>
+    </>
   );
 };
 

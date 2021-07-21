@@ -113,6 +113,13 @@ const SubQuestionElement = ({
             style={{ width: "100%" }}
             component={Select}
             name={question_uuid}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  transform: 'translate3d(0, 0, 0)'
+                } 
+              }   
+            }}
           >
             {sub_response_content.map((answer, key) => (
               <MenuItem key={key} value={answer}>

@@ -22,6 +22,7 @@
     align-items: flex-start;
     justify-content: center;
     margin: 2rem;
+    margin-top: 6rem;
     h2{
         font-size: 18px;
         font-weight: 700;
@@ -30,7 +31,7 @@
 }
 .mobile_menu{
     width: 100vw;
-    button{
+    a, button{
         padding: 23px 0;
         width: 100% !important;
         display: flex;
@@ -64,6 +65,7 @@
             font-size: 32px;
             padding-bottom: 3rem;
         }
+        margin-top: 2rem;
     }
     .burger_desktop_container{
         background-color: #144892;

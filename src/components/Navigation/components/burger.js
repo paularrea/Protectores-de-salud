@@ -31,7 +31,6 @@ const Burger = ({ user, Logout }) => {
         <MediaQuery maxWidth={1024}>
           <nav className={styles.mobile_menu}>
             <h3 style={{ paddingBottom: "2rem" }}>Mi perfil</h3>
-            <button>
               <Link
                 to={{
                   pathname: "/edit-profile",
@@ -41,11 +40,10 @@ const Burger = ({ user, Logout }) => {
                 }}
               >
                 <p>Cambiar contraseña</p>
-              </Link>
               <div>
                 <img src={arrow} alt="editar perfil" />
               </div>
-            </button>
+              </Link>
             <button
               className={styles.logout}
               style={{ borderBottom: "2px solid #00000033" }}

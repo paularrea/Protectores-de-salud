@@ -18,7 +18,7 @@ const BurgerDesktop = ({ user, Logout, UserFirstLetter, setMenuOpen }) => {
           <button>
             <div>
               <p>Cambiar contraseña</p> <img src={arrow} alt="editar perfil" />
-            </div>{" "}
+            </div>
           </button>
           <button
             style={{ borderBottom: "1px solid #0057ff33" }}
@@ -26,7 +26,7 @@ const BurgerDesktop = ({ user, Logout, UserFirstLetter, setMenuOpen }) => {
           >
             <div className={styles.logout}>
               <p>Logout</p> <img src={logout_logo} alt="logout" />
-            </div>{" "}
+            </div>
           </button>
           <div className={styles.blue_button_container}>
             <button
