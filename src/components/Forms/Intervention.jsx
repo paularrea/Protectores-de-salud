@@ -132,7 +132,6 @@ const Intervention = (props) => {
       handleNext();
       return;
     } else {
-      alert(JSON.stringify(values, null, 2));
       sendForm(true);
     }
   };

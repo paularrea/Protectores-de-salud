@@ -115,6 +115,7 @@ const Element = ({
         <div style={{ margin: "1rem 0 2rem 0" }}>
           <h4 className={styles.question_title}>{question_content}</h4>
           <div
+          className="checkbox-group"
             role="group"
             aria-labelledby="checkbox-group"
             style={{ display: "flex", flexDirection: "column" }}
@@ -140,6 +141,7 @@ const Element = ({
                   value={answer}
                 />
                 {answer}
+                <span></span>
               </label>
             ))}
           </div>

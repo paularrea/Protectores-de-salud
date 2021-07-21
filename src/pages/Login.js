@@ -82,7 +82,9 @@ const Login = () => {
           {sessionStorage.getItem("Legal advise") !== "accepted" && (
             <LegalAdvise accept={accept} setAccept={setAccept} />
           )}
-          <Dashboard Logout={Logout} user={user} />
+          {sessionStorage.getItem("Legal advise") === "accepted" && (
+            <Dashboard Logout={Logout} user={user} />
+          )}
         </>
       ) : (
         <>

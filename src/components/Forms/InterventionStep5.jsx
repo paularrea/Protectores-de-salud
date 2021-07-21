@@ -31,8 +31,7 @@ const Step5 = (props) => {
             <Field
               style={{
                 cursor: "pointer",
-                margin: "1rem",
-                marginLeft: 0,
+                marginRight: "1rem",
                 width: "16px",
                 height: "16px",
               }}
