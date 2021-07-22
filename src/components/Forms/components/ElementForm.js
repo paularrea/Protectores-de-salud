@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Field } from "formik";
+import { Field, ErrorMessage } from "formik";
 import { TextField, Select } from "formik-material-ui";
 import { MenuItem } from "@material-ui/core";
 import styles from "../form.module.scss";
@@ -43,6 +43,11 @@ const Element = ({
     case "CHECK_BOXES":
       return (
         <div style={{ margin: "1rem 0 2rem 0" }}>
+          <ErrorMessage
+            name={question_uuid}
+            component="div"
+            className={styles.error_message}
+          />
           <h4 className={styles.question_title}>{question_content}</h4>
           <div
             role="group"
@@ -80,6 +85,11 @@ const Element = ({
     case "DROPDOWN_MENU":
       return (
         <div style={{ marginTop: "1rem", marginBottom: "3rem" }}>
+          <ErrorMessage
+            name={question_uuid}
+            component="div"
+            className={styles.error_message}
+          />
           <h4 className={styles.question_title}>{question_content}</h4>
           <Field
             type="select"
@@ -90,9 +100,9 @@ const Element = ({
             MenuProps={{
               PaperProps: {
                 style: {
-                  transform: 'translate3d(0, 0, 0)'
-                } 
-              }   
+                  transform: "translate3d(0, 0, 0)",
+                },
+              },
             }}
           >
             {response_content.map((answer, key) => (
@@ -107,24 +117,34 @@ const Element = ({
     case "EDITABLE":
       return (
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+          {/* <ErrorMessage
+            name={question_uuid}
+            component="div"
+            className={styles.error_message}
+          /> */}
           <h4 className={styles.question_title}>{question_content}</h4>
-            <Field
-              type="text"
-              variant="outlined"
-              multiline
-              rowsMax={4}
-              name={question_uuid}
-              margin="none"
-              component={TextField}
-            />
+          <Field
+            type="text"
+            variant="outlined"
+            multiline
+            rowsMax={4}
+            name={question_uuid}
+            margin="none"
+            component={TextField}
+          />
         </div>
       );
     case "MULTI_BOXES":
       return (
         <div style={{ margin: "1rem 0 2rem 0" }}>
+          <ErrorMessage
+            name={question_uuid}
+            component="div"
+            className={styles.error_message}
+          />
           <h4 className={styles.question_title}>{question_content}</h4>
           <div
-          className="checkbox-group"
+            className="checkbox-group"
             role="group"
             aria-labelledby="checkbox-group"
             style={{ display: "flex", flexDirection: "column" }}

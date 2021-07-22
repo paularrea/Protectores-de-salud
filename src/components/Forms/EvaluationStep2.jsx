@@ -1,7 +1,7 @@
 import React from "react";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import styles from "./form.module.scss";
-import { Field, ErrorMessage } from "formik";
+// import { Field, ErrorMessage } from "formik";
 import notiStyles from "../Notifications/notificaciones.module.scss";
 import campana from "../../img/campana.png";
 import step2 from "../../img/steps/evaluation-step2.png";
@@ -14,7 +14,7 @@ const EvaluationStep2 = (props) => {
         style={{ paddingTop: "2rem" }}
         className={styles.content}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        {/* <div style={{ display: "flex", flexDirection: "column" }}>
           <ErrorMessage
             name="acceptAndSent"
             component="div"
@@ -39,7 +39,7 @@ const EvaluationStep2 = (props) => {
             name="acceptAndSent"
           />
           Estoy conforme y quiero finalizar el proceso
-        </label>
+        </label> */}
         <div className={styles.noti_content}>
           <div
             style={{
@@ -66,12 +66,12 @@ const EvaluationStep2 = (props) => {
 
 EvaluationStep2.label = "Finalizar Intervención y Enviar";
 
-EvaluationStep2.validationSchema = Yup.object().shape({
-  acceptAndSent: Yup.bool().oneOf(
-    [true],
-    "Accept Terms & Conditions is required"
-  ),
-});
+// EvaluationStep2.validationSchema = Yup.object().shape({
+//   acceptAndSent: Yup.bool().oneOf(
+//     [true],
+//     "Accept Terms & Conditions is required"
+//   ),
+// });
 
 EvaluationStep2.Img = step2;
 

@@ -18,7 +18,6 @@ import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 const DetalleCitaDayOne = () => {
   const history = useHistory();
   const [patient, setCurrentPatient] = useState({});
-  const [callEvent, setCallEvent] = useState({})
   const [patientDate, setPatientDate] = useState();
   const { contextUser } = useContext(UserContext);
   const { id } = useParams();
@@ -53,13 +52,6 @@ const DetalleCitaDayOne = () => {
     const currentPatient = currentAppointment && currentAppointment[0];
     setCurrentPatient(currentPatient);
     setPatientDate(contextUser && contextUser.agenda.day_1.date);
-    setCallEvent({
-      action: "CALL",
-      local_date_time: new Date().toString(),
-      utc_date_time: new Date().toUTCString(),
-      device_user_agent: navigator.userAgent,
-      user_id: contextUser.id,
-    });
   }, [contextUser, id]);
 
   const isVisit =
@@ -120,7 +112,7 @@ const DetalleCitaDayOne = () => {
                   </div>
                 </>
               )}
-              <a onClick={() => console.log(callEvent, "CALL_EVENT")} href={`tel:${currentPatient && currentPatient.phone}`}>
+              <a href={`tel:${currentPatient && currentPatient.phone}`}>
                 <div className={styles.phone_flex}>
                   <img src={phoneIcon} alt="phone" />
                   <h3>{currentPatient && currentPatient.phone}</h3>

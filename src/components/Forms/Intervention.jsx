@@ -77,13 +77,12 @@ const Intervention = (props) => {
   }, []);
 
   useEffect(
-    (values) => {
+    () => {
       setFormDataEvent({
         local_date_time: new Date().toString(),
         utc_date_time: new Date().toUTCString(),
         device_user_agent: navigator.userAgent,
         action: "INTERVENTION_QUESTIONNAIRE_EVENT",
-        pds_questionnaire: values,
         step: activeStep + 1,
         intervention_id: interventionId,
         user_id: contextUser && contextUser.id,
@@ -107,7 +106,7 @@ const Intervention = (props) => {
     setActiveStep(Math.max(activeStep - 1, 0));
   };
 
-  const handleNext = async () => {
+  const handleNext = async (values, setValues) => {
     if (window.innerWidth > 1026) {
       topRef.current.scrollIntoView();
     } else {
@@ -116,8 +115,14 @@ const Intervention = (props) => {
     setActiveStep(Math.min(activeStep + 1, steps.length - 1));
   };
 
-  const onSubmit = async (values) => {
-    console.log(formDataEvent);
+  const onSubmit = async (values,bag) => {
+    setFormDataEvent({
+      ...formDataEvent,
+      pds_questionnaire: values,
+    });
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    bag.setSubmitting(false);
+    console.log('Form submitted', formDataEvent);
     if (!isLastStep()) {
       handleNext();
       return;
@@ -126,13 +131,56 @@ const Intervention = (props) => {
     }
   };
 
-  // const initialValues = steps.reduce(
-  //   (values, { initialValues }) => ({
-  //     ...values,
-  //     ...initialValues,
-  //   }),
-  //   {}
-  // );
+  const initialValues = {
+    patientFirstName: patient.patient_name,
+    patientMiddleName: patient.patient_middle_name,
+    patientLastName: patient.patient_last_name,
+    patientSecondLastName: patient.patient_second_last_name,
+    patientPhone: patient.phone,
+    patientCountry: patient.country,
+    patientCity: patient.city,
+    patientAddress: patient.address,
+    q1: "",
+    q2: "",
+    q3: "",
+    q4: "",
+    q5: "",
+    q6: "",
+    q7: "",
+    q8: "",
+    q9: "",
+    q10: "",
+    q11: "",
+    q12: "",
+    q13: "",
+    q14: "",
+    q15: "",
+    q16: "",
+    q17: "",
+    q18: "",
+    q19: "",
+    q20: "",
+    q21: "",
+    q22: "",
+    q23: "",
+    q24: "",
+    q25: "",
+    q26: "",
+    q27: "",
+    q28: "",
+    q29: "",
+    q30: "",
+    q31: "",
+    q32: "",
+    q33: "",
+    q34: "",
+    q35: "",
+    q36: "",
+    q37: "",
+    q38: "",
+    q39: "",
+    acceptAndSent: false,
+  };
 
   const ActiveStep = steps[activeStep];
   const validationSchema = ActiveStep.validationSchema;
@@ -148,24 +196,14 @@ const Intervention = (props) => {
           style={{ height: "60vh", top: "8rem" }}
         >
           <Formik
-            initialValues={{
-              patientFirstName: patient.patient_name,
-              patientMiddleName: patient.patient_middle_name,
-              patientLastName: patient.patient_last_name,
-              patientSecondLastName: patient.patient_second_last_name,
-              patientPhone: patient.phone,
-              patientCountry: patient.country,
-              patientCity: patient.city,
-              patientAddress: patient.address,
-              acceptAndSent: false,
-            }}
+            initialValues={initialValues}
             enableReinitialize
             onSubmit={onSubmit}
             validationSchema={validationSchema}
           >
-            {({ isSubmitting, touched, values, errors }) => (
+            {({ isSubmitting, handleSubmit, touched, values, errors }) => (
               <>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                   <div className={styles.fixed_header}>
                     <div className={styles.header}>
                       <div>
