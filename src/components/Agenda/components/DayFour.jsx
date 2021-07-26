@@ -8,6 +8,7 @@ import phoneIcon from "../../../img/phone.png";
 import arrow from "../../../img/arrow.png";
 import less from "../../../img/less.png";
 import more from "../../../img/more.png";
+import ValidationButton from "./validationButton";
 
 const DayFour = () => {
   const { contextUser } = useContext(UserContext);
@@ -59,15 +60,14 @@ const DayFour = () => {
         <div>
           <p>{date}</p>
         </div>
-        {open ? (
-          <div className={styles.more_less_icons}>
+        <div className={styles.more_less_icons}>
+          <ValidationButton validationDate={date}/>
+          {open ? (
             <img src={less} alt="ver menos" />
-          </div>
-        ) : (
-          <div className={styles.more_less_icons}>
+          ) : (
             <img src={more} alt="ver más" />
-          </div>
-        )}
+          )}
+        </div>
       </div>
       {open && <>{agendaDayFour}</>}
     </div>

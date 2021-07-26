@@ -8,6 +8,7 @@ import phoneIcon from "../../../img/phone.png";
 import arrow from "../../../img/arrow.png";
 import less from "../../../img/less.png";
 import more from "../../../img/more.png";
+import ValidationButton from "./validationButton";
 
 const DayOne = () => {
   const { contextUser } = useContext(UserContext);
@@ -20,7 +21,10 @@ const DayOne = () => {
     contextUser &&
     contextUser.agenda.day_1.interventions.map((intervention, id) => {
       return (
-        <Link key={id} to={`intervention-details-1/${intervention.intervention_id}`}>
+        <Link
+          key={id}
+          to={`intervention-details-1/${intervention.intervention_id}`}
+        >
           <section className={styles.intervention}>
             <div className={styles.time}>{intervention.hour}</div>
             <div className={styles.direction}>
@@ -31,7 +35,12 @@ const DayOne = () => {
                   ) : (
                     <img src={phoneIcon} alt="phone" />
                   )}
-                  <h5>{intervention.patient_name} {intervention.patient_middle_name} {intervention.patient_last_name} {intervention.patient_second_last_name}</h5>
+                  <h5>
+                    {intervention.patient_name}{" "}
+                    {intervention.patient_middle_name}{" "}
+                    {intervention.patient_last_name}{" "}
+                    {intervention.patient_second_last_name}
+                  </h5>
                 </div>
                 <div className={styles.arrow_container}>
                   <img src={arrow} alt="see intervention details" />
@@ -57,15 +66,14 @@ const DayOne = () => {
         <div>
           <p>{date}</p>
         </div>
-        {open ? (
-          <div className={styles.more_less_icons}>
+        <div className={styles.more_less_icons}>
+          <ValidationButton validationDate={date}/>
+          {open ? (
             <img src={less} alt="ver menos" />
-          </div>
-        ) : (
-          <div className={styles.more_less_icons}>
+          ) : (
             <img src={more} alt="ver más" />
-          </div>
-        )}
+          )}
+        </div>
       </div>
       {open && <>{agendaDayOne}</>}
     </div>
