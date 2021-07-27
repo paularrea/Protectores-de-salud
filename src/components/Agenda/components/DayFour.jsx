@@ -56,17 +56,19 @@ const DayFour = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.flex_container} onClick={openClose}>
-        <div>
+      <div className={styles.flex_container}>
+        <div onClick={openClose}>
           <p>{date}</p>
         </div>
         <div className={styles.more_less_icons}>
-          <ValidationButton validationDate={date}/>
-          {open ? (
-            <img src={less} alt="ver menos" />
-          ) : (
-            <img src={more} alt="ver más" />
-          )}
+          <ValidationButton validationDate={date} />
+          <div onClick={openClose}>
+            {open ? (
+              <img src={less} alt="ver menos" />
+            ) : (
+              <img src={more} alt="ver más" />
+            )}
+          </div>
         </div>
       </div>
       {open && <>{agendaDayFour}</>}

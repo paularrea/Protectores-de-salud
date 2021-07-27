@@ -166,6 +166,7 @@ const Element = ({
                     height: "16px",
                   }}
                   type="checkbox"
+                  className={styles.checkbox_form}
                   name={question_uuid}
                   value={answer}
                 />

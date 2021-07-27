@@ -25,6 +25,9 @@ const Step1 = ({ refProp }) => {
           label="Primer Nombre"
           name="patientFirstName"
           component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <button
           className={styles.edit}
@@ -42,6 +45,9 @@ const Step1 = ({ refProp }) => {
           label="Segundo Nombre"
           name="patientMiddleName"
           component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <button
           className={styles.edit}
@@ -59,6 +65,9 @@ const Step1 = ({ refProp }) => {
           label="Primer Apellido"
           name="patientLastName"
           component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <button
           className={styles.edit}
@@ -76,6 +85,9 @@ const Step1 = ({ refProp }) => {
           label="Segundo Apellido"
           name="patientSecondLastName"
           component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <button
           className={styles.edit}
@@ -93,6 +105,9 @@ const Step1 = ({ refProp }) => {
           label="Número de teléfono"
           name="patientPhone"
           component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <button
           className={styles.edit}
@@ -110,6 +125,9 @@ const Step1 = ({ refProp }) => {
           label="País"
           name="patientCountry"
           component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <button
           className={styles.edit}
@@ -127,6 +145,9 @@ const Step1 = ({ refProp }) => {
           label="Ciudad"
           name="patientCity"
           component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <button
           className={styles.edit}
@@ -144,6 +165,9 @@ const Step1 = ({ refProp }) => {
           label="Calle"
           name="patientAddress"
           component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <button
           className={styles.edit}

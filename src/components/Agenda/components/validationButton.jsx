@@ -1,8 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
+import { withStyles } from "@material-ui/core/styles";
+import { blue, green } from "@material-ui/core/colors";
 import { UserContext } from "../../../UserContext";
-import styles from "./dropdown.module.scss"
+import "./switchButton.css"
+import { FormControlLabel, Switch } from "@material-ui/core";
 
-const ValidationButton = ({validationDate}) => {
+const BlueSwitch = withStyles({
+  switchBase: {
+    color: blue[400],
+    "&$checked": {
+      color: green[400],
+    },
+    "&$checked + $track": {
+      backgroundColor: green[900],
+    },
+  },
+  checked: {},
+  track: {},
+})(Switch);
+
+export default function ValidationButton({ validationDate }) {
+  const [checked, setCheked] = useState(false)
   const [buttonValidationEvent, setButtonValidationEvent] = useState({});
   const { contextUser } = useContext(UserContext);
 
@@ -20,7 +38,24 @@ const ValidationButton = ({validationDate}) => {
   const handleClick = () => {
     console.log(buttonValidationEvent);
   };
-  return <button className={styles.validate_button} onClick={handleClick}>Validar día</button>
-};
 
-export default ValidationButton;
+  const handleChange = (event) => {
+    setCheked(event.target.checked);
+  };
+
+  return (
+    <div>
+      <FormControlLabel
+        control={
+          <BlueSwitch
+            checked={checked}
+            onChange={handleChange}
+            onClick={handleClick}
+            name="switchButton"
+          />
+        }
+        label="Validar día"
+      />
+    </div>
+  );
+}

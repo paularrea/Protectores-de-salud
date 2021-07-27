@@ -1,5 +1,6 @@
 import React from "react";
 import { Field } from "formik";
+import styles from "../form.module.scss"
 import { TextField, Select } from "formik-material-ui";
 import { MenuItem } from "@material-ui/core";
 
@@ -58,6 +59,7 @@ const SubQuestionElement = ({
                     height: "16px",
                   }}
                   type="checkbox"
+                  className={styles.checkbox_form}
                   name={question_uuid}
                   value={answer}
                 />

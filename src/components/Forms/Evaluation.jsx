@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { Form, Formik } from "formik";
 
 import styles from "./form.module.scss";
@@ -9,6 +9,7 @@ import arrow from "../../img/arrow_back.png";
 import desktopStyle from "../../styles/dashboard.module.scss";
 import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 import MediaQuery from "react-responsive";
+import { UserContext } from "../../UserContext.js";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import "./form.css";
 
@@ -44,11 +45,13 @@ const blue_pds = createMuiTheme({
 });
 
 const Evaluation = (props) => {
+  const { contextUser } = useContext(UserContext);
   const location = useLocation();
   const topRefEv = useRef(null);
   const [evaluationData, setEvaluationData] = useState();
   const [activeStep, setActiveStep] = useState(0);
   const [isSent, sendForm] = useState(false);
+  const [evaluationDataEvent, setEvaluationDataEvent] = useState({});
 
   const interventionId = location.state.patient.intervention_id;
 
@@ -64,6 +67,18 @@ const Evaluation = (props) => {
         setEvaluationData(data);
       });
   }, []);
+
+  useEffect(() => {
+    setEvaluationDataEvent({
+      local_date_time: new Date().toString(),
+      utc_date_time: new Date().toUTCString(),
+      device_user_agent: navigator.userAgent,
+      action: "EVALUATION_QUESTIONNAIRE_EVENT",
+      step: activeStep + 1,
+      intervention_id: interventionId,
+      user_id: contextUser && contextUser.id,
+    });
+  }, [activeStep, interventionId, contextUser]);
 
   const isLastStep = () => {
     return activeStep === steps.length - 1;
@@ -86,17 +101,18 @@ const Evaluation = (props) => {
     setActiveStep(Math.min(activeStep + 1, steps.length - 1));
   };
 
-  const onSubmit = (values, formikBag) => {
+  const onSubmit = async (values, formikBag) => {
     const { setSubmitting } = formikBag;
+    console.log({
+      evaluationDataEvent,
+      evaluation_form: values,
+    });
     isLastStep() && sendForm(true);
     if (!isLastStep()) {
-      setSubmitting(false);
       handleNext();
+      setSubmitting(false);
       return;
     }
-    console.log({
-      evaluationForm: values,
-    });
     setTimeout(() => {
       setSubmitting(false);
     }, 1000);

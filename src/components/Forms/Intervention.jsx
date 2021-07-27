@@ -76,22 +76,19 @@ const Intervention = (props) => {
       });
   }, []);
 
-  useEffect(
-    () => {
-      setFormDataEvent({
-        local_date_time: new Date().toString(),
-        utc_date_time: new Date().toUTCString(),
-        device_user_agent: navigator.userAgent,
-        action: "INTERVENTION_QUESTIONNAIRE_EVENT",
-        step: activeStep + 1,
-        intervention_id: interventionId,
-        user_id: contextUser && contextUser.id,
-        pds_program_signature: pdsSign,
-        confirmation_signature: confirmationSign,
-      });
-    },
-    [activeStep, interventionId, contextUser, pdsSign, confirmationSign]
-  );
+  useEffect(() => {
+    setFormDataEvent({
+      local_date_time: new Date().toString(),
+      utc_date_time: new Date().toUTCString(),
+      device_user_agent: navigator.userAgent,
+      action: "INTERVENTION_QUESTIONNAIRE_EVENT",
+      step: activeStep + 1,
+      intervention_id: interventionId,
+      user_id: contextUser && contextUser.id,
+      pds_program_signature: pdsSign,
+      confirmation_signature: confirmationSign,
+    });
+  }, [activeStep, interventionId, contextUser, pdsSign, confirmationSign]);
 
   const isLastStep = () => {
     return activeStep === steps.length - 1;
@@ -115,14 +112,10 @@ const Intervention = (props) => {
     setActiveStep(Math.min(activeStep + 1, steps.length - 1));
   };
 
-  const onSubmit = async (values,bag) => {
-    setFormDataEvent({
-      ...formDataEvent,
-      pds_questionnaire: values,
-    });
-    await new Promise(resolve => setTimeout(resolve, 1000));
+  const onSubmit = async (values, bag) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     bag.setSubmitting(false);
-    console.log('Form submitted', formDataEvent);
+    console.log({ formDataEvent, intervention_form: values });
     if (!isLastStep()) {
       handleNext();
       return;
@@ -179,7 +172,6 @@ const Intervention = (props) => {
     q37: "",
     q38: "",
     q39: "",
-    acceptAndSent: false,
   };
 
   const ActiveStep = steps[activeStep];
