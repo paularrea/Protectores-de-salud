@@ -17,7 +17,7 @@ import { useGeolocation } from "../hooks/useGeolocation.js";
 
 const Dashboard = ({ Logout }) => {
   const { contextUser } = useContext(UserContext);
-  const { location, userIP, city, region } = useGeolocation;
+  const { location } = useGeolocation;
   // const [coordinates, setCoordinates] = useState({});
 
   // const getCoordinates = () => {
