@@ -7,6 +7,7 @@ import styles from "../styles/login.module.scss";
 import loginImg from "../img/login-img.jpg";
 import loginImgDesktop from "../img/desktop-login.jpg";
 import LegalAdvise from "./LegalAdvise";
+import { useGeolocation } from "../hooks/useGeolocation.js";
 
 const Login = () => {
   const [accept, setAccept] = useState(false);
@@ -18,6 +19,7 @@ const Login = () => {
   });
   const [userLoggedEvent, setUserLoggedEvent] = useState({});
   const [error, setError] = useState("");
+  const { geolocation } = useGeolocation();
 
   useEffect(() => {
     fetch(
@@ -39,9 +41,11 @@ const Login = () => {
           utc_date_time: new Date().toUTCString(),
           device_user_agent: navigator.userAgent,
           user_id: data[0].id,
+          position_coords_latitude: geolocation && geolocation.latitude,
+          position_coords_longitude: geolocation && geolocation.longitude
         });
       });
-  }, []);
+  }, [geolocation]);
 
   const Login = (details) => {
     if (

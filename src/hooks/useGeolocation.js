@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export const useGeolocation = () => {
-  const [location, setLocation] = useState(null);
+  const [geolocation, setGeolocation] = useState(null);
   const [userIP, setUserIP] = useState(null);
   const [city, setCity] = useState(null);
   const [region, setRegion] = useState(null);
@@ -9,7 +9,7 @@ export const useGeolocation = () => {
   // Only run on mount and unmount
   useEffect(() => {
     const setValues = json => {
-      setLocation(json);
+      setGeolocation(json);
       setUserIP(json.ip);
       setCity(json.city);
       setRegion(json.region);
@@ -24,8 +24,8 @@ export const useGeolocation = () => {
   }, []);
 
   return {
-    location,
-    setLocation,
+    geolocation,
+    setGeolocation,
     userIP,
     city,
     region

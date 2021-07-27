@@ -17,6 +17,7 @@ import Step2 from "./InterventionStep2";
 import Step3 from "./InterventionStep3";
 import Step4 from "./InterventionStep4";
 import Step5 from "./InterventionStep5";
+import { useGeolocation } from "../../hooks/useGeolocation";
 
 const steps = [Step1, Step2, Step3, Step4, Step5];
 
@@ -58,6 +59,7 @@ const Intervention = (props) => {
   const [isConfirmationSigned, setIsConfirmationSigned] = useState(false);
   const [questionaryData, setQuestionaryData] = useState(null);
   const [formDataEvent, setFormDataEvent] = useState({});
+  const { geolocation } = useGeolocation();
 
   const patient = location.state.patient;
   const patientDate = location.state.patientDate;
@@ -87,8 +89,10 @@ const Intervention = (props) => {
       user_id: contextUser && contextUser.id,
       pds_program_signature: pdsSign,
       confirmation_signature: confirmationSign,
+      position_coords_latitude: geolocation && geolocation.latitude,
+      position_coords_longitude: geolocation && geolocation.longitude
     });
-  }, [activeStep, interventionId, contextUser, pdsSign, confirmationSign]);
+  }, [activeStep, interventionId, contextUser, pdsSign, confirmationSign, geolocation]);
 
   const isLastStep = () => {
     return activeStep === steps.length - 1;

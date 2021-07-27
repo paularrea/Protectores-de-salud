@@ -3,6 +3,7 @@ import styles from "./notificaciones.module.scss";
 import campana from "../../img/campana.png";
 import alert from "../../img/alert.png";
 import { UserContext } from "../../UserContext";
+import { useGeolocation } from "../../hooks/useGeolocation";
 
 const NotificationList = ({ user }) => {
   const { contextUser } = useContext(UserContext);
@@ -10,6 +11,7 @@ const NotificationList = ({ user }) => {
   const [closeRedNotification, setCloseRedNotification] = useState(false);
   const [closeBlueNotification, setCloseBlueNotification] = useState(false);
   const [notifSent, setNotifSent] = useState({});
+  const { geolocation } = useGeolocation();
 
   useEffect(() => {
     setAllNotifications(
@@ -22,8 +24,10 @@ const NotificationList = ({ user }) => {
       utc_date_time: new Date().toUTCString(),
       device_user_agent: navigator.userAgent,
       user_id: contextUser && contextUser.id,
+      position_coords_latitude: geolocation && geolocation.latitude,
+      position_coords_longitude: geolocation && geolocation.longitude
     });
-  }, [contextUser]);
+  }, [contextUser, geolocation]);
 
   const closeRedNoti = () => {
     // NOTIF_SENT

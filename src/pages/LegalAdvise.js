@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext} from "react";
 import { UserContext } from "../UserContext";
 import "../styles/App.scss";
+import { useGeolocation } from "../hooks/useGeolocation.js";
 
 const LegalAdvise = ({ accept, setAccept }) => {
   const { contextUser } = useContext(UserContext);
   const [legalAdviceEvent, setLegalAdviceEvent] = useState({});
+  const { geolocation } = useGeolocation();
   const handleAccept = () => {
     setAccept(true);
     sessionStorage.setItem("Legal advise", "accepted");
@@ -17,8 +19,10 @@ const LegalAdvise = ({ accept, setAccept }) => {
       utc_date_time: new Date().toUTCString(),
       device_user_agent: navigator.userAgent,
       user_id: contextUser.id,
+      position_coords_latitude: geolocation && geolocation.latitude,
+      position_coords_longitude: geolocation && geolocation.longitude
     });
-  }, [contextUser]);
+  }, [contextUser, geolocation]);
   return (
     <div>
       {!accept && (

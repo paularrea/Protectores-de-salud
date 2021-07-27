@@ -15,6 +15,7 @@ import "./form.css";
 
 import Step1 from "./EvaluationStep1";
 import Step2 from "./EvaluationStep2";
+import { useGeolocation } from "../../hooks/useGeolocation";
 
 const steps = [Step1, Step2];
 
@@ -52,6 +53,7 @@ const Evaluation = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [isSent, sendForm] = useState(false);
   const [evaluationDataEvent, setEvaluationDataEvent] = useState({});
+  const { geolocation } = useGeolocation();
 
   const interventionId = location.state.patient.intervention_id;
 
@@ -77,8 +79,10 @@ const Evaluation = (props) => {
       step: activeStep + 1,
       intervention_id: interventionId,
       user_id: contextUser && contextUser.id,
+      position_coords_latitude: geolocation && geolocation.latitude,
+      position_coords_longitude: geolocation && geolocation.longitude
     });
-  }, [activeStep, interventionId, contextUser]);
+  }, [activeStep, interventionId, contextUser, geolocation]);
 
   const isLastStep = () => {
     return activeStep === steps.length - 1;
