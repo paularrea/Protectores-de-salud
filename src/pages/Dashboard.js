@@ -28,9 +28,9 @@ const Dashboard = ({ Logout }) => {
   //     });
   //   });
   // };
-  const getLocation = () => {
-    console.log(location && location, "location");
-  };
+  // const getLocation = () => {
+  //   console.log(location && location, "location");
+  // };
   return (
     <>
       <div className={styles.container}>
@@ -46,7 +46,6 @@ const Dashboard = ({ Logout }) => {
               </div>
             </MediaQuery>
           </section>
-          <button onClick={getLocation}>Location</button>
         </div>
 
         <MediaQuery maxWidth={1025}>
