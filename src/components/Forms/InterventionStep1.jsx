@@ -15,6 +15,7 @@ const Step1 = ({ refProp }) => {
   const [editCountry, setEditCountry] = useState(true);
   const [editCity, setEditCity] = useState(true);
   const [editAddress, setEditAddress] = useState(true);
+  const [editPostalCode, setEditPostalCode] = useState(true);
   
   const patientInfoVerification = (
     <>
@@ -162,7 +163,7 @@ const Step1 = ({ refProp }) => {
         <Field
           variant="outlined"
           disabled={editAddress}
-          label="Calle"
+          label="Dirección"
           name="patientAddress"
           component={TextField}
           InputLabelProps={{
@@ -173,6 +174,25 @@ const Step1 = ({ refProp }) => {
           className={styles.edit}
           type="button"
           onClick={() => setEditAddress(!editAddress)}
+        >
+          Editar
+        </button>
+      </div>
+      <div className={styles.input_container}>
+        <Field
+          variant="outlined"
+          disabled={editPostalCode}
+          label="Código Postal"
+          name="patientPostalCode"
+          component={TextField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <button
+          className={styles.edit}
+          type="button"
+          onClick={() => setEditPostalCode(!editPostalCode)}
         >
           Editar
         </button>
@@ -211,6 +231,9 @@ Step1.validationSchema = Yup.object().shape({
   ),
   patientAddress: Yup.string().required(
     "Porfavor introduzca la dirección del paciente"
+  ),
+  patientPostalCode: Yup.string().required(
+    "Porfavor introduzca el código postal del paciente"
   ),
 });
 

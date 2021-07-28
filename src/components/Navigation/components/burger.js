@@ -10,7 +10,7 @@ import BurgerDesktop from "./burgerDesktop";
 
 const Burger = ({ user, Logout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const UserFirstLetter = user && user.supervisor_name.charAt(0);
+  const UserFirstLetter = user && user.community_worker_first_name.charAt(0);
 
   const handleStateChange = (state) => {
     setMenuOpen(state.isOpen);

@@ -21,7 +21,7 @@ const DetalleCitaDayFour = () => {
   const [patientDate, setPatientDate] = useState();
   const { contextUser } = useContext(UserContext);
   const { id } = useParams();
-  const interventions = contextUser && contextUser.agenda.day_4.interventions;
+  const interventions = contextUser && contextUser.agenda.day_3.interventions;
   const currentAppointment =
     interventions &&
     interventions.filter((intervention) => intervention.intervention_id === id);
@@ -29,21 +29,19 @@ const DetalleCitaDayFour = () => {
   const handleBack = () => {
     history.goBack();
   };
-
   const currentPatient = currentAppointment && currentAppointment[0];
-  const actions =
-    currentAppointment &&
-    currentAppointment[0].actions.map((action, key) => (
-      <div key={key} className={styles.flex_actions}>
-        <div className={styles.number}>{key + 1}</div>
-        <p>{action}</p>
-      </div>
-    ));
+  const actions = currentPatient && currentPatient.actions.map((action, key) => (
+    <div key={key} className={styles.flex_actions}>
+      <div className={styles.number}>{key + 1}</div>
+      <p>{action}</p>
+    </div>
+  ));
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const interventions = contextUser && contextUser.agenda.day_4.interventions;
+    const interventions = contextUser && contextUser.agenda.day_3.interventions;
     const currentAppointment =
       interventions &&
       interventions.filter(
@@ -51,7 +49,7 @@ const DetalleCitaDayFour = () => {
       );
     const currentPatient = currentAppointment && currentAppointment[0];
     setCurrentPatient(currentPatient);
-    setPatientDate(contextUser && contextUser.agenda.day_4.date);
+    setPatientDate(contextUser && contextUser.agenda.day_3.date);
   }, [contextUser, id]);
 
   const isVisit =
@@ -76,7 +74,7 @@ const DetalleCitaDayFour = () => {
                   <img src={userIcon} alt="user" />
                 </div>
                 <h3>
-                  {currentPatient && currentPatient.patient_name}{" "}
+                  {currentPatient && currentPatient.patient_first_name}{" "}
                   {currentPatient && currentPatient.patient_middle_name}{" "}
                   {currentPatient && currentPatient.patient_last_name}{" "}
                   {currentPatient && currentPatient.patient_second_last_name}
@@ -92,18 +90,28 @@ const DetalleCitaDayFour = () => {
                       <img src={locationIcon} alt="location" />
                     </div>
                     <h3 style={{ fontWeight: "400", lineHeight: "24px" }}>
-                      {currentPatient && currentPatient.address}{" "}
-                      {currentPatient && currentPatient.city}{" "}
-                      {currentPatient && currentPatient.country} <br />
+                      {currentPatient && currentPatient.residence_address},{" "}
+                      {currentPatient && currentPatient.residence_postal_code},{" "}
+                      {currentPatient && currentPatient.residence_city}{" "}
+                      {currentPatient && currentPatient.residence_state},{" "}
+                      {currentPatient && currentPatient.residence_country_name}{" "}
+                      <br />
                       <a
                         style={{ fontSize: "12px", fontWeight: "700" }}
                         className="link"
                         target="_blank"
                         rel="noreferrer"
                         href={`https://www.google.es/maps/place/${
-                          currentPatient && currentPatient.address
-                        },+${currentPatient && currentPatient.city},+${
-                          currentPatient && currentPatient.country
+                          currentPatient && currentPatient.residence_address
+                        },+${
+                          currentPatient && currentPatient.residence_postal_code
+                        },+${
+                          currentPatient && currentPatient.residence_city
+                        },+${
+                          currentPatient && currentPatient.residence_state
+                        },+${
+                          currentPatient &&
+                          currentPatient.residence_country_name
                         }`}
                       >
                         VER MAPA
@@ -112,10 +120,14 @@ const DetalleCitaDayFour = () => {
                   </div>
                 </>
               )}
-              <a href={`tel:${currentPatient && currentPatient.phone}`}>
+              <a
+                href={`tel:${
+                  currentPatient && currentPatient.patient_phone_num
+                }`}
+              >
                 <div className={styles.phone_flex}>
                   <img src={phoneIcon} alt="phone" />
-                  <h3>{currentPatient && currentPatient.phone}</h3>
+                  <h3>{currentPatient && currentPatient.patient_phone_num}</h3>
                 </div>
               </a>
 

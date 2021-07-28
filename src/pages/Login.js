@@ -31,8 +31,8 @@ const Login = () => {
       })
       .then((data) => {
         setDbUser({
-          username: data[0].supervisor_name,
-          password: data[0].supervisor_password,
+          username: data[0].community_worker_first_name,
+          password: data[0].community_worker_password,
           data: data[0],
         });
         setUserLoggedEvent({

@@ -20,14 +20,14 @@ const DayFive = () => {
 
   const agendaDayFive =
     contextUser &&
-    contextUser.agenda.day_5.interventions.map((intervention, id) => {
+    contextUser.agenda.day_4.interventions.map((intervention, id) => {
       return (
         <Link
           key={id}
           to={`intervention-details-5/${intervention.intervention_id}`}
         >
           <section className={styles.intervention}>
-            <div className={styles.time}>{intervention.hour}</div>
+            <div className={styles.time}>{intervention.intervention_time}</div>
             <div className={styles.direction}>
               <div className={styles.flex_container_direction}>
                 <div className={styles.name}>
@@ -37,7 +37,7 @@ const DayFive = () => {
                     <img src={phoneIcon} alt="phone" />
                   )}
                   <h5>
-                    {intervention.patient_name}{" "}
+                    {intervention.patient_first_name}{" "}
                     {intervention.patient_middle_name}{" "}
                     {intervention.patient_last_name}{" "}
                     {intervention.patient_second_last_name}
@@ -49,8 +49,10 @@ const DayFive = () => {
               </div>
               {intervention.intervention_type === "VISIT" && (
                 <p>
-                  {intervention.address} {intervention.city}{" "}
-                  {intervention.country}
+                  {intervention.residence_address},{" "}
+                  {intervention.residence_postal_code}{" "}
+                  {intervention.residence_city} {intervention.residence_state},{" "}
+                  {intervention.residence_country_name}
                 </p>
               )}
             </div>
@@ -59,7 +61,7 @@ const DayFive = () => {
       );
     });
 
-  const date = contextUser && contextUser.agenda.day_5.date;
+  const date = contextUser && contextUser.agenda.day_4.date;
 
   return (
     <div className={styles.container}>

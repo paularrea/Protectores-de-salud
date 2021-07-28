@@ -65,6 +65,8 @@ const Intervention = (props) => {
   const patientDate = location.state.patientDate;
   const interventionId = location.state.patient.intervention_id;
 
+  console.log(location.state.patientDate, 'date')
+
   useEffect(() => {
     fetch(
       "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_PDS_PROGRAM"
@@ -129,14 +131,15 @@ const Intervention = (props) => {
   };
 
   const initialValues = {
-    patientFirstName: patient.patient_name,
+    patientFirstName: patient.patient_first_name,
     patientMiddleName: patient.patient_middle_name,
     patientLastName: patient.patient_last_name,
     patientSecondLastName: patient.patient_second_last_name,
-    patientPhone: patient.phone,
-    patientCountry: patient.country,
-    patientCity: patient.city,
-    patientAddress: patient.address,
+    patientPhone: patient.patient_phone_num,
+    patientCountry: patient.residence_country_name,
+    patientCity: patient.residence_city,
+    patientAddress: patient.residence_address,
+    patientPostalCode: patient.residence_postal_code,
     q1: "",
     q2: "",
     q3: "",

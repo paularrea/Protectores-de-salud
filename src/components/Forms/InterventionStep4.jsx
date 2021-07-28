@@ -6,7 +6,7 @@ import step4 from "../../img/steps/step4.png"
 
 const Step4 = (props) => {
   const { contextUser } = useContext(UserContext);
-  const name = contextUser && contextUser.supervisor_name;
+  const name = contextUser && contextUser.community_worker_first_name;
   const date =
     props.patientDate.split(",")[1] + props.patientDate.split(",")[2];
 

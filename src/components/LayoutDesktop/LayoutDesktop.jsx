@@ -11,7 +11,7 @@ const LayoutDesktop = () => {
     <section className="intro-notis">
       <div className={styles.intro}>
         <h2>
-          Hola <span>{contextUser && contextUser.supervisor_name},</span>
+          Hola <span>{contextUser && contextUser.community_worker_first_name},</span>
         </h2>
         <p>bienvenida a tu espacio de trabajo.</p>
       </div>

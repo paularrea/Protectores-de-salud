@@ -1,0 +1,254 @@
+[
+    {
+     "id": 1,
+     "supervisor_name": "Marta",
+     "supervisor_password": "1234",
+     "notifications": [
+      {
+       "rojas": [
+        {
+         "id": 1,
+         "message": "Tu cita de hoy, jueves 16 de abril, a las 5:00 p.m. ha sido cancelada por el paciente."
+        }
+       ],
+       "azules": [
+        {
+         "id": 2,
+         "message": "Ya tienes disponible el resumen de tus intervenciones de la semana pasada."
+        }
+       ]
+      }
+     ],
+     "agenda": {
+      "day_1": {
+       "date": "Hoy, Lunes, 31 Mayo",
+       "interventions": [
+        {
+         "intervention_id": "23fdc973-ae61-483e-b6a1-8c5b3aea8020",
+         "intervention_type": "VISIT",
+         "hour": "10:00 a.m.",
+         "patient_name": "María",
+         "patient_middle_name": "",
+         "patient_last_name": "López",
+         "patient_second_last_name": "",
+         "phone": "(787) 321-9876",
+         "address": "1403 Calle Luchetti, 00907",
+         "city": "San Juan",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        },
+        {
+         "intervention_id": "11acbe23-3546-43c9-8d0c-b4d682158577",
+         "intervention_type": "CALL",
+         "hour": "2:00 p.m.",
+         "patient_name": "Juan",
+         "patient_middle_name": "Antonio",
+         "patient_last_name": "Smith",
+         "patient_second_last_name": "",
+         "phone": "(787) 123-4567",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        }
+       ]
+      },
+      "day_2": {
+       "date": "Mañana, Martes, 1 Junio",
+       "interventions": [
+        {
+         "intervention_id": "4f0dc973-ae61-488e-b6a1-8c5b5aea8021",
+         "intervention_type": "VISIT",
+         "hour": "10:00 a.m.",
+         "patient_name": "Emilio",
+         "patient_middle_name": "",
+         "patient_last_name": "Santos",
+         "patient_second_last_name": "",
+         "phone": "(787) 321-9876",
+         "address": "00646 Calle C",
+         "city": "Dorado",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        },
+        {
+         "intervention_id": "4f0dc273-ae61-483e-b6a1-8c5b5aea5023",
+         "intervention_type": "VISIT",
+         "hour": "10:00 a.m.",
+         "patient_name": "Sofía",
+         "patient_middle_name": "",
+         "patient_last_name": "San Antón",
+         "patient_second_last_name": "",
+         "phone": "(787) 321-9876",
+         "address": " 00674 Villas Mar Chiquita",
+         "city": "Manatí",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        },
+        {
+         "intervention_id": "79acb123-3546-43c9-8d0c-b4d652158572",
+         "intervention_type": "CALL",
+         "hour": "2:00 p.m.",
+         "patient_name": "Pepe",
+         "patient_middle_name": "",
+         "patient_last_name": "Muñoz",
+         "patient_second_last_name": "",
+         "phone": "(787) 123-4567",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        }
+       ]
+      },
+      "day_3": {
+       "date": "Miércoles, 2 Junio",
+       "interventions": [
+        {
+         "intervention_id": "6f0dc973-ae61-483e-35a1-8c5b5aea8028",
+         "intervention_type": "VISIT",
+         "hour": "10:00 a.m.",
+         "patient_name": "Pedro",
+         "patient_middle_name": "",
+         "patient_last_name": "Guaynabo",
+         "patient_second_last_name": "",
+         "phone": "(787) 321-9876",
+         "address": "00969 Calle Colton 29",
+         "city": "Guaynabo",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        },
+        {
+         "intervention_id": "59acbe23-3546-13c9-8d0c-b4dd82158574",
+         "intervention_type": "CALL",
+         "hour": "2:00 p.m.",
+         "patient_name": "Mario",
+         "patient_middle_name": "",
+         "patient_last_name": "Tapia",
+         "patient_second_last_name": "",
+         "phone": "(787) 123-4567",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        },
+        {
+         "intervention_id": "59acbe23-3246-43c9-8d0c-b4dd82158570",
+         "intervention_type": "CALL",
+         "hour": "2:00 p.m.",
+         "patient_name": "Miguel",
+         "patient_middle_name": "",
+         "patient_last_name": "San José",
+         "patient_second_last_name": "",
+         "phone": "(787) 123-4567",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        }
+       ]
+      },
+      "day_4": {
+       "date": "Jueves, 3 Junio",
+       "interventions": [
+        {
+         "intervention_id": "4f0dc973-ae61-483e-b6a1-8c5b5a1a8025",
+         "intervention_type": "VISIT",
+         "hour": "10:00 a.m.",
+         "patient_name": "Randy",
+         "patient_middle_name": "",
+         "patient_last_name": "Dee",
+         "patient_second_last_name": "",
+         "phone": "(787) 321-9876",
+         "address": "1966 Av. McLeary 00911",
+         "city": "San Juan",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        },
+        {
+         "intervention_id": "29acbe23-3546-43c9-8d0c-b4dd82157577",
+         "intervention_type": "CALL",
+         "hour": "2:00 p.m.",
+         "patient_name": "Andrea",
+         "patient_middle_name": "",
+         "patient_last_name": "Fusté",
+         "patient_second_last_name": "",
+         "phone": "(787) 123-4567",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        }
+       ]
+      },
+      "day_5": {
+       "date": "Viernes, 4 Junio",
+       "interventions": [
+        {
+         "intervention_id": "9f0d1973-ae61-453e-b6a1-8c555aea8020",
+         "intervention_type": "VISIT",
+         "hour": "10:00 a.m.",
+         "patient_name": "Rita",
+         "patient_middle_name": "",
+         "patient_last_name": "Suárez",
+         "patient_second_last_name": "",
+         "phone": "(787) 321-9876",
+         "address": "00959 Av. Main 30-3, Santa Rosa",
+         "city": "Bayamón",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        },
+        {
+         "intervention_id": "19acbe23-3546-43c9-8d0c-b44d82138577",
+         "intervention_type": "CALL",
+         "hour": "2:00 p.m.",
+         "patient_name": "Pablo",
+         "patient_middle_name": "",
+         "patient_last_name": "Marqués",
+         "patient_second_last_name": "",
+         "phone": "(787) 123-4567",
+         "country": "Puerto Rico / USA",
+         "actions": [
+          "Verificar datos personales",
+          "Aceptación Programa PDS",
+          "Revisar aceptación del cliente"
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]

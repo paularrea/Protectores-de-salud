@@ -21,7 +21,7 @@ const DetalleCitaDayThree = () => {
   const [patientDate, setPatientDate] = useState();
   const { contextUser } = useContext(UserContext);
   const { id } = useParams();
-  const interventions = contextUser && contextUser.agenda.day_3.interventions;
+  const interventions = contextUser && contextUser.agenda.day_2.interventions;
   const currentAppointment =
     interventions &&
     interventions.filter((intervention) => intervention.intervention_id === id);
@@ -43,7 +43,7 @@ const DetalleCitaDayThree = () => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const interventions = contextUser && contextUser.agenda.day_3.interventions;
+    const interventions = contextUser && contextUser.agenda.day_2.interventions;
     const currentAppointment =
       interventions &&
       interventions.filter(
@@ -51,7 +51,7 @@ const DetalleCitaDayThree = () => {
       );
     const currentPatient = currentAppointment && currentAppointment[0];
     setCurrentPatient(currentPatient);
-    setPatientDate(contextUser && contextUser.agenda.day_3.date);
+    setPatientDate(contextUser && contextUser.agenda.day_2.date);
   }, [contextUser, id]);
 
   const isVisit =
@@ -76,7 +76,7 @@ const DetalleCitaDayThree = () => {
                   <img src={userIcon} alt="user" />
                 </div>
                 <h3>
-                  {currentPatient && currentPatient.patient_name}{" "}
+                  {currentPatient && currentPatient.patient_first_name}{" "}
                   {currentPatient && currentPatient.patient_middle_name}{" "}
                   {currentPatient && currentPatient.patient_last_name}{" "}
                   {currentPatient && currentPatient.patient_second_last_name}
@@ -92,18 +92,28 @@ const DetalleCitaDayThree = () => {
                       <img src={locationIcon} alt="location" />
                     </div>
                     <h3 style={{ fontWeight: "400", lineHeight: "24px" }}>
-                      {currentPatient && currentPatient.address}{" "}
-                      {currentPatient && currentPatient.city}{" "}
-                      {currentPatient && currentPatient.country} <br />
+                      {currentPatient && currentPatient.residence_address},{" "}
+                      {currentPatient && currentPatient.residence_postal_code},{" "}
+                      {currentPatient && currentPatient.residence_city}{" "}
+                      {currentPatient && currentPatient.residence_state},{" "}
+                      {currentPatient && currentPatient.residence_country_name}{" "}
+                      <br />
                       <a
                         style={{ fontSize: "12px", fontWeight: "700" }}
                         className="link"
                         target="_blank"
                         rel="noreferrer"
                         href={`https://www.google.es/maps/place/${
-                          currentPatient && currentPatient.address
-                        },+${currentPatient && currentPatient.city},+${
-                          currentPatient && currentPatient.country
+                          currentPatient && currentPatient.residence_address
+                        },+${
+                          currentPatient && currentPatient.residence_postal_code
+                        },+${
+                          currentPatient && currentPatient.residence_city
+                        },+${
+                          currentPatient && currentPatient.residence_state
+                        },+${
+                          currentPatient &&
+                          currentPatient.residence_country_name
                         }`}
                       >
                         VER MAPA
@@ -112,10 +122,14 @@ const DetalleCitaDayThree = () => {
                   </div>
                 </>
               )}
-              <a href={`tel:${currentPatient && currentPatient.phone}`}>
+              <a
+                href={`tel:${
+                  currentPatient && currentPatient.patient_phone_num
+                }`}
+              >
                 <div className={styles.phone_flex}>
                   <img src={phoneIcon} alt="phone" />
-                  <h3>{currentPatient && currentPatient.phone}</h3>
+                  <h3>{currentPatient && currentPatient.patient_phone_num}</h3>
                 </div>
               </a>
 

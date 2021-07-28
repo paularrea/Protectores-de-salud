@@ -40,7 +40,7 @@ const FormSent = () => {
             <p>
               Muchas gracias por enviar tu{" "}
               {type === "INTERVENTION" ? "intervención" : "evaluación"},{" "}
-              {contextUser && contextUser.supervisor_name}. Recibirás confirmación también en
+              {contextUser && contextUser.community_worker_first_name}. Recibirás confirmación también en
               tu correo electrónico.
             </p>
           </div>

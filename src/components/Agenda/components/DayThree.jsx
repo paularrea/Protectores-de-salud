@@ -20,12 +20,14 @@ const DayThree = () => {
 
   const agendaDayThree =
     contextUser &&
-    contextUser.agenda.day_3.interventions.map((intervention, id) => {
+    contextUser.agenda.day_2.interventions.map((intervention, id) => {
       return (
-        <Link key={id}  to={`intervention-details-3/${intervention.intervention_id}`}>
-          {" "}
-          <section className={styles.intervention} >
-            <div className={styles.time}>{intervention.hour}</div>
+        <Link
+          key={id}
+          to={`intervention-details-3/${intervention.intervention_id}`}
+        >
+          <section className={styles.intervention}>
+            <div className={styles.time}>{intervention.intervention_time}</div>
             <div className={styles.direction}>
               <div className={styles.flex_container_direction}>
                 <div className={styles.name}>
@@ -34,7 +36,12 @@ const DayThree = () => {
                   ) : (
                     <img src={phoneIcon} alt="phone" />
                   )}
-                  <h5>{intervention.patient_name} {intervention.patient_middle_name} {intervention.patient_last_name} {intervention.patient_second_last_name}</h5>
+                  <h5>
+                    {intervention.patient_first_name}{" "}
+                    {intervention.patient_middle_name}{" "}
+                    {intervention.patient_last_name}{" "}
+                    {intervention.patient_second_last_name}
+                  </h5>
                 </div>
                 <div className={styles.arrow_container}>
                   <img src={arrow} alt="see intervention details" />
@@ -42,8 +49,10 @@ const DayThree = () => {
               </div>
               {intervention.intervention_type === "VISIT" && (
                 <p>
-                  {intervention.address} {intervention.city}{" "}
-                  {intervention.country}
+                  {intervention.residence_address},{" "}
+                  {intervention.residence_postal_code}{" "}
+                  {intervention.residence_city} {intervention.residence_state},{" "}
+                  {intervention.residence_country_name}
                 </p>
               )}
             </div>
@@ -52,7 +61,7 @@ const DayThree = () => {
       );
     });
 
-  const date = contextUser && contextUser.agenda.day_3.date;
+  const date = contextUser && contextUser.agenda.day_2.date;
 
   return (
     <div className={styles.container}>
