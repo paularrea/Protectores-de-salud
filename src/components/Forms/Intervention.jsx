@@ -17,9 +17,11 @@ import Step2 from "./InterventionStep2";
 import Step3 from "./InterventionStep3";
 import Step4 from "./InterventionStep4";
 import Step5 from "./InterventionStep5";
+import Step6 from "./InterventionStep6";
+import Step7 from "./InterventionStep7";
 import { useGeolocation } from "../../hooks/useGeolocation";
 
-const steps = [Step1, Step2, Step3, Step4, Step5];
+const steps = [Step1, Step2, Step3, Step4, Step5, Step6, Step7];
 
 const theme = createMuiTheme({
   overrides: {
@@ -65,7 +67,7 @@ const Intervention = (props) => {
   const patientDate = location.state.patientDate;
   const interventionId = location.state.patient.intervention_id;
 
-  console.log(location.state.patientDate, 'date')
+  console.log(location.state.patientDate, "date");
 
   useEffect(() => {
     fetch(
@@ -92,9 +94,16 @@ const Intervention = (props) => {
       pds_program_signature: pdsSign,
       confirmation_signature: confirmationSign,
       position_coords_latitude: geolocation && geolocation.latitude,
-      position_coords_longitude: geolocation && geolocation.longitude
+      position_coords_longitude: geolocation && geolocation.longitude,
     });
-  }, [activeStep, interventionId, contextUser, pdsSign, confirmationSign, geolocation]);
+  }, [
+    activeStep,
+    interventionId,
+    contextUser,
+    pdsSign,
+    confirmationSign,
+    geolocation,
+  ]);
 
   const isLastStep = () => {
     return activeStep === steps.length - 1;
@@ -115,7 +124,11 @@ const Intervention = (props) => {
     } else {
       window.scrollTo(0, 0);
     }
-    setActiveStep(Math.min(activeStep + 1, steps.length - 1));
+    if (values && values.interventionSuggestion !== "No") {
+      setActiveStep(Math.min(activeStep + 1, steps.length - 1));
+    } else {
+      setActiveStep(Math.min(activeStep + 2, steps.length - 1));
+    }
   };
 
   const onSubmit = async (values, bag) => {
@@ -179,6 +192,9 @@ const Intervention = (props) => {
     q37: "",
     q38: "",
     q39: "",
+    interventionSuggestion:'',
+    newInterventionDateProposal: null,
+    newInterventionTimeProposal: null,
   };
 
   const ActiveStep = steps[activeStep];
@@ -200,7 +216,14 @@ const Intervention = (props) => {
             onSubmit={onSubmit}
             validationSchema={validationSchema}
           >
-            {({ isSubmitting, handleSubmit, touched, values, errors }) => (
+            {({
+              isSubmitting,
+              handleSubmit,
+              touched,
+              values,
+              errors,
+              setFieldValue,
+            }) => (
               <>
                 <Form onSubmit={handleSubmit}>
                   <div className={styles.fixed_header}>
@@ -241,6 +264,7 @@ const Intervention = (props) => {
                             questionaryData={questionaryData}
                             refProp={topRef}
                             setIsPDSSigned={setIsPDSSigned}
+                            setFieldValue={setFieldValue}
                             setIsConfirmationSigned={setIsConfirmationSigned}
                             key={index}
                           />
@@ -295,12 +319,15 @@ const Intervention = (props) => {
                           Firmar y seguir
                         </button>
                       )}
-                      {(activeStep === 0 || activeStep === 2) && (
+                      {(activeStep === 0 ||
+                        activeStep === 2 ||
+                        activeStep === 4 ||
+                        activeStep === 5) && (
                         <button className={styles.green_button} type="submit">
                           Confirmar y seguir
                         </button>
                       )}
-                      {activeStep === 4 && (
+                      {activeStep === 6 && (
                         <button className={styles.green_button} type="submit">
                           Aceptar y enviar
                         </button>

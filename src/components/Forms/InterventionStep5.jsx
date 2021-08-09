@@ -1,78 +1,70 @@
 import React from "react";
-// import * as Yup from "yup";
+import { Field, ErrorMessage } from "formik";
+import "./form.css";
 import styles from "./form.module.scss";
-// import { Field, ErrorMessage } from "formik";
-import notiStyles from "../Notifications/notificaciones.module.scss";
-import campana from "../../img/campana.png";
-import step5 from "../../img/steps/step5.png";
+import step1 from "../../img/steps/step1.png";
+import * as Yup from "yup";
 
-const Step5 = (props) => {
-  return (
-    <div className={styles.container}>
-      <div
-        ref={props.topRef}
-        style={{ paddingTop: "2rem" }}
-        className={styles.content}
-      >
-        {/* <div style={{ display: "flex", flexDirection: "column" }}>
-              <ErrorMessage
-                name="acceptAndSent"
-                component="div"
-                className={styles.error_message}
-              />
-            </div> */}
-        {/* <label
+const response = ['Sí', 'No']
+const Step5 = ({ refProp }) => {
+  
+  const newInterventionSuggestion = (
+    <div style={{ margin: "1rem 0 2rem 0" }}>
+    <ErrorMessage
+      name='interventionSuggestion'
+      component="div"
+      className={styles.error_message}
+    />
+    <h4 className={styles.question_title}>¿Desea sugerir una nueva intervención?</h4>
+    <div
+      role="group"
+      aria-labelledby="radio-group"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      {response.map((answer, key) => (
+        <label
+          key={key}
+          style={{
+            cursor: "pointer",
+            marginBottom: "1rem",
+            fontWeight: 700,
+          }}
+        >
+          <Field
             style={{
               cursor: "pointer",
-              marginBottom: "1rem",
-              fontWeight: 700,
+              margin: "0 1rem 0 0",
+              width: "18px",
+              height: "18px",
             }}
-          >
-            <Field
-              style={{
-                cursor: "pointer",
-                marginRight: "1rem",
-                width: "16px",
-                height: "16px",
-              }}
-              type="checkbox"
-              name="acceptAndSent"
-            />
-            Estoy conforme y quiero finalizar el proceso
-          </label> */}
-        <div className={styles.noti_content}>
-          <div
-            style={{
-              backgroundColor: "#FFF2F7",
-              borderLeft: "2px solid #FF2E79",
-              margin: 0,
-              marginTop: "2rem",
-            }}
-            className={notiStyles.notificaciones_container}
-          >
-            <p style={{ padding: 0 }}>
-              AVISO: Si acepta, la intervención se dará por finalizada y ya no
-              podrá modificar la información introducida.
-            </p>
-            <div className={notiStyles.icon}>
-              <img src={campana} alt="" />
-            </div>
-          </div>
+            type="radio"
+            name='interventionSuggestion'
+            value={answer}
+          />
+          {answer}
+        </label>
+      ))}
+    </div>
+  </div>
+  );
+
+  return (
+    <div className={styles.container}>
+      <div ref={refProp} className={styles.form_content}>
+        <div className={styles.content}>
+          {newInterventionSuggestion.props.children}
         </div>
       </div>
     </div>
   );
 };
 
-Step5.label = "Finalizar Intervención y Enviar";
+Step5.label = "Sugerir próxima intervención";
 
-// Step5.validationSchema = Yup.object().shape({
-//   acceptAndSent: Yup.bool().oneOf(
-//     [true],
-//     "Accept Terms & Conditions is required"
-//   ),
-// });
+Step5.validationSchema = Yup.object().shape({
+  interventionSuggestion: Yup.string().required("Campo Obligatorio"),
+});
 
-Step5.Img = step5;
+Step5.Img = step1;
 
 export default Step5;
