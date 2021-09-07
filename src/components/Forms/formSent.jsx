@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import styles from "./form.module.scss";
 import MediaQuery from "react-responsive";
-import desktopStyle from "../../styles/dashboard.module.scss";
+import desktopStyle from "../../styles/workerDashboard.module.scss";
 import successIcon from "../../img/success.png";
 import closeIcon from "../../img/close.png";
 import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
@@ -14,10 +14,23 @@ const FormSent = () => {
   const { contextUser } = useContext(UserContext);
 
   const handleClose = () => {
-    history.push("/");
+    history.push("/community-worker");
   };
 
   const type = location.state.interventionType;
+
+  const typeOfForm = () => {
+    switch (type) {
+      case "INTERVENTION":
+        return "Intervención";
+      case "EVALUATION":
+        return "Evaluación";
+      case "SUGGESTION":
+        return "Sugerencia de cita";
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className={desktopStyle.container}>
@@ -33,15 +46,12 @@ const FormSent = () => {
               </button>
             </div>
             <img src={successIcon} alt="success" />
-            <h3>
-              {type === "INTERVENTION" ? "Intervención" : "Evaluación"} enviada
-              correctamente.
-            </h3>
+            <h3>{typeOfForm()} enviada correctamente.</h3>
             <p>
               Muchas gracias por enviar tu{" "}
               {type === "INTERVENTION" ? "intervención" : "evaluación"},{" "}
-              {contextUser && contextUser.community_worker_first_name}. Recibirás confirmación también en
-              tu correo electrónico.
+              {contextUser && contextUser.community_worker_first_name}.
+              Recibirás confirmación también en tu correo electrónico.
             </p>
           </div>
         </div>

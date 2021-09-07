@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styles from "../../styles/dashboard.module.scss";
+import styles from "../../styles/workerDashboard.module.scss";
 import "../../styles/App.scss";
 import NotificationList from "../Notifications/NotificationList.jsx";
 import { UserContext } from "../../UserContext.js";

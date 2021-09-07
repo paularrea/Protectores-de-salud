@@ -13,8 +13,8 @@ import { UserContext } from "../../UserContext.js";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import "./form.css";
 
-import Step1 from "./EvaluationStep1";
-import Step2 from "./EvaluationStep2";
+import Step1 from "./AppointmentSuggestionStep1";
+import Step2 from "./AppointmentSuggestionStep2";
 import { useGeolocation } from "../../hooks/useGeolocation";
 
 const steps = [Step1, Step2];
@@ -45,7 +45,7 @@ const blue_pds = createMuiTheme({
   },
 });
 
-const Evaluation = (props) => {
+const AppointmentSuggestion = (props) => {
   const { contextUser } = useContext(UserContext);
   const location = useLocation();
   const topRefEv = useRef(null);
@@ -80,7 +80,7 @@ const Evaluation = (props) => {
       intervention_id: interventionId,
       user_id: contextUser && contextUser.id,
       position_coords_latitude: geolocation && geolocation.latitude,
-      position_coords_longitude: geolocation && geolocation.longitude
+      position_coords_longitude: geolocation && geolocation.longitude,
     });
   }, [activeStep, interventionId, contextUser, geolocation]);
 
@@ -148,7 +148,7 @@ const Evaluation = (props) => {
             onSubmit={onSubmit}
             validationSchema={validationSchema}
           >
-            {({ isSubmitting, touched, values, errors }) => (
+            {({ isSubmitting, touched, values, errors, setFieldValue }) => (
               <>
                 <Form>
                   <div className={styles.fixed_header}>
@@ -178,6 +178,7 @@ const Evaluation = (props) => {
                         <ThemeProvider theme={blue_pds}>
                           <Component
                             values={values}
+                            setFieldValue={setFieldValue}
                             interventionId={interventionId}
                             evaluationData={evaluationData}
                             refProp={topRefEv}
@@ -220,8 +221,6 @@ const Evaluation = (props) => {
                     </div>
                   </div>
                 </Form>
-                {/* <pre>{JSON.stringify(values, null, 2)}</pre>
-                <pre>{JSON.stringify(touched, null, 2)}</pre> */}
               </>
             )}
           </Formik>
@@ -229,7 +228,7 @@ const Evaluation = (props) => {
             <Redirect
               to={{
                 pathname: "/success-form",
-                state: { interventionType: "EVALUATION" },
+                state: { interventionType: "SUGGESTION" },
               }}
             />
           )}
@@ -238,4 +237,4 @@ const Evaluation = (props) => {
     </div>
   );
 };
-export default Evaluation;
+export default AppointmentSuggestion;

@@ -6,7 +6,7 @@ import MediaQuery from "react-responsive";
 
 import "../../styles/App.scss";
 import styles from "./agenda.module.scss";
-import desktopStyle from "../../styles/dashboard.module.scss";
+import desktopStyle from "../../styles/workerDashboard.module.scss";
 
 import userIcon from "../../img/User.png";
 import closeIcon from "../../img/close.png";

@@ -5,7 +5,7 @@ import { Redirect, useLocation, Link } from "react-router-dom";
 import { Stepper } from "@material-ui/core";
 import SwipeableViews from "react-swipeable-views";
 import arrow from "../../img/arrow_back.png";
-import desktopStyle from "../../styles/dashboard.module.scss";
+import desktopStyle from "../../styles/workerDashboard.module.scss";
 import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 import MediaQuery from "react-responsive";
 import { UserContext } from "../../UserContext.js";
@@ -17,11 +17,9 @@ import Step2 from "./InterventionStep2";
 import Step3 from "./InterventionStep3";
 import Step4 from "./InterventionStep4";
 import Step5 from "./InterventionStep5";
-import Step6 from "./InterventionStep6";
-import Step7 from "./InterventionStep7";
 import { useGeolocation } from "../../hooks/useGeolocation";
 
-const steps = [Step1, Step2, Step3, Step4, Step5, Step6, Step7];
+const steps = [Step1, Step2, Step3, Step4, Step5];
 
 const theme = createMuiTheme({
   overrides: {
@@ -124,11 +122,7 @@ const Intervention = (props) => {
     } else {
       window.scrollTo(0, 0);
     }
-    if (values && values.interventionSuggestion !== "No") {
-      setActiveStep(Math.min(activeStep + 1, steps.length - 1));
-    } else {
-      setActiveStep(Math.min(activeStep + 2, steps.length - 1));
-    }
+    setActiveStep(Math.min(activeStep + 1, steps.length - 1));
   };
 
   const onSubmit = async (values, bag) => {
@@ -192,7 +186,7 @@ const Intervention = (props) => {
     q37: "",
     q38: "",
     q39: "",
-    interventionSuggestion:'',
+    interventionSuggestion: "",
     newInterventionDateProposal: null,
     newInterventionTimeProposal: null,
   };
@@ -285,7 +279,7 @@ const Intervention = (props) => {
                       ) : (
                         <Link
                           to={{
-                            pathname: "/",
+                            pathname: "/community-worker",
                           }}
                         >
                           <button>
@@ -320,14 +314,12 @@ const Intervention = (props) => {
                         </button>
                       )}
                       {(activeStep === 0 ||
-                        activeStep === 2 ||
-                        activeStep === 4 ||
-                        activeStep === 5) && (
+                        activeStep === 2) && (
                         <button className={styles.green_button} type="submit">
                           Confirmar y seguir
                         </button>
                       )}
-                      {activeStep === 6 && (
+                      {activeStep === 4 && (
                         <button className={styles.green_button} type="submit">
                           Aceptar y enviar
                         </button>

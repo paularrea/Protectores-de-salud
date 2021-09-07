@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./form.module.scss";
 import notiStyles from "../Notifications/notificaciones.module.scss";
 import campana from "../../img/campana.png";
-import step5 from "../../img/steps/step5.png";
+import step2 from "../../img/steps/evaluation-step2.png";
 
-const Step5 = (props) => {
+const AppointmentSuggestionStep2 = (props) => {
   return (
     <div className={styles.container}>
       <div
-        ref={props.topRef}
+        ref={props.refProp}
         style={{ paddingTop: "2rem" }}
         className={styles.content}
       >
@@ -23,7 +23,7 @@ const Step5 = (props) => {
             className={notiStyles.notificaciones_container}
           >
             <p style={{ padding: 0 }}>
-              AVISO: Si acepta, la intervención se dará por finalizada y ya no
+              AVISO: Si acepta, la sugerencia de cita se dará por finalizada y ya no
               podrá modificar la información introducida.
             </p>
             <div className={notiStyles.icon}>
@@ -36,8 +36,8 @@ const Step5 = (props) => {
   );
 };
 
-Step5.label = "Finalizar Intervención y Enviar";
+AppointmentSuggestionStep2.label = "Finalizar Intervención y Enviar";
 
-Step5.Img = step5;
+AppointmentSuggestionStep2.Img = step2;
 
-export default Step5;
+export default AppointmentSuggestionStep2;

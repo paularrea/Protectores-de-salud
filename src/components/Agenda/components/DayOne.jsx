@@ -18,6 +18,8 @@ const DayOne = () => {
     setOpen(!open);
   };
 
+  console.log(contextUser, 'context')
+
   const agendaDayOne =
     contextUser &&
     contextUser.agenda.day_0.interventions.map((intervention, id) => {

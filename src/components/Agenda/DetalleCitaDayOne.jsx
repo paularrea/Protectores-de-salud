@@ -6,7 +6,7 @@ import MediaQuery from "react-responsive";
 
 import "../../styles/App.scss";
 import styles from "./agenda.module.scss";
-import desktopStyle from "../../styles/dashboard.module.scss";
+import desktopStyle from "../../styles/workerDashboard.module.scss";
 
 import userIcon from "../../img/User.png";
 import closeIcon from "../../img/close.png";
@@ -39,7 +39,7 @@ const DetalleCitaDayOne = () => {
         <p>{action}</p>
       </div>
     ));
-    
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -143,7 +143,7 @@ const DetalleCitaDayOne = () => {
 
               <div className={styles.form_button_container}>
                 <div className={styles.text}>
-                  <h3>Listo para empezar?</h3>
+                  <h3>¿Listo para empezar?</h3>
                   <p>
                     Si has intentado llamar a la paciente pero no has podido
                     contactar con ella, puedes pasar directamente a la
@@ -182,6 +182,24 @@ const DetalleCitaDayOne = () => {
                   >
                     <div className={styles.green_button}>
                       <h3>Empezar evaluación</h3>
+                      <img src={arrow} alt="arrow" />
+                    </div>
+                  </Link>
+                </div>
+                <div className={styles.text}>
+                  <h3>¿Quieres sugerir una próxima cita?</h3>
+                  <p>Bla bla bla...</p>
+                  <Link
+                    to={{
+                      pathname: "/appointment-suggestion",
+                      state: {
+                        patient: patient,
+                        patientDate: patientDate,
+                      },
+                    }}
+                  >
+                    <div className={styles.green_button}>
+                      <h3>Sugerir Cita</h3>
                       <img src={arrow} alt="arrow" />
                     </div>
                   </Link>

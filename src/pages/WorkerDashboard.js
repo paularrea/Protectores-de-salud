@@ -1,19 +1,19 @@
 import React, { useContext } from "react";
 import ProximasCitas from "../components/Agenda/Agenda.jsx";
-import styles from "../styles/dashboard.module.scss";
+import styles from "../styles/workerDashboard.module.scss";
 import MediaQuery from "react-responsive";
 import "../styles/App.scss";
 import Navbar from "../components/Navigation/navbar.jsx";
 import { UserContext } from "../UserContext.js";
 import LayoutDesktop from "../components/LayoutDesktop/LayoutDesktop.jsx";
 
-const Dashboard = ({ Logout }) => {
+const WorkerDashboard = () => {
   const { contextUser } = useContext(UserContext);
 
   return (
     <>
       <div className={styles.container}>
-        <Navbar user={contextUser} Logout={Logout} />
+        <Navbar user={contextUser} />
         <div className={styles.flex_desktop}>
           <LayoutDesktop />
           <section>
@@ -34,4 +34,4 @@ const Dashboard = ({ Logout }) => {
   );
 };
 
-export default Dashboard;
+export default WorkerDashboard;
