@@ -1,9 +1,10 @@
 .navbar{
     position: relative;
     .page{
-        padding: 1rem;
-        padding-left: 370px;
-       justify-content: flex-end; 
+        padding: 2rem;
+        padding-left: 25rem;
+       height: 100vh;
+       overflow-y: scroll;
     }
     .logo{
         position: absolute;
