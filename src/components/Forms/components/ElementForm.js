@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Field, ErrorMessage } from "formik";
-import { TextField, Select } from "formik-material-ui";
-import { MenuItem } from "@material-ui/core";
+import { TextField} from "formik-material-ui";
 import styles from "../form.module.scss";
 import "../form.css";
 import SubQuestionElement from "./SubQuestionElement";
@@ -9,14 +8,13 @@ import SubQuestionElement from "./SubQuestionElement";
 const Element = ({
   question: {
     chapter_name,
-    question_uuid,
+    question_id,
     question_content,
     response_type,
-    response_style,
     response_content,
+    sub_question_id,
     sub_question_content,
     sub_response_type,
-    sub_response_style,
     sub_response_content,
   },
 }) => {
@@ -25,11 +23,11 @@ const Element = ({
   const subQuestion =
     sub_question_content !== "NULL" ? (
       <SubQuestionElement
-        name={question_uuid}
+        name={sub_question_id}
         showSubQuestion={showSubQuestion}
+        sub_question_id={sub_question_id}
+        sub_response_type={sub_response_type}
         sub_response_content={sub_response_content}
-        question_uuid={question_uuid}
-        sub_response_style={sub_response_style}
         sub_question_content={sub_question_content}
       />
     ) : null;
@@ -39,12 +37,12 @@ const Element = ({
     event.target.value !== "Si" && setShowSubQuestion(false);
   };
 
-  switch (response_style) {
-    case "CHECK_BOXES":
+  switch (response_type) {
+    case "UNIQUE":
       return (
         <div style={{ margin: "1rem 0 2rem 0" }}>
           <ErrorMessage
-            name={question_uuid}
+            name={question_id}
             component="div"
             className={styles.error_message}
           />
@@ -60,7 +58,6 @@ const Element = ({
                 style={{
                   cursor: "pointer",
                   marginBottom: "1rem",
-                  fontWeight: 700,
                 }}
                 onChange={handleChangeRadio}
               >
@@ -72,7 +69,7 @@ const Element = ({
                     height: "18px",
                   }}
                   type="radio"
-                  name={question_uuid}
+                  name={question_id}
                   value={answer}
                 />
                 {answer}
@@ -82,43 +79,43 @@ const Element = ({
           {subQuestion}
         </div>
       );
-    case "DROPDOWN_MENU":
-      return (
-        <div style={{ marginTop: "1rem", marginBottom: "3rem" }}>
-          <ErrorMessage
-            name={question_uuid}
-            component="div"
-            className={styles.error_message}
-          />
-          <h4 className={styles.question_title}>{question_content}</h4>
-          <Field
-            type="select"
-            variant="outlined"
-            style={{ width: "100%" }}
-            component={Select}
-            name={question_uuid}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  transform: "translate3d(0, 0, 0)",
-                },
-              },
-            }}
-          >
-            {response_content.map((answer, key) => (
-              <MenuItem key={key} value={answer}>
-                {answer}
-              </MenuItem>
-            ))}
-          </Field>
-          {subQuestion}
-        </div>
-      );
+    // case "DROPDOWN_MENU":
+    //   return (
+    //     <div style={{ marginTop: "1rem", marginBottom: "3rem" }}>
+    //       <ErrorMessage
+    //         name={question_id}
+    //         component="div"
+    //         className={styles.error_message}
+    //       />
+    //       <h4 className={styles.question_title}>{question_content}</h4>
+    //       <Field
+    //         type="select"
+    //         variant="outlined"
+    //         style={{ width: "100%" }}
+    //         component={Select}
+    //         name={question_id}
+    //         MenuProps={{
+    //           PaperProps: {
+    //             style: {
+    //               transform: "translate3d(0, 0, 0)",
+    //             },
+    //           },
+    //         }}
+    //       >
+    //         {response_content.map((answer, key) => (
+    //           <MenuItem key={key} value={answer}>
+    //             {answer}
+    //           </MenuItem>
+    //         ))}
+    //       </Field>
+    //       {subQuestion}
+    //     </div>
+    //   );
     case "EDITABLE":
       return (
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           {/* <ErrorMessage
-            name={question_uuid}
+            name={question_id}
             component="div"
             className={styles.error_message}
           /> */}
@@ -128,17 +125,17 @@ const Element = ({
             variant="outlined"
             multiline
             rowsMax={4}
-            name={question_uuid}
+            name={question_id}
             margin="none"
             component={TextField}
           />
         </div>
       );
-    case "MULTI_BOXES":
+    case "MULTI":
       return (
         <div style={{ margin: "1rem 0 2rem 0" }}>
           <ErrorMessage
-            name={question_uuid}
+            name={question_id}
             component="div"
             className={styles.error_message}
           />
@@ -155,7 +152,6 @@ const Element = ({
                 style={{
                   cursor: "pointer",
                   marginBottom: "1rem",
-                  fontWeight: 700,
                 }}
               >
                 <Field
@@ -167,7 +163,7 @@ const Element = ({
                   }}
                   type="checkbox"
                   className={styles.checkbox_form}
-                  name={question_uuid}
+                  name={question_id}
                   value={answer}
                 />
                 {answer}

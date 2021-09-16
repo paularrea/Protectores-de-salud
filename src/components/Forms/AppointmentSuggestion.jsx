@@ -129,7 +129,6 @@ const AppointmentSuggestion = (props) => {
     }),
     {}
   );
-
   const ActiveStep = steps[activeStep];
   const validationSchema = ActiveStep.validationSchema;
   return (

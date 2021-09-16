@@ -25,7 +25,7 @@ const NotificationList = ({ user }) => {
       device_user_agent: navigator.userAgent,
       user_id: contextUser && contextUser.id,
       position_coords_latitude: geolocation && geolocation.latitude,
-      position_coords_longitude: geolocation && geolocation.longitude
+      position_coords_longitude: geolocation && geolocation.longitude,
     });
   }, [contextUser, geolocation]);
 
@@ -42,19 +42,20 @@ const NotificationList = ({ user }) => {
   };
 
   const redNotifications = allNotifications
-    ? allNotifications.map((red) => red.rojas)
+    ? allNotifications.filter((noti) => noti.background_color === "red")
     : null;
 
   const blueNotifications = allNotifications
-    ? allNotifications.map((blue) => blue.azules)
+    ? allNotifications.filter((noti) => noti.background_color === "blue")
     : null;
+
 
   return (
     <div>
       {sessionStorage.getItem("Red noti") !== "closed" &&
         redNotifications &&
         !closeRedNotification &&
-        redNotifications[0].map((item, id) => (
+        redNotifications.map((item, id) => (
           <div
             key={id}
             style={{
@@ -63,7 +64,7 @@ const NotificationList = ({ user }) => {
             }}
             className={styles.notificaciones_container}
           >
-            <p>{item.message}</p>
+            <p>{item.main_text}</p>
 
             <button className="link" onClick={closeRedNoti}>
               Ok, entendido.
@@ -77,7 +78,7 @@ const NotificationList = ({ user }) => {
       {sessionStorage.getItem("Blue noti") !== "closed" &&
         blueNotifications &&
         !closeBlueNotification &&
-        blueNotifications[0].map((item, id) => (
+        blueNotifications.map((item, id) => (
           <div
             key={id}
             style={{
@@ -86,7 +87,7 @@ const NotificationList = ({ user }) => {
             }}
             className={styles.notificaciones_container}
           >
-            <p>{item.message}</p>
+            <p>{item.main_text}</p>
 
             <button className="link" onClick={closeBlueNoti}>
               Ok, entendido.

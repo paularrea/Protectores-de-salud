@@ -177,8 +177,7 @@ const NewInterventionForm = (props) => {
       {isSent && (
         <Redirect
           to={{
-            pathname: "/success-form",
-            state: { interventionType: "SUGGESTION" },
+            pathname: "/gestionar-agenda/create-form-success",
           }}
         />
       )}

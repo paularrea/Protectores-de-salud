@@ -1,16 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./agenda.module.scss";
-import AppointmentsList from "./components/AppointmentsList/AppointmentsList";
+// import AppointmentsList from "./components/AppointmentsList/AppointmentsList";
 import SelectPatient from "./components/SelectPatient";
 import SelectPDS from "./components/SelectPds";
 
 const Agenda = () => {
   return (
     <div className={styles.container}>
-      <Link className={styles.goback} to="/gestionar-agenda">
-        {`<-`} Volver
-      </Link>
       <div className={styles.dropdown_container}>
         <h2>Ver agenda</h2>
         <p>Selecciona la agenda de un Protector de Salud o un Paciente</p>

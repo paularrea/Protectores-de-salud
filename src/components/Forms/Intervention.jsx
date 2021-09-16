@@ -60,10 +60,10 @@ const Intervention = (props) => {
   const [questionaryData, setQuestionaryData] = useState(null);
   const [formDataEvent, setFormDataEvent] = useState({});
   const { geolocation } = useGeolocation();
-
+  console.log(location, 'patient')
   const patient = location.state.patient;
   const patientDate = location.state.patientDate;
-  const interventionId = location.state.patient.intervention_id;
+  const interventionId = location.state.patient.agenda_event_id;
 
   console.log(location.state.patientDate, "date");
 
@@ -76,7 +76,7 @@ const Intervention = (props) => {
         return res.json();
       })
       .then((data) => {
-        setQuestionaryData(data);
+        setQuestionaryData(data[0].questionnaire_PDS_PROGRAM);
       });
   }, []);
 
@@ -138,15 +138,15 @@ const Intervention = (props) => {
   };
 
   const initialValues = {
-    patientFirstName: patient.patient_first_name,
-    patientMiddleName: patient.patient_middle_name,
-    patientLastName: patient.patient_last_name,
-    patientSecondLastName: patient.patient_second_last_name,
-    patientPhone: patient.patient_phone_num,
-    patientCountry: patient.residence_country_name,
-    patientCity: patient.residence_city,
-    patientAddress: patient.residence_address,
-    patientPostalCode: patient.residence_postal_code,
+    patientFirstName: patient.patient_info.patient_first_name,
+    patientMiddleName: patient.patient_info.patient_middle_name,
+    patientLastName: patient.patient_info.patient_last_name,
+    patientSecondLastName: patient.patient_info.patient_second_last_name,
+    patientPhone: patient.patient_info.patient_phone_num,
+    patientCountry: patient.patient_info.residence_country_name,
+    patientCity: patient.patient_info.residence_city,
+    patientAddress: patient.patient_info.residence_address,
+    patientPostalCode: patient.patient_info.residence_postal_code,
     q1: "",
     q2: "",
     q3: "",

@@ -15,10 +15,45 @@ import DateFnsUtils from "@date-io/date-fns";
 
 const appointmentType = ["Llamada", "Presencial"];
 const pdsList = ["Pau Larrea", "Andrea Vega", "David Campos"];
+const patientList = ["Lucas Calvo", "Paloma López", "Andrés Giménez"];
 
 const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
   const patientInfoVerification = (
     <>
+          <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+      <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
+      <InputLabel id="demo-simple-select-outlined-label">
+        Selecciona un Paciente
+      </InputLabel>
+        <ErrorMessage
+          name="PacienteName"
+          component="div"
+          className={styles.error_message}
+        />
+        <Field
+          type="select"
+          variant="outlined"
+          label="Selecciona un Paciente"
+          style={{ width: "100%" }}
+          component={Select}
+          name="PdsName"
+          MenuProps={{
+            PaperProps: {
+              style: {
+                transform: "translate3d(0, 0, 0)",
+              },
+            },
+          }}
+        >
+          {patientList.map((answer, key) => (
+            <MenuItem key={key} value={answer}>
+              {answer}
+            </MenuItem>
+          ))}
+        </Field>
+        </FormControl>
+      </div>
+      
       <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
       <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
       <InputLabel id="demo-simple-select-outlined-label">
@@ -52,7 +87,7 @@ const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
         </Field>
         </FormControl>
       </div>
-
+      
       <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
       <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
       <InputLabel id="demo-simple-select-outlined-label">

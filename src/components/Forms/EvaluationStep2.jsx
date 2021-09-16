@@ -1,7 +1,5 @@
 import React from "react";
-// import * as Yup from "yup";
 import styles from "./form.module.scss";
-// import { Field, ErrorMessage } from "formik";
 import notiStyles from "../Notifications/notificaciones.module.scss";
 import campana from "../../img/campana.png";
 import step2 from "../../img/steps/evaluation-step2.png";
@@ -14,32 +12,6 @@ const EvaluationStep2 = (props) => {
         style={{ paddingTop: "2rem" }}
         className={styles.content}
       >
-        {/* <div style={{ display: "flex", flexDirection: "column" }}>
-          <ErrorMessage
-            name="acceptAndSent"
-            component="div"
-            className={styles.error_message}
-          />
-        </div>
-        <label
-          style={{
-            cursor: "pointer",
-            marginBottom: "1rem",
-            fontWeight: 700,
-          }}
-        >
-          <Field
-            style={{
-              cursor: "pointer",
-              marginRight: "1rem",
-              width: "16px",
-              height: "16px",
-            }}
-            type="checkbox"
-            name="acceptAndSent"
-          />
-          Estoy conforme y quiero finalizar el proceso
-        </label> */}
         <div className={styles.noti_content}>
           <div
             style={{

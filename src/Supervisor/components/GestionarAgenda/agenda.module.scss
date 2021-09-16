@@ -1,18 +1,11 @@
 .container{
-        height: 100vh;
+        height: 100%;
+        overflow-y: hidden !important;
         display: flex;
         position: relative;
         justify-content: space-around;
         align-items: flex-start;
         padding-top: 6rem;
-        .goback{
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            color: #2E83F8;
-            font-size: 13px;
-            font-weight: bolder;
-        }
         .dropdown_container{
             padding-top: 3rem;
             width: 350px;

@@ -6,9 +6,13 @@ import step4 from "../../img/steps/step4.png"
 
 const Step4 = (props) => {
   const { contextUser } = useContext(UserContext);
-  const name = contextUser && contextUser.community_worker_first_name;
-  const date =
-    props.patientDate.split(",")[1] + props.patientDate.split(",")[2];
+
+  var date = new Date();
+  var dd = String(date.getDate()).padStart(2, '0');
+  var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = date.getFullYear();
+  
+  date = yyyy + '-' + mm + '-' + dd;
 
   return (
     <>
@@ -20,13 +24,13 @@ const Step4 = (props) => {
           </p>
           <div>
             <h4>
-              CERTIFICACIÓN VALIDANDO INTERVENCIÓN/SERVICIO DE PROTECTOR DE
+              CERTIFICACIÓN/VALIDACIÓN DE LA INTERVENCIÓN/SERVICIO DE PROTECTOR DE
               SALUD
             </h4>
             <p>
-              Certifico que, {name}, representante de Protectores de Salud,
-              completó intervención durante el {date}. Certifico que
-              representante presentó su identificación y que la información
+              Certifico que el/la representante de Protectores de Salud
+              completó la intervención en fecha {date}. Certifico que este/a
+              presentó su identificación y que la información
               brindada por mí es veraz y completa de acuerdo a mi mejor
               conocimiento y sin que haya mediado coacción o intimidación de
               clase alguna.

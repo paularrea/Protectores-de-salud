@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
+// import { useLocation } from "react-router-dom";
+import styles from "../styles/inicio.module.scss";
 
 const Inicio = () => {
-    return (
-        <div>
-            Inicio
-        </div>
-    )
-}
+//   const location = useLocation();
+//   const user = location.state.username;
 
-export default Inicio
+  return (
+    <div className={styles.container}>
+      <h1>Hola Pau</h1>
+      <p>Bienvenido a tu espacio de trabajo</p>
+    </div>
+  );
+};
+
+export default Inicio;

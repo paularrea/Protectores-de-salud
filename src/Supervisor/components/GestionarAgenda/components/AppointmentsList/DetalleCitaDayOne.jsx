@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import "../../../../../styles/App.scss";
 import styles from "./agenda.module.scss";
 
-import userIcon from "../../../../../img/User.png";
 import closeIcon from "../../../../../img/close.png";
+import userIcon from "../../../../../img/User.png";
 import phoneIcon from "../../../../../img/phone.png";
 import locationIcon from "../../../../../img/Place.png";
 import arrow from "../../../../../img/arrow-right.png";

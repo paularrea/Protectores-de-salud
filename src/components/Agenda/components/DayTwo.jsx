@@ -10,7 +10,7 @@ import less from "../../../img/less.png";
 import more from "../../../img/more.png";
 import ValidationButton from "./validationButton";
 
-const DayTwo = () => {
+const DayOne = () => {
   const { contextUser } = useContext(UserContext);
   const [open, setOpen] = useState(false);
 
@@ -18,16 +18,16 @@ const DayTwo = () => {
     setOpen(!open);
   };
 
-  const agendaDayTwo =
+  const agendaDayOne =
     contextUser &&
-    contextUser.agenda.day_1.interventions.map((intervention, id) => {
+    contextUser.agenda.day_1.list_of_events.map((intervention, id) => {
       return (
         <Link
           key={id}
-          to={`intervention-details-2/${intervention.intervention_id}`}
+          to={`intervention-details-2/${intervention.agenda_event_id}`}
         >
           <section className={styles.intervention}>
-            <div className={styles.time}>{intervention.intervention_time}</div>
+            <div className={styles.time}>{intervention.local_time_12h}</div>
             <div className={styles.direction}>
               <div className={styles.flex_container_direction}>
                 <div className={styles.name}>
@@ -37,10 +37,10 @@ const DayTwo = () => {
                     <img src={phoneIcon} alt="phone" />
                   )}
                   <h5>
-                    {intervention.patient_first_name}{" "}
-                    {intervention.patient_middle_name}{" "}
-                    {intervention.patient_last_name}{" "}
-                    {intervention.patient_second_last_name}
+                    {intervention.patient_info.patient_first_name}{" "}
+                    {intervention.patient_info.patient_middle_name}{" "}
+                    {intervention.patient_info.patient_last_name}{" "}
+                    {intervention.patient_info.patient_second_last_name}
                   </h5>
                 </div>
                 <div className={styles.arrow_container}>
@@ -49,10 +49,10 @@ const DayTwo = () => {
               </div>
               {intervention.intervention_type === "VISIT" && (
                 <p>
-                  {intervention.residence_address},{" "}
-                  {intervention.residence_postal_code}{" "}
-                  {intervention.residence_city} {intervention.residence_state},{" "}
-                  {intervention.residence_country_name}
+                  {intervention.patient_info.residence_address},{" "}
+                  {intervention.patient_info.residence_postal_code}{" "}
+                  {intervention.patient_info.residence_city} {intervention.patient_info.residence_state},{" "}
+                  {intervention.patient_info.residence_country_name}
                 </p>
               )}
             </div>
@@ -61,7 +61,7 @@ const DayTwo = () => {
       );
     });
 
-  const date = contextUser && contextUser.agenda.day_1.date;
+  const date = contextUser && contextUser.agenda.day_1.date_as_text;
 
   return (
     <div className={styles.container}>
@@ -80,9 +80,9 @@ const DayTwo = () => {
           </div>
         </div>
       </div>
-      {open && <>{agendaDayTwo}</>}
+      {open && <>{agendaDayOne}</>}
     </div>
   );
 };
 
-export default DayTwo;
+export default DayOne;

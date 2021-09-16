@@ -28,13 +28,21 @@ EvaluationStep1.initialValues = {
   e2:'',
   e3:'',
   e4:'',
+  e5:'',
+  e6:'',
+  e7:'',
+  e8:'',
 }
 EvaluationStep1.Img = step1;
-EvaluationStep1.validationSchema = Yup.object().shape({
-  e1: Yup.string().required("Campo Obligatorio"),
-  e2: Yup.string().required("Campo Obligatorio"),
-  e3: Yup.array().required("Campo Obligatorio"),
-  e4: Yup.string().required("Campo Obligatorio")
-})
+// EvaluationStep1.validationSchema = Yup.object().shape({
+//   e1: Yup.string().required("Campo Obligatorio"),
+//   e2: Yup.string().required("Campo Obligatorio"),
+//   e3: Yup.array().required("Campo Obligatorio"),
+//   e4: Yup.string().required("Campo Obligatorio"),
+//   e5: Yup.string().required("Campo Obligatorio"),
+//   e6: Yup.array().required("Campo Obligatorio"),
+//   e7: Yup.string().required("Campo Obligatorio"),
+//   e8: Yup.string().required("Campo Obligatorio"),
+// })
 
 export default EvaluationStep1;

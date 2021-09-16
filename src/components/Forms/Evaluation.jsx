@@ -59,14 +59,14 @@ const Evaluation = (props) => {
 
   useEffect(() => {
     fetch(
-      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_POST_INTERVENTION"
+      "https://60b0f3a01f26610017fff886.mockapi.io/protectores-de-salud/questionnaire_PDS_PROGRAM"
       // 'http://localhost:3004/questionnaire_POST_INTERVENTION'
     )
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        setEvaluationData(data);
+        setEvaluationData(data[0].questionnaire_POST_INTERVENTION);
       });
   }, []);
 

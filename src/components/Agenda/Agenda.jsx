@@ -11,13 +11,27 @@ const Agenda = () => {
   return (
     <div className={style.container}>
       <MediaQuery maxWidth={1025}>
-        <h3 className={style.title}>Próximas citas</h3>
+        <h3 className={style.title}>Próximas intervenciones</h3>
       </MediaQuery>
-      <DayOne />
-      <DayTwo />
-      <DayThree />
-      <DayFour />
-      <DayFive />
+      <div style={{ borderBottom: "1px solid white" }}>
+        <DayOne />
+      </div>
+      <div style={{ borderBottom: "1px solid white" }}>
+        {" "}
+        <DayTwo />
+      </div>
+      <div style={{ borderBottom: "1px solid white" }}>
+        {" "}
+        <DayThree />
+      </div>
+      <div style={{ borderBottom: "1px solid white" }}>
+        {" "}
+        <DayFour />
+      </div>
+      <div style={{ borderBottom: "1px solid white" }}>
+        {" "}
+        <DayFive />
+      </div>
     </div>
   );
 };

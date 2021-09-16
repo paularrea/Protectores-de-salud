@@ -23,6 +23,7 @@ import Agenda from "../Supervisor/components/GestionarAgenda/Agenda";
 import AppointmentSuggestion from "../components/Forms/AppointmentSuggestion.jsx";
 import IntervencionesPendientes from "../Supervisor/components/GestionarAgenda/IntervencionesPendientes";
 import NuevaIntervencion from "../Supervisor/components/GestionarAgenda/NuevaIntervencion";
+import Success from "../Supervisor/components/GestionarAgenda/components/NewInterventionForm/Success";
 const Routes = () => {
   const [contextUser, setContextUser] = useState();
 
@@ -38,6 +39,8 @@ const Routes = () => {
         setContextUser(data[1]);
       });
   }, []);
+
+  console.log(contextUser, 'user')
 
   return (
     <BrowserRouter>
@@ -116,6 +119,11 @@ const Routes = () => {
           <RouteWrapper
             path="/gestionar-agenda/nueva-intervencion"
             component={NuevaIntervencion}
+            layout={Navigation}
+          />
+            <RouteWrapper
+            path="/gestionar-agenda/create-form-success"
+            component={Success}
             layout={Navigation}
           />
         </UserContext.Provider>

@@ -109,7 +109,12 @@ const Login = () => {
   );
 
   const isAdmin = dbUser[0] && dbUser[0].user_type === "SUPERVISOR" && (
-    <Redirect to="/supervisor" Logout={Logout} user={dbUser[0]} />
+    <Redirect
+      to={{
+        pathname: "/supervisor",
+        state: user,
+      }}
+    />
     // <SupervisorIndex  />
   );
 

@@ -10,26 +10,10 @@ import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 
 const FormSent = () => {
   const history = useHistory();
-  const location = useLocation();
-  const { contextUser } = useContext(UserContext);
+  // const { contextUser } = useContext(UserContext);
 
   const handleClose = () => {
     history.push("/community-worker");
-  };
-
-  const type = location.state.interventionType;
-
-  const typeOfForm = () => {
-    switch (type) {
-      case "INTERVENTION":
-        return "Intervención";
-      case "EVALUATION":
-        return "Evaluación";
-      case "SUGGESTION":
-        return "Sugerencia de cita";
-      default:
-        return null;
-    }
   };
 
   return (
@@ -46,12 +30,9 @@ const FormSent = () => {
               </button>
             </div>
             <img src={successIcon} alt="success" />
-            <h3>{typeOfForm()} enviada correctamente.</h3>
+            <h3>Información enviada correctamente.</h3>
             <p>
-              Muchas gracias por enviar tu{" "}
-              {type === "INTERVENTION" ? "intervención" : "evaluación"},{" "}
-              {contextUser && contextUser.community_worker_first_name}.
-              Recibirás confirmación también en tu correo electrónico.
+              Muchas gracias.
             </p>
           </div>
         </div>

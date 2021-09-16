@@ -36,7 +36,7 @@ const AppointmentSuggestionStep2 = (props) => {
   );
 };
 
-AppointmentSuggestionStep2.label = "Finalizar Intervención y Enviar";
+AppointmentSuggestionStep2.label = "Aceptar y enviar";
 
 AppointmentSuggestionStep2.Img = step2;
 

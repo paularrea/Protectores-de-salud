@@ -4,7 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-const pdsList = ["Lucas Calvo", "Paloma López", "Andrés Giménez"];
+const patientList = ["Lucas Calvo", "Paloma López", "Andrés Giménez"];
 
 const SelectPatient = () => {
   const [value, setValue] = React.useState("");
@@ -24,7 +24,7 @@ const SelectPatient = () => {
         onChange={handleChange}
         label="Selecciona un Paciente"
       >
-        {pdsList.map((pds, key) => (
+        {patientList.map((pds, key) => (
           <MenuItem key={key} value={pds}>
             {pds}
           </MenuItem>

@@ -5,39 +5,53 @@ import {
   ResponsiveContainer,
   Area,
   XAxis,
+  CartesianGrid,
+  Legend,
   YAxis,
   ReferenceLine,
   Tooltip,
 } from "recharts";
 
-const Chart = ({ name, values }) => {
-  console.log(values);
+const Chart = ({ title, values, line, XLabel, YLabel }) => {
+  console.log(XLabel, YLabel, "labels");
   return (
     <div className={styles.chart}>
       <div className={styles.title}>
-        <h2>{name}</h2>
-        <p>
-          en los últimos <b>10 días</b>
-        </p>
+        <h2>{title}</h2>
       </div>
 
       {values && (
-        <div style={{ width: "100%", height: '45vh' }}>
+        <div style={{ width: "100%", height: "600px" }}>
           <ResponsiveContainer>
             <AreaChart
               data={values}
               margin={{
-                top: 20,
-                right: 20,
-                bottom: 20,
+                top: 10,
+                right: 50,
+                bottom: 80,
                 left: 20,
               }}
             >
-              <XAxis dataKey="day" />
-              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                label={{ value: XLabel, position: "insideBottomRight", dy: 65 }}
+                dataKey="day"
+                angle={-30}
+                dx={-40}
+                dy={25}
+              />
+              <YAxis
+                label={{
+                  value: YLabel,
+                  angle: -90,
+                  position: "center",
+                  dx: -20,
+                }}
+              />
               <Area dataKey="range" stroke="#2E83F8" fill="#F3F8FF" />
               <Tooltip />
-              <ReferenceLine y={3} stroke="#FF2E79" />
+              {/* <Legend /> */}
+              <ReferenceLine y={line} stroke="#FF2E79" />
             </AreaChart>
           </ResponsiveContainer>
         </div>

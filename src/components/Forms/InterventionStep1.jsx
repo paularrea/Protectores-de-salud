@@ -215,26 +215,25 @@ Step1.label = "Verificar datos personales";
 
 Step1.validationSchema = Yup.object().shape({
   patientFirstName: Yup.string().required(
-    "Porfavor introduzca el nombre de el/la paciente"
+    "Campo obligatorio"
   ),
   patientLastName: Yup.string().required(
-    "Porfavor introduzca el apellido de el/la paciente"
+    "Campo obligatorio"
   ),
   patientPhone: Yup.string().required(
-    "Porfavor introduzca el teléfono de el/la paciente"
+    "Campo obligatorio"
   ),
   patientCountry: Yup.string().required(
-    "Porfavor introduzca el país de el/la paciente"
+    "Campo obligatorio"
   ),
   patientCity: Yup.string().required(
-    "Porfavor introduzca la ciudad de el/la paciente"
+    "Campo obligatorio"
   ),
   patientAddress: Yup.string().required(
-    "Porfavor introduzca la dirección del paciente"
+    "Campo obligatorio"
   ),
   patientPostalCode: Yup.string().required(
-    "Porfavor introduzca el código postal del paciente"
-  ),
+    "Campo obligatorio"  ),
 });
 
 Step1.Img = step1;

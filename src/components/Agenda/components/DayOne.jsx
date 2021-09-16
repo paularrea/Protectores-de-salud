@@ -12,24 +12,22 @@ import ValidationButton from "./validationButton";
 
 const DayOne = () => {
   const { contextUser } = useContext(UserContext);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const openClose = () => {
     setOpen(!open);
   };
 
-  console.log(contextUser, 'context')
-
   const agendaDayOne =
     contextUser &&
-    contextUser.agenda.day_0.interventions.map((intervention, id) => {
+    contextUser.agenda.day_0.list_of_events.map((intervention, id) => {
       return (
         <Link
           key={id}
-          to={`intervention-details-1/${intervention.intervention_id}`}
+          to={`intervention-details-1/${intervention.agenda_event_id}`}
         >
           <section className={styles.intervention}>
-            <div className={styles.time}>{intervention.intervention_time}</div>
+            <div className={styles.time}>{intervention.local_time_12h}</div>
             <div className={styles.direction}>
               <div className={styles.flex_container_direction}>
                 <div className={styles.name}>
@@ -39,10 +37,10 @@ const DayOne = () => {
                     <img src={phoneIcon} alt="phone" />
                   )}
                   <h5>
-                    {intervention.patient_first_name}{" "}
-                    {intervention.patient_middle_name}{" "}
-                    {intervention.patient_last_name}{" "}
-                    {intervention.patient_second_last_name}
+                    {intervention.patient_info.patient_first_name}{" "}
+                    {intervention.patient_info.patient_middle_name}{" "}
+                    {intervention.patient_info.patient_last_name}{" "}
+                    {intervention.patient_info.patient_second_last_name}
                   </h5>
                 </div>
                 <div className={styles.arrow_container}>
@@ -51,8 +49,10 @@ const DayOne = () => {
               </div>
               {intervention.intervention_type === "VISIT" && (
                 <p>
-                  {intervention.residence_address}, {intervention.residence_postal_code} {intervention.residence_city}{" "}
-                  {intervention.residence_state}, {intervention.residence_country_name}
+                  {intervention.patient_info.residence_address},{" "}
+                  {intervention.patient_info.residence_postal_code}{" "}
+                  {intervention.patient_info.residence_city} {intervention.patient_info.residence_state},{" "}
+                  {intervention.patient_info.residence_country_name}
                 </p>
               )}
             </div>
@@ -61,7 +61,7 @@ const DayOne = () => {
       );
     });
 
-  const date = contextUser && contextUser.agenda.day_0.date;
+  const date = contextUser && contextUser.agenda.day_0.date_as_text;
 
   return (
     <div className={styles.container}>
