@@ -4,7 +4,7 @@ import { TextField } from "formik-material-ui";
 import "./form.css";
 import styles from "./form.module.scss";
 import step1 from "../../img/steps/evaluation-step1.png";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import "./form.css";
 import {
   MuiPickersUtilsProvider,
@@ -13,6 +13,7 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 
 const AppointmentSuggestionStep1 = ({ refProp, setFieldValue, values }) => {
+  console.log(values, 'valuuuu')
   const patientInfoVerification = (
     <>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -23,6 +24,7 @@ const AppointmentSuggestionStep1 = ({ refProp, setFieldValue, values }) => {
             inputVariant="outlined"
             format="dd/MM/yyyy"
             value={values.newInterventionDateProposal}
+            placeholder="dd/MM/yyyy"
             onChange={(value) =>
               setFieldValue("newInterventionDateProposal", value)
             }

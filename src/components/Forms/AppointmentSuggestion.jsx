@@ -200,7 +200,7 @@ const AppointmentSuggestion = (props) => {
                       ) : (
                         <Link
                           to={{
-                            pathname: "/community-worker",
+                            pathname: location.state.patientURL,
                           }}
                         >
                           <button>
@@ -227,7 +227,10 @@ const AppointmentSuggestion = (props) => {
             <Redirect
               to={{
                 pathname: "/success-form",
-                state: { interventionType: "SUGGESTION" },
+                state: {
+                  interventionType: "SUGGESTION",
+                  patientURL: location.state.patientURL,
+                },
               }}
             />
           )}

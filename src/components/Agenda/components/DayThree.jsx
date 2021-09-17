@@ -8,7 +8,6 @@ import phoneIcon from "../../../img/phone.png";
 import arrow from "../../../img/arrow.png";
 import less from "../../../img/less.png";
 import more from "../../../img/more.png";
-import ValidationButton from "./validationButton";
 
 const DayOne = () => {
   const { contextUser } = useContext(UserContext);
@@ -65,13 +64,10 @@ const DayOne = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.flex_container}>
         <div onClick={openClose}>
+      <div className={styles.flex_container}>
           <p>{date}</p>
-        </div>
         <div className={styles.more_less_icons}>
-          <ValidationButton validationDate={date} />
-          <div onClick={openClose}>
             {open ? (
               <img src={less} alt="ver menos" />
             ) : (

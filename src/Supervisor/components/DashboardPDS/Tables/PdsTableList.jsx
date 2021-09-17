@@ -73,7 +73,7 @@ function Row(props) {
             </span>
           )}
           <br />
-          {row.num_of_calls.charAt(0) == 1 ? (
+          {row.num_of_visits.charAt(0) == 1 ? (
             <span className={red_text}>
               {row.num_of_visits.substring(1)} <span>visitas</span>
             </span>
@@ -97,7 +97,7 @@ function Row(props) {
             </span>
           )}
           <br />
-          {row.duration_of_call_in_mins.charAt(0) == 1 ? (
+          {row.duration_of_visit_in_mins.charAt(0) == 1 ? (
             <span className={red_text}>
               {row.duration_of_visit_in_mins.substring(1)}
               <span>visitas</span>
@@ -145,7 +145,6 @@ function Row(props) {
             </span>
           )}
         </TableCell>
-        <TableCell align="left"></TableCell>
       </TableRow>
     </React.Fragment>
   );
@@ -157,8 +156,8 @@ const rows = pdsChartList.map((pds) => {
 
     `${pds.community_worker_name}`,
 
-    `${pds.num_of_visits.alarm_is_active}${pds.num_of_visits.value} min`,
-    `${pds.num_of_calls.alarm_is_active}${pds.num_of_calls.value} min`,
+    `${pds.num_of_visits.alarm_is_active}${pds.num_of_visits.value}`,
+    `${pds.num_of_calls.alarm_is_active}${pds.num_of_calls.value}`,
 
     `${pds.duration_of_visit_in_mins.alarm_is_active}${pds.duration_of_visit_in_mins.value} min`,
     `${pds.duration_of_call_in_mins.alarm_is_active}${pds.duration_of_call_in_mins.value} min`,
@@ -167,7 +166,7 @@ const rows = pdsChartList.map((pds) => {
 
     `${pds.response_time_in_mins.alarm_is_active}${pds.response_time_in_mins.value} min`,
 
-    `${pds.patient_satisfaction_level.alarm_is_active}${pds.patient_satisfaction_level.value}%`,
+    `${pds.patient_satisfaction_level.alarm_is_active}${pds.patient_satisfaction_level.value}`,
 
     "ir al perfil"
   );
@@ -190,13 +189,12 @@ const PdsTableList = () => {
           <TableHead style={{ backgroundColor: "#ECECF3 !important" }}>
             <TableRow>
               <TableCell></TableCell>
-              <TableCell>Nombre</TableCell>
-              <TableCell align="left">Media diaria</TableCell>
-              <TableCell align="left">Tiempo por intervención</TableCell>
-              <TableCell align="left">Tiempo de respuesta</TableCell>
-              <TableCell align="left">Tiempo de traslado</TableCell>
-              <TableCell align="left">Evaluación</TableCell>
-              <TableCell align="left"></TableCell>
+              <TableCell>Nombre del PDS</TableCell>
+              <TableCell align="left">Número de intervenciones</TableCell>
+              <TableCell align="left">Duración de la intervención</TableCell>
+              <TableCell align="left">Tiempo de respuesta a notificaciones</TableCell>
+              <TableCell align="left">Tiempo de desplazamiento</TableCell>
+              <TableCell align="left">Satisfacción del paciente (1-10)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

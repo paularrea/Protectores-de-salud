@@ -60,12 +60,14 @@ const Intervention = (props) => {
   const [questionaryData, setQuestionaryData] = useState(null);
   const [formDataEvent, setFormDataEvent] = useState({});
   const { geolocation } = useGeolocation();
-  console.log(location, 'patient')
+  console.log(location, "patient");
   const patient = location.state.patient;
   const patientDate = location.state.patientDate;
   const interventionId = location.state.patient.agenda_event_id;
 
-  console.log(location.state.patientDate, "date");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -279,7 +281,7 @@ const Intervention = (props) => {
                       ) : (
                         <Link
                           to={{
-                            pathname: "/community-worker",
+                            pathname: location.state.patientURL,
                           }}
                         >
                           <button>
@@ -313,8 +315,7 @@ const Intervention = (props) => {
                           Firmar y seguir
                         </button>
                       )}
-                      {(activeStep === 0 ||
-                        activeStep === 2) && (
+                      {(activeStep === 0 || activeStep === 2) && (
                         <button className={styles.green_button} type="submit">
                           Confirmar y seguir
                         </button>
@@ -336,7 +337,10 @@ const Intervention = (props) => {
             <Redirect
               to={{
                 pathname: "/success-form",
-                state: { interventionType: "INTERVENTION" },
+                state: {
+                  interventionType: "INTERVENTION",
+                  patientURL: location.state.patientURL,
+                },
               }}
             />
           )}

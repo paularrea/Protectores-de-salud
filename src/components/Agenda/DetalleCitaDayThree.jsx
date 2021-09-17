@@ -27,9 +27,9 @@ const DetalleCitaDayThree = () => {
     interventions.filter((intervention) => intervention.agenda_event_id === id);
 
   const handleBack = () => {
-    history.goBack();
+    history.push("/community-worker");
   };
-console.log(currentAppointment, 'current')
+  console.log(currentAppointment, "current");
   const currentPatient = currentAppointment && currentAppointment[0];
   const actions =
     currentAppointment &&
@@ -40,11 +40,15 @@ console.log(currentAppointment, 'current')
       </div>
     ));
 
+  const patientURL = window.location.pathname;
+  console.log(patientURL, "url");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const interventions = contextUser && contextUser.agenda.day_2.list_of_events;
+    const interventions =
+      contextUser && contextUser.agenda.day_2.list_of_events;
     const currentAppointment =
       interventions &&
       interventions.filter(
@@ -77,10 +81,14 @@ console.log(currentAppointment, 'current')
                   <img src={userIcon} alt="user" />
                 </div>
                 <h3>
-                  {currentPatient && currentPatient.patient_info.patient_first_name}{" "}
-                  {currentPatient && currentPatient.patient_info.patient_middle_name}{" "}
-                  {currentPatient && currentPatient.patient_info.patient_last_name}{" "}
-                  {currentPatient && currentPatient.patient_info.patient_second_last_name}
+                  {currentPatient &&
+                    currentPatient.patient_info.patient_first_name}{" "}
+                  {currentPatient &&
+                    currentPatient.patient_info.patient_middle_name}{" "}
+                  {currentPatient &&
+                    currentPatient.patient_info.patient_last_name}{" "}
+                  {currentPatient &&
+                    currentPatient.patient_info.patient_second_last_name}
                 </h3>
               </div>
               {isVisit && (
@@ -93,11 +101,19 @@ console.log(currentAppointment, 'current')
                       <img src={locationIcon} alt="location" />
                     </div>
                     <h3 style={{ fontWeight: "400", lineHeight: "24px" }}>
-                      {currentPatient && currentPatient.patient_info.residence_address},{" "}
-                      {currentPatient && currentPatient.patient_info.residence_postal_code},{" "}
-                      {currentPatient && currentPatient.patient_info.residence_city}{" "}
-                      {currentPatient && currentPatient.patient_info.residence_state},{" "}
-                      {currentPatient && currentPatient.patient_info.residence_country_name}{" "}
+                      {currentPatient &&
+                        currentPatient.patient_info.residence_address}
+                      ,{" "}
+                      {currentPatient &&
+                        currentPatient.patient_info.residence_postal_code}
+                      ,{" "}
+                      {currentPatient &&
+                        currentPatient.patient_info.residence_city}{" "}
+                      {currentPatient &&
+                        currentPatient.patient_info.residence_state}
+                      ,{" "}
+                      {currentPatient &&
+                        currentPatient.patient_info.residence_country_name}{" "}
                       <br />
                       <a
                         style={{ fontSize: "12px", fontWeight: "700" }}
@@ -105,13 +121,17 @@ console.log(currentAppointment, 'current')
                         target="_blank"
                         rel="noreferrer"
                         href={`https://www.google.es/maps/place/${
-                          currentPatient && currentPatient.patient_info.residence_address
+                          currentPatient &&
+                          currentPatient.patient_info.residence_address
                         },+${
-                          currentPatient && currentPatient.patient_info.residence_postal_code
+                          currentPatient &&
+                          currentPatient.patient_info.residence_postal_code
                         },+${
-                          currentPatient && currentPatient.patient_info.residence_city
+                          currentPatient &&
+                          currentPatient.patient_info.residence_city
                         },+${
-                          currentPatient && currentPatient.patient_info.residence_state
+                          currentPatient &&
+                          currentPatient.patient_info.residence_state
                         },+${
                           currentPatient &&
                           currentPatient.patient_info.residence_country_name
@@ -125,12 +145,16 @@ console.log(currentAppointment, 'current')
               )}
               <a
                 href={`tel:${
-                  currentPatient && currentPatient.patient_info.patient_phone_num
+                  currentPatient &&
+                  currentPatient.patient_info.patient_phone_num
                 }`}
               >
                 <div className={styles.phone_flex}>
                   <img src={phoneIcon} alt="phone" />
-                  <h3>{currentPatient && currentPatient.patient_info.patient_phone_num}</h3>
+                  <h3>
+                    {currentPatient &&
+                      currentPatient.patient_info.patient_phone_num}
+                  </h3>
                 </div>
               </a>
 
@@ -145,9 +169,8 @@ console.log(currentAppointment, 'current')
                 <div className={styles.text}>
                   <h3>¿Listo para empezar?</h3>
                   <p>
-                    Si has intentado llamar a la paciente pero no has podido
-                    contactar con ella, puedes pasar directamente a la
-                    evaluación de la intervención.
+                    Si no has podido contactar con el paciente, puedes pasar
+                    directamente a la evaluación de la intervención.
                   </p>
                   <Link
                     to={{
@@ -155,6 +178,7 @@ console.log(currentAppointment, 'current')
                       state: {
                         patient: patient,
                         patientDate: patientDate,
+                        patientURL: patientURL
                       },
                     }}
                   >
@@ -165,19 +189,19 @@ console.log(currentAppointment, 'current')
                   </Link>
                 </div>
                 <div className={styles.text}>
-                  <h3>¿Quieres sugerir una próxima cita?</h3>
-                  <p>Bla bla bla...</p>
+                  <h3>¿Quieres sugerir una próxima intervención?</h3>
                   <Link
                     to={{
                       pathname: "/appointment-suggestion",
                       state: {
                         patient: patient,
                         patientDate: patientDate,
+                        patientURL: patientURL
                       },
                     }}
                   >
                     <div className={styles.green_button}>
-                      <h3>Sugerir Cita</h3>
+                      <h3>Sugerir intervención</h3>
                       <img src={arrow} alt="arrow" />
                     </div>
                   </Link>
@@ -194,6 +218,7 @@ console.log(currentAppointment, 'current')
                       state: {
                         patient: patient,
                         patientDate: patientDate,
+                        patientURL: patientURL,
                       },
                     }}
                   >
@@ -203,7 +228,6 @@ console.log(currentAppointment, 'current')
                     </div>
                   </Link>
                 </div>
-
               </div>
             </div>
           </div>

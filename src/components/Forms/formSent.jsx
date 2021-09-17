@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { UserContext } from "../../UserContext";
+// import { UserContext } from "../../UserContext";
 import styles from "./form.module.scss";
 import MediaQuery from "react-responsive";
 import desktopStyle from "../../styles/workerDashboard.module.scss";
@@ -10,10 +10,11 @@ import LayoutDesktop from "../LayoutDesktop/LayoutDesktop";
 
 const FormSent = () => {
   const history = useHistory();
+  const location = useLocation();
   // const { contextUser } = useContext(UserContext);
 
   const handleClose = () => {
-    history.push("/community-worker");
+    history.push(location.state.patientURL);
   };
 
   return (

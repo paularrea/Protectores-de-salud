@@ -11,9 +11,9 @@ const DashboardPDS = () => {
     <div className={styles.container}>
       <div className={styles.flex}>
         <div>
-          <p>Resumen general</p>
+          <p>Dashboard</p>
           <h1>Protectores de Salud</h1>
-          <p className={styles.date}>Última actualización: {last_date}</p>
+          <p className={styles.date}>Último día completado: {last_date}</p>
         </div>
         <Infobox />
       </div>

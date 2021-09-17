@@ -80,7 +80,7 @@ const Evaluation = (props) => {
       intervention_id: interventionId,
       user_id: contextUser && contextUser.id,
       position_coords_latitude: geolocation && geolocation.latitude,
-      position_coords_longitude: geolocation && geolocation.longitude
+      position_coords_longitude: geolocation && geolocation.longitude,
     });
   }, [activeStep, interventionId, contextUser, geolocation]);
 
@@ -200,7 +200,7 @@ const Evaluation = (props) => {
                       ) : (
                         <Link
                           to={{
-                            pathname: "/community-worker",
+                            pathname: location.state.patientURL,
                           }}
                         >
                           <button>
@@ -229,7 +229,10 @@ const Evaluation = (props) => {
             <Redirect
               to={{
                 pathname: "/success-form",
-                state: { interventionType: "EVALUATION" },
+                state: {
+                  interventionType: "EVALUATION",
+                  patientURL: location.state.patientURL,
+                },
               }}
             />
           )}

@@ -13,8 +13,8 @@ const Infobox = () => {
     return (
         <div className={container}>
             <div className={flex_container}>
-            <div className={box}><p>Trabajadores activos hoy</p><h2>{num_of_active_community_workers}</h2></div>    
-            <div className={box}><p>Intervenciones realizadas ayer</p><h2>{num_of_interventions}</h2></div>    
+            <div className={box}><p>PDSs activos</p><h2>{num_of_active_community_workers}</h2></div>    
+            <div className={box}><p>Intervenciones realizadas</p><h2>{num_of_interventions}</h2></div>    
             </div>
             <div className={flex_container}>
             <div className={box}><p>Número de llamadas realizadas</p><h2>{num_of_calls}</h2></div>    
