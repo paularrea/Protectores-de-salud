@@ -11,7 +11,7 @@ const GestionarAgenda = () => {
       <div>
         <img src={agendaImg} alt="" />
         <h2>Ver agendas</h2>
-        <p>Selecciona la agenda de un Protector de Salud o un Paciente</p>
+        <p>Selecciona la agenda de un PDS o un paciente</p>
         <Link to="/gestionar-agenda/agenda">
           <button className="blue_button">Ver agendas</button>
         </Link>
@@ -19,9 +19,9 @@ const GestionarAgenda = () => {
 
       <div>
         <img src={suggestImg} alt="" />
-        <h2>Intervenciones pendientes de confirmar</h2>
+        <h2>Confirmar intervenciones</h2>
         <p>
-          Tienes <b>54 intervenciones pendientes para hoy</b> de un total de 231
+          Tienes 25 intervenciones pendientes de confirmar
         </p>
         <Link to="/gestionar-agenda/intervenciones-pendientes">
           <button className="blue_button">Ver intervenciones pendientes</button>
@@ -30,10 +30,10 @@ const GestionarAgenda = () => {
 
       <div>
         <img src={newImg} alt="" />
-        <h2>Crear nueva intervención</h2>
+        <h2>Crear intervención</h2>
         <p>
-          Inicia el proceso de <b>creación de una nueva intervención</b> para un
-          paciente o PDS
+          Crea nuevas intervenciones para 
+          pacientes o PDSs
         </p>
         <Link to="/gestionar-agenda/nueva-intervencion">
           <button className="blue_button">Añadir nueva intervención</button>

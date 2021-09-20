@@ -18,7 +18,7 @@ import {
 const useRowStyles = makeStyles({
   root: {
     "& > *": {
-      borderBottom: "unset",
+      borderBottom: "1px solid #d8d8d8",
     },
   },
 });
@@ -47,7 +47,6 @@ function createData(
 
 function Row(props) {
   const { row } = props;
-  console.log(props, "dsss");
   const classes = useRowStyles();
   return (
     <React.Fragment>
@@ -62,22 +61,18 @@ function Row(props) {
         <TableCell align="left">{row.user_name}</TableCell>
         <TableCell align="left">
           {row.num_of_calls.charAt(0) == 1 ? (
-            <span className={red_text}>
-              {row.num_of_calls.substring(1)}
-            </span>
+            <span className={red_text}>{row.num_of_calls.substring(1)}</span>
           ) : (
             <span className={normal_text}>
-              {row.num_of_calls.substring(1)}
+              {row.num_of_calls.substring(1)} <span>llamadas</span>
             </span>
           )}
           <br />
           {row.num_of_visits.charAt(0) == 1 ? (
-            <span className={red_text}>
-              {row.num_of_visits.substring(1)}
-            </span>
+            <span className={red_text}>{row.num_of_visits.substring(1)}</span>
           ) : (
             <span className={normal_text}>
-              {row.num_of_visits.substring(1)}
+              {row.num_of_visits.substring(1)} <span>visitas</span>
             </span>
           )}
         </TableCell>
@@ -96,9 +91,7 @@ function Row(props) {
 
         <TableCell align="left">
           {row.riesgo_clinico.charAt(0) == 1 ? (
-            <span className={red_text}>
-              {row.riesgo_clinico.substring(1)}
-            </span>
+            <span className={red_text}>{row.riesgo_clinico.substring(1)}</span>
           ) : (
             <span className={normal_text}>
               {row.riesgo_clinico.substring(1)}
@@ -129,7 +122,9 @@ function Row(props) {
             </span>
           )}
         </TableCell>
-        <TableCell></TableCell>
+        <TableCell>
+          <p style={{ color: "#0057FF" }}>Abrir</p>
+        </TableCell>
       </TableRow>
     </React.Fragment>
   );
@@ -150,9 +145,7 @@ const rows = patientChartList.map((pds) => {
 
     `${pds.riesgo_por_entorno.alarm_is_active}${pds.riesgo_por_entorno.value}`,
 
-    `${pds.patient_satisfaction_level.alarm_is_active}${pds.patient_satisfaction_level.value}`,
-
-    "ir al perfil"
+    `${pds.patient_satisfaction_level.alarm_is_active}${pds.patient_satisfaction_level.value}`
   );
 });
 
@@ -175,16 +168,24 @@ const PatientTableList = () => {
               <TableCell></TableCell>
               <TableCell>Nombre del paciente</TableCell>
               <TableCell align="left">Número de intervenciones</TableCell>
-              <TableCell align="left">Número de días desde la última intervención</TableCell>
-              <TableCell align="left">Riesgo clínico</TableCell>
-              <TableCell align="left">Riesgo por entorno</TableCell>
-              <TableCell align="left">Satisfacción del paciente (1-10)</TableCell>
+              <TableCell align="left">
+                Número de días desde <br /> la última intervención
+              </TableCell>
+              <TableCell align="left">
+                Riesgo clínico <br /> (1-5)
+              </TableCell>
+              <TableCell align="left">
+                Riesgo por entorno <br /> (1-5)
+              </TableCell>
+              <TableCell align="left">
+                Satisfacción del <br /> paciente (1-10)
+              </TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row, key) => (
-              <Row key={key} row={row} />
+                <Row key={key} row={row} />
             ))}
           </TableBody>
         </Table>

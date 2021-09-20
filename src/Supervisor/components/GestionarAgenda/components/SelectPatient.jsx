@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -6,11 +6,12 @@ import Select from "@material-ui/core/Select";
 
 const patientList = ["Lucas Calvo", "Paloma López", "Andrés Giménez"];
 
-const SelectPatient = () => {
-  const [value, setValue] = React.useState("");
+const SelectPatient = ({ setIsSelected }) => {
+  const [value, setValue] = useState("");
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    setIsSelected(true);
   };
   return (
     <FormControl variant="outlined" style={{ marginBottom: "1rem" }}>

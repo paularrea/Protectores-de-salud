@@ -1,5 +1,5 @@
-import React from "react";
-import { Field, ErrorMessage } from "formik";
+import React, {useState} from "react";
+import { Field } from "formik";
 import { TextField } from "formik-material-ui";
 import "./form.css";
 import styles from "./form.module.scss";
@@ -13,7 +13,9 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 
 const AppointmentSuggestionStep1 = ({ refProp, setFieldValue, values }) => {
-  console.log(values, 'valuuuu')
+  const [value, setValue] = useState(null);
+
+
   const patientInfoVerification = (
     <>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -23,11 +25,11 @@ const AppointmentSuggestionStep1 = ({ refProp, setFieldValue, values }) => {
             label="Fecha"
             inputVariant="outlined"
             format="dd/MM/yyyy"
-            value={values.newInterventionDateProposal}
             placeholder="dd/MM/yyyy"
-            onChange={(value) =>
-              setFieldValue("newInterventionDateProposal", value)
-            }
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue);
+            }}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}

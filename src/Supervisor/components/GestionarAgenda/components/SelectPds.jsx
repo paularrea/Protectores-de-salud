@@ -6,11 +6,12 @@ import Select from "@material-ui/core/Select";
 
 const pdsList = ["Pau Larrea", "Andrea Vega", "David Campos"];
 
-const SelectPds = () => {
+const SelectPds = ({ setIsSelected }) => {
   const [value, setValue] = React.useState("");
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    setIsSelected(true);
   };
   return (
     <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>

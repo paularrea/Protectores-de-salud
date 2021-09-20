@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Field, ErrorMessage } from "formik";
 import { Select } from "formik-material-ui";
 import { MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import "../../../../../styles/form.css";
 import styles from "../../../../../styles/form.module.scss";
 import step1 from "../../../../../img/steps/evaluation-step1.png";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -14,111 +14,129 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 
 const appointmentType = ["Llamada", "Presencial"];
-const pdsList = ["Pau Larrea", "Andrea Vega", "David Campos"];
 const patientList = ["Lucas Calvo", "Paloma López", "Andrés Giménez"];
 
 const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
+  const [pdsAssigned, setPdsAssigned] = useState("Andrea Vega");
+  const [patientSelected, setPatientSelected] = useState(false);
+  const [value, setValue] = useState(null);
+
+  useEffect(() => {
+    setPdsAssigned(pdsAssigned);
+  }, [pdsAssigned]);
+
   const patientInfoVerification = (
     <>
-          <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-      <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
-      <InputLabel id="demo-simple-select-outlined-label">
-        Selecciona un Paciente
-      </InputLabel>
-        <ErrorMessage
-          name="PacienteName"
-          component="div"
-          className={styles.error_message}
-        />
-        <Field
-          type="select"
-          variant="outlined"
-          label="Selecciona un Paciente"
-          style={{ width: "100%" }}
-          component={Select}
-          name="PdsName"
-          MenuProps={{
-            PaperProps: {
-              style: {
-                transform: "translate3d(0, 0, 0)",
+      <div style={{ marginTop: "1rem", marginBottom: '1rem' }}>
+        <FormControl variant="outlined" style={{ marginBottom: 0 }}>
+          <InputLabel id="demo-simple-select-outlined-label">
+            Selecciona un Paciente
+          </InputLabel>
+          <ErrorMessage
+            name="PacienteName"
+            component="div"
+            className={styles.error_message}
+          />
+          <Field
+            type="select"
+            variant="outlined"
+            label="Selecciona un Paciente"
+            style={{ width: "100%" }}
+            component={Select}
+            name="PdsName"
+            onChange={() => setPatientSelected(true)}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  transform: "translate3d(0, 0, 0)",
+                },
               },
-            },
-          }}
-        >
-          {patientList.map((answer, key) => (
-            <MenuItem key={key} value={answer}>
-              {answer}
-            </MenuItem>
-          ))}
-        </Field>
+            }}
+          >
+            {patientList.map((answer, key) => (
+              <MenuItem key={key} value={answer}>
+                {answer}
+              </MenuItem>
+            ))}
+          </Field>
         </FormControl>
       </div>
-      
-      <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-      <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
-      <InputLabel id="demo-simple-select-outlined-label">
-        Selecciona un PDS
-      </InputLabel>
-        <ErrorMessage
-          name="PdsName"
-          component="div"
-          className={styles.error_message}
-        />
-        <Field
-          type="select"
-          variant="outlined"
-          label="Selecciona un PDS"
-          style={{ width: "100%" }}
-          component={Select}
-          name="PdsName"
-          MenuProps={{
-            PaperProps: {
-              style: {
-                transform: "translate3d(0, 0, 0)",
+
+      {patientSelected ? (
+        <div style={{ marginTop: 0, marginBottom: "3rem", color:'gray', marginLeft:'1rem' }}>
+          <span style={{ margin: 0 }}>PDS: </span>
+          <span style={{ padding: 0 }}>{pdsAssigned}</span>
+        </div>
+      ) : null}
+
+      {/* <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+        <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
+          <InputLabel id="demo-simple-select-outlined-label">
+            Selecciona un PDS
+          </InputLabel>
+          <ErrorMessage
+            name="PdsName"
+            component="div"
+            className={styles.error_message}
+          />
+          <Field
+            type="select"
+            variant="outlined"
+            label="Selecciona un PDS"
+            style={{ width: "100%" }}
+            component={Select}
+            name="PdsName"
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  transform: "translate3d(0, 0, 0)",
+                },
               },
-            },
-          }}
-        >
-          {pdsList.map((answer, key) => (
-            <MenuItem key={key} value={answer}>
-              {answer}
-            </MenuItem>
-          ))}
-        </Field>
+            }}
+          >
+            {pdsList.map((answer, key) => (
+              <MenuItem
+                key={key}
+                value={patientSelected ? pdsAssigned : answer}
+              >
+                {answer}
+              </MenuItem>
+            ))}
+          </Field>
         </FormControl>
-      </div>
-      
+      </div> */}
+
       <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-      <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
-      <InputLabel id="demo-simple-select-outlined-label">
-        Tipo de cita
-      </InputLabel>
-        <ErrorMessage
-          name="PdsName"
-          component="div"
-          className={styles.error_message}
-        />
-        <Field
-          type="select"
-          variant="outlined"
-          label="Tipo de cita"
-          style={{ width: "100%" }}
-          component={Select}
-          name="PdsName"
-          MenuProps={{
-            PaperProps: {
-              style: {
-                transform: "translate3d(0, 0, 0)",
+        <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
+          <InputLabel id="demo-simple-select-outlined-label">
+            Tipo de cita
+          </InputLabel>
+          <ErrorMessage
+            name="PdsName"
+            component="div"
+            className={styles.error_message}
+          />
+          <Field
+            type="select"
+            variant="outlined"
+            label="Tipo de cita"
+            style={{ width: "100%" }}
+            component={Select}
+            name="PdsName"
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  transform: "translate3d(0, 0, 0)",
+                },
               },
-            },
-          }}
-        >
-          {appointmentType.map((answer, key) => (
-            <MenuItem key={key} value={answer}>
-              {answer}
-            </MenuItem>
-          ))}
-        </Field>
+            }}
+          >
+            {appointmentType.map((answer, key) => (
+              <MenuItem key={key} value={answer}>
+                {answer}
+              </MenuItem>
+            ))}
+          </Field>
         </FormControl>
       </div>
 
@@ -129,10 +147,10 @@ const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
             label="Fecha"
             inputVariant="outlined"
             format="MM/dd/yyyy"
-            value={values.newInterventionDateProposal}
-            onChange={(value) =>
-              setFieldValue("newInterventionDateProposal", value)
-            }
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue);
+            }}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
@@ -143,10 +161,10 @@ const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
             id="hour-picker-dialog"
             label="Hora"
             inputVariant="outlined"
-            value={values.newInterventionTimeProposal}
-            onChange={(value) =>
-              setFieldValue("newInterventionTimeProposal", value)
-            }
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue);
+            }}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}

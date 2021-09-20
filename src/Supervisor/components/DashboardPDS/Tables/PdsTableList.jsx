@@ -18,7 +18,7 @@ import {
 const useRowStyles = makeStyles({
   root: {
     "& > *": {
-      borderBottom: "unset",
+      borderBottom: "1px solid #d8d8d8",
     },
   },
 });
@@ -145,6 +145,9 @@ function Row(props) {
             </span>
           )}
         </TableCell>
+        <TableCell>
+          <p style={{ color: "#0057FF"}}>Abrir</p>
+        </TableCell>
       </TableRow>
     </React.Fragment>
   );
@@ -192,9 +195,14 @@ const PdsTableList = () => {
               <TableCell>Nombre del PDS</TableCell>
               <TableCell align="left">Número de intervenciones</TableCell>
               <TableCell align="left">Duración de la intervención</TableCell>
-              <TableCell align="left">Tiempo de respuesta a notificaciones</TableCell>
+              <TableCell align="left">
+                Tiempo de respuesta a notificaciones
+              </TableCell>
               <TableCell align="left">Tiempo de desplazamiento</TableCell>
-              <TableCell align="left">Satisfacción del paciente (1-10)</TableCell>
+              <TableCell align="left">
+                Satisfacción del paciente (1-10)
+              </TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
