@@ -55,7 +55,7 @@ function Row(props) {
     <React.Fragment>
       <TableRow className={classes.root}>
         <TableCell component="th">
-          {row.general_alarm_is_active == 1 ? (
+          {row.general_alarm_is_active === '1' ? (
             <div className={red_dot}></div>
           ) : (
             <div className={white_dot}></div>
@@ -63,7 +63,7 @@ function Row(props) {
         </TableCell>
         <TableCell align="left">{row.community_worker_name}</TableCell>
         <TableCell align="left">
-          {row.num_of_calls.charAt(0) == 1 ? (
+          {row.num_of_calls.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.num_of_calls.substring(1)} <span>llamadas</span>
             </span>
@@ -73,7 +73,7 @@ function Row(props) {
             </span>
           )}
           <br />
-          {row.num_of_visits.charAt(0) == 1 ? (
+          {row.num_of_visits.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.num_of_visits.substring(1)} <span>visitas</span>
             </span>
@@ -85,7 +85,7 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.duration_of_call_in_mins.charAt(0) == 1 ? (
+          {row.duration_of_call_in_mins.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.duration_of_call_in_mins.substring(1)}
               <span>llamadas</span>
@@ -97,7 +97,7 @@ function Row(props) {
             </span>
           )}
           <br />
-          {row.duration_of_visit_in_mins.charAt(0) == 1 ? (
+          {row.duration_of_visit_in_mins.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.duration_of_visit_in_mins.substring(1)}
               <span>visitas</span>
@@ -111,7 +111,7 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.duration_of_travel_in_mins.charAt(0) == 1 ? (
+          {row.duration_of_travel_in_mins.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.duration_of_travel_in_mins.substring(1)}
             </span>
@@ -123,7 +123,7 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.response_time_in_mins.charAt(0) == 1 ? (
+          {row.response_time_in_mins.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.response_time_in_mins.substring(1)}
             </span>
@@ -135,7 +135,7 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.patient_satisfaction_level.charAt(0) == 1 ? (
+          {row.patient_satisfaction_level.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.patient_satisfaction_level.substring(1)}
             </span>

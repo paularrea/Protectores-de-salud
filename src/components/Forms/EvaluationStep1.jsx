@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./form.module.scss";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import step1 from "../../img/steps/evaluation-step1.png";
 import Element from "./components/ElementForm";
 

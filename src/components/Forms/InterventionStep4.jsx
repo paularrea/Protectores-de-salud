@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../UserContext.js";
+import React from "react";
+// import { UserContext } from "../../UserContext.js";
 import PatientConfirmationSignature from "../DigitalSignature/PatientConfirmationSignature";
 import styles from "./form.module.scss";
 import step4 from "../../img/steps/step4.png"
 
 const Step4 = (props) => {
-  const { contextUser } = useContext(UserContext);
-
+  // const { contextUser } = useContext(UserContext);
   var date = new Date();
   var dd = String(date.getDate()).padStart(2, '0');
   var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!

@@ -75,76 +75,78 @@ const Basic = () => (
       }) => (
         <Form
           style={{
-            marginLeft:'2rem',
+            marginLeft: "2rem",
             textAlign: "center",
           }}
         >
           <ThemeProvider theme={theme}>
-            <div style={{ marginTop: "1rem" }}>
-              <FormControl variant="outlined">
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Tipo de cita
-                </InputLabel>
-                <ErrorMessage
-                  name="PdsName"
-                  component="div"
-                  className={stylesForm.error_message}
-                />
-                <Field
-                  type="select"
-                  variant="outlined"
-                  label="Tipo de cita"
-                  style={{ width: "100%" }}
-                  component={Select}
-                  name="PdsName"
-                  MenuProps={{
-                    PaperProps: {
-                      style: {
-                        transform: "translate3d(0, 0, 0)",
+            <ThemeProvider theme={blue_pds}>
+              <div style={{ marginTop: "1rem" }}>
+                <FormControl variant="outlined">
+                  <InputLabel id="demo-simple-select-outlined-label">
+                    Tipo de cita
+                  </InputLabel>
+                  <ErrorMessage
+                    name="PdsName"
+                    component="div"
+                    className={stylesForm.error_message}
+                  />
+                  <Field
+                    type="select"
+                    variant="outlined"
+                    label="Tipo de cita"
+                    style={{ width: "100%" }}
+                    component={Select}
+                    name="PdsName"
+                    MenuProps={{
+                      PaperProps: {
+                        style: {
+                          transform: "translate3d(0, 0, 0)",
+                        },
                       },
-                    },
-                  }}
-                >
-                  {appointmentType.map((answer, key) => (
-                    <MenuItem key={key} value={answer}>
-                      {answer}
-                    </MenuItem>
-                  ))}
-                </Field>
-              </FormControl>
-            </div>
+                    }}
+                  >
+                    {appointmentType.map((answer, key) => (
+                      <MenuItem key={key} value={answer}>
+                        {answer}
+                      </MenuItem>
+                    ))}
+                  </Field>
+                </FormControl>
+              </div>
 
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <div style={{ marginTop: "1rem" }}>
-                <KeyboardDatePicker
-                  id="date-picker-dialog"
-                  label="Fecha"
-                  inputVariant="outlined"
-                  format="MM/dd/yyyy"
-                  value={values.newInterventionDateProposal}
-                  onChange={(value) =>
-                    setFieldValue("newInterventionDateProposal", value)
-                  }
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
-                  }}
-                />
-              </div>
-              <div style={{ marginTop: "1rem" }}>
-                <KeyboardTimePicker
-                  id="hour-picker-dialog"
-                  label="Hora"
-                  inputVariant="outlined"
-                  value={values.newInterventionTimeProposal}
-                  onChange={(value) =>
-                    setFieldValue("newInterventionTimeProposal", value)
-                  }
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
-                  }}
-                />
-              </div>
-            </MuiPickersUtilsProvider>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <div style={{ marginTop: "1rem" }}>
+                  <KeyboardDatePicker
+                    id="date-picker-dialog"
+                    label="Fecha"
+                    inputVariant="outlined"
+                    format="MM/dd/yyyy"
+                    value={values.newInterventionDateProposal}
+                    onChange={(value) =>
+                      setFieldValue("newInterventionDateProposal", value)
+                    }
+                    KeyboardButtonProps={{
+                      "aria-label": "change date",
+                    }}
+                  />
+                </div>
+                <div style={{ marginTop: "1rem" }}>
+                  <KeyboardTimePicker
+                    id="hour-picker-dialog"
+                    label="Hora"
+                    inputVariant="outlined"
+                    value={values.newInterventionTimeProposal}
+                    onChange={(value) =>
+                      setFieldValue("newInterventionTimeProposal", value)
+                    }
+                    KeyboardButtonProps={{
+                      "aria-label": "change date",
+                    }}
+                  />
+                </div>
+              </MuiPickersUtilsProvider>
+            </ThemeProvider>
           </ThemeProvider>
 
           <button

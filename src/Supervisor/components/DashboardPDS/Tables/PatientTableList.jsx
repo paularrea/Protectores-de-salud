@@ -52,7 +52,7 @@ function Row(props) {
     <React.Fragment>
       <TableRow className={classes.root}>
         <TableCell component="th">
-          {row.general_alarm_is_active == 1 ? (
+          {row.general_alarm_is_active === '1' ? (
             <div className={red_dot}></div>
           ) : (
             <div className={white_dot}></div>
@@ -60,7 +60,7 @@ function Row(props) {
         </TableCell>
         <TableCell align="left">{row.user_name}</TableCell>
         <TableCell align="left">
-          {row.num_of_calls.charAt(0) == 1 ? (
+          {row.num_of_calls.charAt(0) === '1' ? (
             <span className={red_text}>{row.num_of_calls.substring(1)}</span>
           ) : (
             <span className={normal_text}>
@@ -68,7 +68,7 @@ function Row(props) {
             </span>
           )}
           <br />
-          {row.num_of_visits.charAt(0) == 1 ? (
+          {row.num_of_visits.charAt(0) === '1' ? (
             <span className={red_text}>{row.num_of_visits.substring(1)}</span>
           ) : (
             <span className={normal_text}>
@@ -78,7 +78,7 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.num_of_days_since_last_intervention.charAt(0) == 1 ? (
+          {row.num_of_days_since_last_intervention.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.num_of_days_since_last_intervention.substring(1)}
             </span>
@@ -90,7 +90,7 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.riesgo_clinico.charAt(0) == 1 ? (
+          {row.riesgo_clinico.charAt(0) === '1' ? (
             <span className={red_text}>{row.riesgo_clinico.substring(1)}</span>
           ) : (
             <span className={normal_text}>
@@ -100,7 +100,7 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.riesgo_por_entorno.charAt(0) == 1 ? (
+          {row.riesgo_por_entorno.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.riesgo_por_entorno.substring(1)}
             </span>
@@ -112,7 +112,7 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.patient_satisfaction_level.charAt(0) == 1 ? (
+          {row.patient_satisfaction_level.charAt(0) === '1' ? (
             <span className={red_text}>
               {row.patient_satisfaction_level.substring(1)}
             </span>

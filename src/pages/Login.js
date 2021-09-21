@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import MediaQuery from "react-responsive";
-import WorkerDashboard from "./WorkerDashboard";
+// import WorkerDashboard from "./WorkerDashboard";
 import "../styles/App.scss";
 import styles from "../styles/login.module.scss";
 import loginImg from "../img/login-img.jpg";
@@ -76,17 +76,17 @@ const Login = () => {
     }
   };
 
-  const Logout = () => {
-    setUser({
-      username: "",
-      password: "",
-      user_type: "",
-    });
-    sessionStorage.removeItem("user");
-    sessionStorage.removeItem("Legal advise");
-    sessionStorage.removeItem("Red noti");
-    sessionStorage.removeItem("Blue noti");
-  };
+  // const Logout = () => {
+  //   setUser({
+  //     username: "",
+  //     password: "",
+  //     user_type: "",
+  //   });
+  //   sessionStorage.removeItem("user");
+  //   sessionStorage.removeItem("Legal advise");
+  //   sessionStorage.removeItem("Red noti");
+  //   sessionStorage.removeItem("Blue noti");
+  // };
 
   const isWorker = dbUser[0] && dbUser[0].user_type === "COMMUNITY_WORKER" && (
     <>

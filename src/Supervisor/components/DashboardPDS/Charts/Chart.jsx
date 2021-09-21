@@ -6,7 +6,6 @@ import {
   Area,
   XAxis,
   CartesianGrid,
-  Legend,
   YAxis,
   ReferenceLine,
   Tooltip,
