@@ -1,6 +1,6 @@
 const dashboard_all_patients = {
   last_date: "2021-09-21",
-  num_of_patients: 10,
+  num_of_patients: 1123,
   plots: [
     {
       title: "Nivel de satisfacción con el servicio",

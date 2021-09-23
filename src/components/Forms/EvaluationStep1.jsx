@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "./form.module.scss";
 // import * as Yup from "yup";
+import { Field } from "formik";
+import { TextField } from "formik-material-ui";
+
 import step1 from "../../img/steps/evaluation-step1.png";
 import Element from "./components/ElementForm";
 
@@ -16,6 +19,18 @@ const EvaluationStep1 = (props) => {
       <div className={styles.container}>
         <div ref={props.refProp} className={styles.content}>
           <section>{evaluation}</section>
+          <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+          <h4 className={styles.question_title}>Observaciones</h4>
+          <Field
+            type="text"
+            variant="outlined"
+            multiline
+            rowsMax={4}
+            name='observaciones'
+            margin="none"
+            component={TextField}
+          />
+        </div>
         </div>
       </div>
     </>
