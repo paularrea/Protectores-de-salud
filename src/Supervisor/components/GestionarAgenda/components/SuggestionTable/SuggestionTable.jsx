@@ -88,7 +88,7 @@ export default function CollapsibleTable() {
   return (
     <TableContainer
       style={{
-        height: "600px",
+        height: "auto",
         overflowY: "scroll",
         WebkitBoxShadow: "0px 4px 40px #E1E5EC",
         boxShadow: "0px 4px 40px #E1E5EC",

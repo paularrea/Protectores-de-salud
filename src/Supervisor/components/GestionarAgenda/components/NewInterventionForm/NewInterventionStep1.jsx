@@ -4,22 +4,15 @@ import { Select } from "formik-material-ui";
 import { MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import "../../../../../styles/form.css";
 import styles from "../../../../../styles/form.module.scss";
-import step1 from "../../../../../img/steps/evaluation-step1.png";
+import step1 from "../../../../../img/steps/suggestion-step1.png";
+import PatientInfo from "./patientInfo";
 // import * as Yup from "yup";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 
-const appointmentType = ["Llamada", "Presencial"];
 const patientList = ["Lucas Calvo", "Paloma López", "Andrés Giménez"];
 
-const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
+const NewInterventionStep1 = ({ refProp, setFieldValue, values, data }) => {
   const [pdsAssigned, setPdsAssigned] = useState("Andrea Vega");
   const [patientSelected, setPatientSelected] = useState(false);
-  const [value, setValue] = useState(null);
 
   useEffect(() => {
     setPdsAssigned(pdsAssigned);
@@ -27,7 +20,7 @@ const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
 
   const patientInfoVerification = (
     <>
-      <div style={{ marginTop: "1rem", marginBottom: '1rem' }}>
+      <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
         <FormControl variant="outlined" style={{ marginBottom: 0 }}>
           <InputLabel id="demo-simple-select-outlined-label">
             Selecciona un Paciente
@@ -63,114 +56,16 @@ const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
       </div>
 
       {patientSelected ? (
-        <div style={{ marginTop: 0, marginBottom: "3rem", color:'gray', marginLeft:'1rem' }}>
-          <span style={{ margin: 0 }}>PDS: </span>
-          <span style={{ padding: 0 }}>{pdsAssigned}</span>
+        <div
+          style={{
+            marginTop: "2rem",
+            color: "gray",
+            marginLeft: "1rem",
+          }}
+        >
+          <PatientInfo />
         </div>
       ) : null}
-
-      {/* <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-        <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
-          <InputLabel id="demo-simple-select-outlined-label">
-            Selecciona un PDS
-          </InputLabel>
-          <ErrorMessage
-            name="PdsName"
-            component="div"
-            className={styles.error_message}
-          />
-          <Field
-            type="select"
-            variant="outlined"
-            label="Selecciona un PDS"
-            style={{ width: "100%" }}
-            component={Select}
-            name="PdsName"
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  transform: "translate3d(0, 0, 0)",
-                },
-              },
-            }}
-          >
-            {pdsList.map((answer, key) => (
-              <MenuItem
-                key={key}
-                value={patientSelected ? pdsAssigned : answer}
-              >
-                {answer}
-              </MenuItem>
-            ))}
-          </Field>
-        </FormControl>
-      </div> */}
-
-      <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-        <FormControl variant="outlined" style={{ marginBottom: "2rem" }}>
-          <InputLabel id="demo-simple-select-outlined-label">
-            Tipo de cita
-          </InputLabel>
-          <ErrorMessage
-            name="PdsName"
-            component="div"
-            className={styles.error_message}
-          />
-          <Field
-            type="select"
-            variant="outlined"
-            label="Tipo de cita"
-            style={{ width: "100%" }}
-            component={Select}
-            name="PdsName"
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  transform: "translate3d(0, 0, 0)",
-                },
-              },
-            }}
-          >
-            {appointmentType.map((answer, key) => (
-              <MenuItem key={key} value={answer}>
-                {answer}
-              </MenuItem>
-            ))}
-          </Field>
-        </FormControl>
-      </div>
-
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <div style={{ marginTop: "1rem", marginBottom: "3rem" }}>
-          <KeyboardDatePicker
-            id="date-picker-dialog"
-            label="Fecha"
-            inputVariant="outlined"
-            format="MM/dd/yyyy"
-            value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
-            }}
-            KeyboardButtonProps={{
-              "aria-label": "change date",
-            }}
-          />
-        </div>
-        <div style={{ marginTop: "1rem", marginBottom: "3rem" }}>
-          <KeyboardTimePicker
-            id="hour-picker-dialog"
-            label="Hora"
-            inputVariant="outlined"
-            value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
-            }}
-            KeyboardButtonProps={{
-              "aria-label": "change date",
-            }}
-          />
-        </div>
-      </MuiPickersUtilsProvider>
     </>
   );
 
@@ -185,7 +80,7 @@ const NewInterventionStep1 = ({ refProp, setFieldValue, values }) => {
   );
 };
 
-NewInterventionStep1.label = "Crear una nueva intervención";
+NewInterventionStep1.label = "Elige un/a paciente";
 
 // NewInterventionStep1.validationSchema = Yup.object().shape({
 //   interventionSuggestion: Yup.string().required("Campo Obligatorio"),

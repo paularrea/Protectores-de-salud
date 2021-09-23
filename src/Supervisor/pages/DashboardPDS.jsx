@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/dashboardPDS.module.scss";
-import dashboards_community_workers from "../components/DashboardPDS/Charts/graphData";
+import dashboards_community_workers from "../components/DashboardPDS/Charts/pdsGraphData";
 import Chart from "../components/DashboardPDS/Charts/Chart";
 import Infobox from "../components/DashboardPDS/infoBox/Infobox";
 import PdsTableList from "../components/DashboardPDS/Tables/PdsTableList";

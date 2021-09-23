@@ -25,7 +25,7 @@ const useRowStyles = makeStyles({
 
 function createData(
   general_alarm_is_active,
-  user_name,
+  community_worker_name,
   num_of_visits,
   num_of_calls,
   duration_of_visit_in_mins,
@@ -36,7 +36,7 @@ function createData(
 ) {
   return {
     general_alarm_is_active,
-    user_name,
+    community_worker_name,
     num_of_visits,
     num_of_calls,
     duration_of_visit_in_mins,
@@ -61,7 +61,7 @@ function Row(props) {
             <div className={white_dot}></div>
           )}
         </TableCell>
-        <TableCell align="left">{row.user_name}</TableCell>
+        <TableCell align="left">{row.community_worker_name}</TableCell>
         <TableCell align="left">
           {row.num_of_calls.charAt(0) === '1' ? (
             <span className={red_text}>
@@ -157,7 +157,7 @@ const rows = pdsChartList.map((pds) => {
   return createData(
     `${pds.general_alarm_is_active}`,
 
-    `${pds.user_name}`,
+    `${pds.community_worker_name}`,
 
     `${pds.num_of_visits.alarm_is_active}${pds.num_of_visits.value}`,
     `${pds.num_of_calls.alarm_is_active}${pds.num_of_calls.value}`,

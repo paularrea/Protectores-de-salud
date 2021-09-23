@@ -21,7 +21,7 @@ const GestionarAgenda = () => {
         <img src={suggestImg} alt="" />
         <h2>Confirmar intervenciones</h2>
         <p>
-          Tienes 25 intervenciones pendientes de confirmar
+          Tienes 5 intervenciones pendientes de confirmar
         </p>
         <Link to="/gestionar-agenda/intervenciones-pendientes">
           <button className="blue_button">Ver intervenciones pendientes</button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import stylesForm from "../../../../../../styles/form.module.scss";
 import {
@@ -10,9 +10,15 @@ import { Field, ErrorMessage } from "formik";
 import DateFnsUtils from "@date-io/date-fns";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import { Select } from "formik-material-ui";
+import styles from "../../../../../../styles/form.module.scss";
 import { MenuItem, FormControl, InputLabel } from "@material-ui/core";
 
-const appointmentType = ["Llamada", "Presencial"];
+const appointmentType = ["Llamada", "Visita"];
+const actions = [
+  "Verificar datos personales",
+  "Aceptación Programa PDS",
+  "Revisar aceptación del cliente",
+];
 const theme = createMuiTheme({
   overrides: {
     MuiStepIcon: {
@@ -26,9 +32,6 @@ const theme = createMuiTheme({
       },
     },
   },
-});
-
-const blue_pds = createMuiTheme({
   palette: {
     primary: {
       main: "#4284F3",
@@ -39,9 +42,9 @@ const blue_pds = createMuiTheme({
   },
 });
 
-const Basic = () => (
-  <div>
-    <h3>Formulario</h3>
+const Basic = ({date}) => {
+  const [value, setValue] = useState(null);
+  return (
     <Formik
       initialValues={{ email: "", password: "" }}
       validate={(values) => {
@@ -75,16 +78,18 @@ const Basic = () => (
       }) => (
         <Form
           style={{
+            display: "flex",
+            alignItems: "flex-start",
             marginLeft: "2rem",
             textAlign: "center",
           }}
         >
           <ThemeProvider theme={theme}>
-            <ThemeProvider theme={blue_pds}>
+            <div>
               <div style={{ marginTop: "1rem" }}>
                 <FormControl variant="outlined">
                   <InputLabel id="demo-simple-select-outlined-label">
-                    Tipo de cita
+                    Tipo de intervención
                   </InputLabel>
                   <ErrorMessage
                     name="PdsName"
@@ -119,13 +124,13 @@ const Basic = () => (
                 <div style={{ marginTop: "1rem" }}>
                   <KeyboardDatePicker
                     id="date-picker-dialog"
-                    label="Fecha"
+                    label="Seleccione una fecha"
                     inputVariant="outlined"
                     format="MM/dd/yyyy"
-                    value={values.newInterventionDateProposal}
-                    onChange={(value) =>
-                      setFieldValue("newInterventionDateProposal", value)
-                    }
+                    value={date}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
@@ -134,32 +139,75 @@ const Basic = () => (
                 <div style={{ marginTop: "1rem" }}>
                   <KeyboardTimePicker
                     id="hour-picker-dialog"
-                    label="Hora"
+                    label="Seleccione una hora"
                     inputVariant="outlined"
-                    value={values.newInterventionTimeProposal}
-                    onChange={(value) =>
-                      setFieldValue("newInterventionTimeProposal", value)
-                    }
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
                     }}
                   />
                 </div>
               </MuiPickersUtilsProvider>
-            </ThemeProvider>
+            </div>
+            <div style={{ marginLeft: "3rem", textAlign: "left" }}>
+              <ErrorMessage
+                name="actions"
+                component="div"
+                className={styles.error_message}
+              />
+              <h4>Acciones:</h4>
+              <div
+                className="checkbox-group"
+                role="group"
+                aria-labelledby="checkbox-group"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "1rem",
+                }}
+              >
+                {actions.map((answer, key) => (
+                  <label
+                    key={key}
+                    style={{
+                      cursor: "pointer",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <Field
+                      style={{
+                        cursor: "pointer",
+                        margin: "0 1rem 0 0",
+                        width: "16px",
+                        height: "16px",
+                      }}
+                      type="checkbox"
+                      className={styles.checkbox_form}
+                      name="action"
+                      value={answer}
+                    />
+                    {answer}
+                    <span></span>
+                  </label>
+                ))}
+              </div>{" "}
+              <button
+                style={{ marginTop: 0 }}
+                className="green-button"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Confirmar y enviar
+              </button>
+            </div>
           </ThemeProvider>
-
-          <button
-            className="green-button"
-            type="submit"
-            disabled={isSubmitting}
-          >
-            Confirmar y enviar
-          </button>
         </Form>
       )}
     </Formik>
-  </div>
-);
+  );
+};
 
 export default Basic;

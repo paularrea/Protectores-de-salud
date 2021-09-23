@@ -6,7 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import pdsChartList from "./pdsChartList";
+import patientChartList from "./patientChartList";
 import {
   red_dot,
   white_dot,
@@ -28,10 +28,9 @@ function createData(
   user_name,
   num_of_visits,
   num_of_calls,
-  duration_of_visit_in_mins,
-  duration_of_call_in_mins,
-  duration_of_travel_in_mins,
-  response_time_in_mins,
+  num_of_days_since_last_intervention,
+  riesgo_clinico,
+  riesgo_por_entorno,
   patient_satisfaction_level
 ) {
   return {
@@ -39,17 +38,15 @@ function createData(
     user_name,
     num_of_visits,
     num_of_calls,
-    duration_of_visit_in_mins,
-    duration_of_call_in_mins,
-    duration_of_travel_in_mins,
-    response_time_in_mins,
+    num_of_days_since_last_intervention,
+    riesgo_clinico,
+    riesgo_por_entorno,
     patient_satisfaction_level,
   };
 }
 
 function Row(props) {
   const { row } = props;
-  console.log(props, "dsss");
   const classes = useRowStyles();
   return (
     <React.Fragment>
@@ -64,9 +61,7 @@ function Row(props) {
         <TableCell align="left">{row.user_name}</TableCell>
         <TableCell align="left">
           {row.num_of_calls.charAt(0) === '1' ? (
-            <span className={red_text}>
-              {row.num_of_calls.substring(1)} <span>llamadas</span>
-            </span>
+            <span className={red_text}>{row.num_of_calls.substring(1)}</span>
           ) : (
             <span className={normal_text}>
               {row.num_of_calls.substring(1)} <span>llamadas</span>
@@ -74,9 +69,7 @@ function Row(props) {
           )}
           <br />
           {row.num_of_visits.charAt(0) === '1' ? (
-            <span className={red_text}>
-              {row.num_of_visits.substring(1)} <span>visitas</span>
-            </span>
+            <span className={red_text}>{row.num_of_visits.substring(1)}</span>
           ) : (
             <span className={normal_text}>
               {row.num_of_visits.substring(1)} <span>visitas</span>
@@ -85,51 +78,35 @@ function Row(props) {
         </TableCell>
 
         <TableCell align="left">
-          {row.duration_of_call_in_mins.charAt(0) === '1' ? (
+          {row.num_of_days_since_last_intervention.charAt(0) === '1' ? (
             <span className={red_text}>
-              {row.duration_of_call_in_mins.substring(1)}
-              <span>llamadas</span>
+              {row.num_of_days_since_last_intervention.substring(1)}
             </span>
           ) : (
             <span className={normal_text}>
-              {row.duration_of_call_in_mins.substring(1)}
-              <span>llamadas</span>
-            </span>
-          )}
-          <br />
-          {row.duration_of_visit_in_mins.charAt(0) === '1' ? (
-            <span className={red_text}>
-              {row.duration_of_visit_in_mins.substring(1)}
-              <span>visitas</span>
-            </span>
-          ) : (
-            <span className={normal_text}>
-              {row.duration_of_visit_in_mins.substring(1)}
-              <span>visitas</span>
+              {row.num_of_days_since_last_intervention.substring(1)}
             </span>
           )}
         </TableCell>
 
         <TableCell align="left">
-          {row.duration_of_travel_in_mins.charAt(0) === '1' ? (
-            <span className={red_text}>
-              {row.duration_of_travel_in_mins.substring(1)}
-            </span>
+          {row.riesgo_clinico.charAt(0) === '1' ? (
+            <span className={red_text}>{row.riesgo_clinico.substring(1)}</span>
           ) : (
             <span className={normal_text}>
-              {row.duration_of_travel_in_mins.substring(1)}
+              {row.riesgo_clinico.substring(1)}
             </span>
           )}
         </TableCell>
 
         <TableCell align="left">
-          {row.response_time_in_mins.charAt(0) === '1' ? (
+          {row.riesgo_por_entorno.charAt(0) === '1' ? (
             <span className={red_text}>
-              {row.response_time_in_mins.substring(1)}
+              {row.riesgo_por_entorno.substring(1)}
             </span>
           ) : (
             <span className={normal_text}>
-              {row.response_time_in_mins.substring(1)}
+              {row.riesgo_por_entorno.substring(1)}
             </span>
           )}
         </TableCell>
@@ -146,14 +123,14 @@ function Row(props) {
           )}
         </TableCell>
         <TableCell>
-          <p style={{ color: "#0057FF"}}>Abrir</p>
+          <p style={{ color: "#0057FF" }}>Abrir</p>
         </TableCell>
       </TableRow>
     </React.Fragment>
   );
 }
 
-const rows = pdsChartList.map((pds) => {
+const rows = patientChartList.map((pds) => {
   return createData(
     `${pds.general_alarm_is_active}`,
 
@@ -162,23 +139,20 @@ const rows = pdsChartList.map((pds) => {
     `${pds.num_of_visits.alarm_is_active}${pds.num_of_visits.value}`,
     `${pds.num_of_calls.alarm_is_active}${pds.num_of_calls.value}`,
 
-    `${pds.duration_of_visit_in_mins.alarm_is_active}${pds.duration_of_visit_in_mins.value} min`,
-    `${pds.duration_of_call_in_mins.alarm_is_active}${pds.duration_of_call_in_mins.value} min`,
+    `${pds.num_of_days_since_last_intervention.alarm_is_active}${pds.num_of_days_since_last_intervention.value} días`,
 
-    `${pds.duration_of_travel_in_mins.alarm_is_active}${pds.duration_of_travel_in_mins.value} min`,
+    `${pds.riesgo_clinico.alarm_is_active}${pds.riesgo_clinico.value}`,
 
-    `${pds.response_time_in_mins.alarm_is_active}${pds.response_time_in_mins.value} min`,
+    `${pds.riesgo_por_entorno.alarm_is_active}${pds.riesgo_por_entorno.value}`,
 
-    `${pds.patient_satisfaction_level.alarm_is_active}${pds.patient_satisfaction_level.value}`,
-
-    "ir al perfil"
+    `${pds.patient_satisfaction_level.alarm_is_active}${pds.patient_satisfaction_level.value}`
   );
 });
 
-const PdsTableList = () => {
+const PatientTableList = () => {
   return (
     <div className={container}>
-      <h2>Listado de PDS</h2>
+      <h2>Listado de Pacientes</h2>
       <TableContainer
         style={{
           height: "800px",
@@ -192,22 +166,26 @@ const PdsTableList = () => {
           <TableHead style={{ backgroundColor: "#ECECF3 !important" }}>
             <TableRow>
               <TableCell></TableCell>
-              <TableCell>Nombre del PDS</TableCell>
+              <TableCell>Nombre del paciente</TableCell>
               <TableCell align="left">Número de intervenciones</TableCell>
-              <TableCell align="left">Duración de la intervención</TableCell>
               <TableCell align="left">
-                Tiempo de respuesta a notificaciones
+                Número de días desde <br /> la última intervención
               </TableCell>
-              <TableCell align="left">Tiempo de desplazamiento</TableCell>
               <TableCell align="left">
-                Satisfacción del paciente (1-10)
+                Riesgo clínico <br /> (1-5)
+              </TableCell>
+              <TableCell align="left">
+                Riesgo por entorno <br /> (1-5)
+              </TableCell>
+              <TableCell align="left">
+                Satisfacción del <br /> paciente (1-10)
               </TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row, key) => (
-              <Row key={key} row={row} />
+                <Row key={key} row={row} />
             ))}
           </TableBody>
         </Table>
@@ -216,4 +194,4 @@ const PdsTableList = () => {
   );
 };
 
-export default PdsTableList;
+export default PatientTableList;

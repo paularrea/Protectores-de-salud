@@ -5,7 +5,6 @@ import { UserContext } from "../../../../../../UserContext";
 import styles from "./dropdown.module.scss";
 import locationIcon from "../../../../../../img/loc.png";
 import phoneIcon from "../../../../../../img/phone.png";
-import arrow from "../../../../../../img/arrow.png";
 import less from "../../../../../../img/less.png";
 import more from "../../../../../../img/more.png";
 
@@ -41,9 +40,6 @@ const DayOne = () => {
                     {intervention.patient_info.patient_last_name}{" "}
                     {intervention.patient_info.patient_second_last_name}
                   </h5>
-                </div>
-                <div className={styles.arrow_container}>
-                  <img src={arrow} alt="see intervention details" />
                 </div>
               </div>
               {intervention.intervention_type === "VISIT" && (

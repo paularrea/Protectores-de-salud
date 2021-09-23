@@ -6,11 +6,9 @@ import styles from "./dropdown-form.module.scss";
 import Form from "./SuggestionForm/Form";
 
 const DropdownRow = ({ row }) => {
-  console.log(row);
   return (
     <div className={styles.dropdown_container}>
       <div className={styles.child}>
-        <h3>Paciente</h3>
         <section>
           <div className={styles.flex_child}>
             <img className={styles.user_logo} src={userIcon} alt="" />
@@ -37,7 +35,7 @@ const DropdownRow = ({ row }) => {
         </section>
       </div>
       <div className={styles.child}>
-        <Form />
+        <Form date={row.date}/>
       </div>
     </div>
   );

@@ -8,11 +8,13 @@ import SwipeableViews from "react-swipeable-views";
 import arrow from "../../../../../img/arrow_back.png";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import "../../../../../styles/form.css";
+import pendingEvents from "../../components/SuggestionTable/pendingEvents"
 
 import Step1 from "./NewInterventionStep1";
 import Step2 from "./NewInterventionStep2";
+import Step3 from "./NewInterventionStep3";
 
-const steps = [Step1, Step2];
+const steps = [Step1, Step2, Step3];
 
 const theme = createMuiTheme({
   overrides: {
@@ -133,6 +135,7 @@ const NewInterventionForm = (props) => {
                         setFieldValue={setFieldValue}
                         refProp={topRefEv}
                         key={index}
+                        data={pendingEvents}
                       />
                     </ThemeProvider>
                   );
@@ -159,7 +162,7 @@ const NewInterventionForm = (props) => {
                       </button>
                     </Link>
                   )}
-                  {activeStep === 1 ? (
+                  {activeStep === 2 ? (
                     <button className={styles.green_button} type="submit">
                       Aceptar y enviar
                     </button>

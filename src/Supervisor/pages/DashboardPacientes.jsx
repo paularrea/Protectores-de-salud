@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "../styles/dashboardPDS.module.scss";
-import dashboards_community_workers from "../components/DashboardPDS/Charts/graphData";
+import dashboard_all_patients from "../components/DashboardPDS/Charts/patientGraphData";
 import Chart from "../components/DashboardPDS/Charts/Chart";
-import Infobox from "../components/DashboardPDS/infoBox/Infobox";
 import PatientTableList from "../components/DashboardPDS/Tables/PatientTableList";
+import InfoboxPatients from "../components/DashboardPDS/infoBox/infoBoxPatients";
 
 const DashboardPacientes = () => {
-  const last_date = dashboards_community_workers.last_date;
+  const last_date = dashboard_all_patients.last_date;
   return (
     <div className={styles.container}>
       <div className={styles.flex}>
@@ -15,10 +15,10 @@ const DashboardPacientes = () => {
           <h1>Pacientes</h1>
           <p className={styles.date}>Último día completado: {last_date}</p>
         </div>
-        <Infobox />
+      <InfoboxPatients/>
       </div>
 
-      {dashboards_community_workers.plots.map((graph) => {
+      {dashboard_all_patients.plots.map((graph) => {
         return (
           <Chart
             values={graph.values}
